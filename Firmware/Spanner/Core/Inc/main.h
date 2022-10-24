@@ -57,6 +57,38 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define RFM_DI0_Pin GPIO_PIN_14
+#define RFM_DI0_GPIO_Port GPIOC
+#define RFM_DI3_Pin GPIO_PIN_15
+#define RFM_DI3_GPIO_Port GPIOC
+#define POWER_SWITCH_Pin GPIO_PIN_0
+#define POWER_SWITCH_GPIO_Port GPIOA
+#define VOLTAGE_MEASUREMENT_Pin GPIO_PIN_1
+#define VOLTAGE_MEASUREMENT_GPIO_Port GPIOA
+#define CURRENT_MEASUREMENT_Pin GPIO_PIN_2
+#define CURRENT_MEASUREMENT_GPIO_Port GPIOA
+#define RFM_RST_Pin GPIO_PIN_3
+#define RFM_RST_GPIO_Port GPIOA
+#define RFM_NSS_Pin GPIO_PIN_4
+#define RFM_NSS_GPIO_Port GPIOA
+#define RFM_DI2_Pin GPIO_PIN_0
+#define RFM_DI2_GPIO_Port GPIOB
+#define PWM_2_Pin GPIO_PIN_1
+#define PWM_2_GPIO_Port GPIOB
+#define TTL_B_Pin GPIO_PIN_8
+#define TTL_B_GPIO_Port GPIOA
+#define TTL_A_Pin GPIO_PIN_9
+#define TTL_A_GPIO_Port GPIOA
+#define PWM_1_Pin GPIO_PIN_15
+#define PWM_1_GPIO_Port GPIOA
+#define VUSB_Pin GPIO_PIN_3
+#define VUSB_GPIO_Port GPIOB
+#define LED_EXT_Pin GPIO_PIN_4
+#define LED_EXT_GPIO_Port GPIOB
+#define SW_EXT_Pin GPIO_PIN_5
+#define SW_EXT_GPIO_Port GPIOB
+#define LED_Pin GPIO_PIN_7
+#define LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
