@@ -49,7 +49,7 @@ void RFM95_LoRa::resetRFM(){
 bool RFM95_LoRa::writeRegister(uint8_t addr, uint8_t data){
 	uint8_t buff[2] = {(uint8_t)(addr | 0x80), data};
 	selectRFM();
-	if(HAL_SPI_Transmit(&hspi1, (uint8_t*)buff, 2, 100) != HAL_OK){
+	if(HAL_SPI_Transmit(&hspi3, (uint8_t*)buff, 2, 100) != HAL_OK){
 		deselectRFM();
 		return false;
 	}
@@ -62,7 +62,7 @@ uint8_t RFM95_LoRa::readRegister(uint8_t addr){
 	uint8_t txData[1] = {addr};
 
 	selectRFM();
-		HAL_SPI_TransmitReceive(&hspi1,(uint8_t*)txData,(uint8_t*)rxData,2,100);
+		HAL_SPI_TransmitReceive(&hspi3,(uint8_t*)txData,(uint8_t*)rxData,2,100);
 	deselectRFM();
 	return rxData[1];
 }
@@ -407,13 +407,13 @@ void RFM95_LoRa::handleDio0Rise(){
 
 bool RFM95_LoRa::InitRFM(){
 
-	uint8_t rfmCounter = 0;
-	rfm95.setFrequency(868000000);
-	rfm95.setTxPower(17, PA_OUTPUT_PA_BOOST_PIN);
-	rfm95.setSignalBandwidth(31.25E3);
-	rfm95.setSpreadingFactor(12);
-	rfm95.setCodingRate4(5);
-	if (!rfm95.begin(866E6)) {
+
+	setFrequency(868000000);
+	setTxPower(17, PA_OUTPUT_PA_BOOST_PIN);
+	setSignalBandwidth(31.25E3);
+	setSpreadingFactor(12);
+	setCodingRate4(5);
+	if (!begin(866E6)) {
 		return false;
 	}
 	return true;

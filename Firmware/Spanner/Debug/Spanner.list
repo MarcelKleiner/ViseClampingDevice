@@ -1409,17 +1409,17 @@ void MX_TIM1_Init(void)
  8000870:	4b47      	ldr	r3, [pc, #284]	; (8000990 <MX_TIM1_Init+0x160>)
  8000872:	4a48      	ldr	r2, [pc, #288]	; (8000994 <MX_TIM1_Init+0x164>)
  8000874:	601a      	str	r2, [r3, #0]
-  htim1.Init.Prescaler = 20;
+  htim1.Init.Prescaler = 40;
  8000876:	4b46      	ldr	r3, [pc, #280]	; (8000990 <MX_TIM1_Init+0x160>)
- 8000878:	2214      	movs	r2, #20
+ 8000878:	2228      	movs	r2, #40	; 0x28
  800087a:	605a      	str	r2, [r3, #4]
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
  800087c:	4b44      	ldr	r3, [pc, #272]	; (8000990 <MX_TIM1_Init+0x160>)
  800087e:	2200      	movs	r2, #0
  8000880:	609a      	str	r2, [r3, #8]
-  htim1.Init.Period = 48000;
+  htim1.Init.Period = 39999;
  8000882:	4b43      	ldr	r3, [pc, #268]	; (8000990 <MX_TIM1_Init+0x160>)
- 8000884:	f64b 3280 	movw	r2, #48000	; 0xbb80
+ 8000884:	f649 423f 	movw	r2, #39999	; 0x9c3f
  8000888:	60da      	str	r2, [r3, #12]
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  800088a:	4b41      	ldr	r3, [pc, #260]	; (8000990 <MX_TIM1_Init+0x160>)
@@ -1634,17 +1634,17 @@ void MX_TIM2_Init(void)
  80009bc:	4b22      	ldr	r3, [pc, #136]	; (8000a48 <MX_TIM2_Init+0xb0>)
  80009be:	f04f 4280 	mov.w	r2, #1073741824	; 0x40000000
  80009c2:	601a      	str	r2, [r3, #0]
-  htim2.Init.Prescaler = 0;
+  htim2.Init.Prescaler = 40;
  80009c4:	4b20      	ldr	r3, [pc, #128]	; (8000a48 <MX_TIM2_Init+0xb0>)
- 80009c6:	2200      	movs	r2, #0
+ 80009c6:	2228      	movs	r2, #40	; 0x28
  80009c8:	605a      	str	r2, [r3, #4]
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
  80009ca:	4b1f      	ldr	r3, [pc, #124]	; (8000a48 <MX_TIM2_Init+0xb0>)
  80009cc:	2200      	movs	r2, #0
  80009ce:	609a      	str	r2, [r3, #8]
-  htim2.Init.Period = 4294967295;
+  htim2.Init.Period = 39999;
  80009d0:	4b1d      	ldr	r3, [pc, #116]	; (8000a48 <MX_TIM2_Init+0xb0>)
- 80009d2:	f04f 32ff 	mov.w	r2, #4294967295
+ 80009d2:	f649 423f 	movw	r2, #39999	; 0x9c3f
  80009d6:	60da      	str	r2, [r3, #12]
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  80009d8:	4b1b      	ldr	r3, [pc, #108]	; (8000a48 <MX_TIM2_Init+0xb0>)

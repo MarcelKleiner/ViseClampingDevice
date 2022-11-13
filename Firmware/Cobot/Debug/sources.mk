@@ -32,10 +32,12 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src/AppMain \
-Core/Src/Buffer \
+Core/Src/Error \
+Core/Src/IO \
 Core/Src/RFM95W \
 Core/Src/Settings \
-Core/Src/Status \
+Core/Src/Taskhandler \
+Core/Src/Tools \
 Core/Src \
 Core/Startup \
 Drivers/STM32L4xx_HAL_Driver/Src \

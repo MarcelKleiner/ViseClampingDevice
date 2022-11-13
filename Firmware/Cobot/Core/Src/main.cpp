@@ -29,7 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "AppMain/AppMain.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,7 +49,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+AppMain appMain;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -102,7 +102,12 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_CRC_Init();
   MX_TIM6_Init();
+  MX_TIM7_Init();
+
+
   /* USER CODE BEGIN 2 */
+
+  	  appMain.Startup();
 
   /* USER CODE END 2 */
 
@@ -110,6 +115,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -136,14 +143,15 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
   RCC_OscInitStruct.MSICalibrationValue = 0;
   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
   RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 40;
+  RCC_OscInitStruct.PLL.PLLN = 36;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
@@ -194,6 +202,94 @@ void PeriphCommonClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+//	/*IO_COM Synchronisationstimer*/
+//	if(htim->Instance == TIM1){
+//		appMain.oIO_COM.IO_COM_SyncTimerInterrupt();
+//	}
+//	/*IO_COM Rx Timer*/
+//	if(htim->Instance == TIM2){
+//		appMain.oIO_COM.IO_COM_Rx_Tx_Interrupt();
+//	}
+//
+//	/*IO_COM Kommunikationsunterbruch*/
+//	if(htim->Instance == TIM4){
+//		appMain.oIO_COM.IO_COM_Kommunikationsunterbruch();
+//	}
+//	/*Taskhandler Timer*/
+//	if(htim->Instance == TIM6){
+//		appMain.taskhandler.TaskhandlerInterrupt();
+//	}
+//
+//
+//	if(htim->Instance == TIM7){
+//		appMain.updateUSBConnection(USB_SENDER_TIMER);
+//	}
+//
+//	if(htim->Instance == TIM15){
+//		appMain.updateIO();
+//
+//	}
+//
+//	if(htim->Instance == TIM17){
+//		msCounter++;
+//	}
+
+
+	if(htim->Instance == TIM7){
+		appMain.taskStatus.UpdateTasks();
+	}
+
+
+
+}
+
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim){
+
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+//	if(hadc->Instance == ADC1){
+//		HAL_ADC_Stop_DMA(&hadc1);
+//	}
+//
+//	if(hadc->Instance == ADC2){
+//		HAL_ADC_Stop_DMA(&hadc2);
+//	}
+//
+//	appMain.updateADC(hadc);
+}
+
+
+
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
+
+}
+
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin){
+//	if(GPIO_Pin == IO_COM_CLK_Pin){
+//		appMain.oIO_COM.IO_COM_clk_Interrupt();
+//	}
+}
+
+
+void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin){
+//	if(GPIO_Pin == IO_COM_CLK_Pin){
+//		appMain.oIO_COM.IO_COM_clk_Interrupt();
+//	}
+}
+
+
+
+
+void USB_HID_RX_Interrupt(){
+	//appMain.usbHID.receiveData(USB_RX_Buffer);
+	//appMain.updateUSBConnection(USB_SENDER_RX);
+
+}
+
+
 
 /* USER CODE END 4 */
 

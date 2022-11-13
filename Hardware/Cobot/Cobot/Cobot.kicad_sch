@@ -411,6 +411,9 @@
     (path "/683a235f-631b-434f-ae04-7b7c76450647/026eac78-0ecd-40d8-a333-dad5e9ba2c04"
       (reference "#PWR0211") (unit 1) (value "VCC") (footprint "")
     )
+    (path "/52c93530-c13a-4548-8dce-f59fbe2d897a/15427119-1f40-4763-b173-5e82e9ec51dc"
+      (reference "#PWR0212") (unit 1) (value "GND") (footprint "")
+    )
     (path "/52c93530-c13a-4548-8dce-f59fbe2d897a/4bec0c2e-324d-4e9f-8df4-a354755c8000"
       (reference "AE1") (unit 1) (value "Antenna_Shield") (footprint "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical")
     )
@@ -923,6 +926,9 @@
     )
     (path "/53ef3e89-b7dc-46ff-a0bd-c2595c8ba6b8/b8ae7dfa-9153-4e39-be05-3b03434eb151"
       (reference "R87") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/52c93530-c13a-4548-8dce-f59fbe2d897a/81bc3c22-bb1e-4bfe-ae4f-2680e7efb67b"
+      (reference "R88") (unit 1) (value "100k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/cbf7099d-4093-456e-8a4a-022298fcded3/5639ea4a-266c-429a-af51-15235459366c"
       (reference "TP1") (unit 1) (value "3V3") (footprint "TestPoint:TestPoint_Pad_D1.0mm")

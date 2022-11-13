@@ -15,10 +15,12 @@ RM := rm -rf
 -include Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/subdir.mk
 -include Drivers/STM32L4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
--include Core/Src/Status/subdir.mk
+-include Core/Src/Tools/subdir.mk
+-include Core/Src/Taskhandler/subdir.mk
 -include Core/Src/Settings/subdir.mk
 -include Core/Src/RFM95W/subdir.mk
--include Core/Src/Buffer/subdir.mk
+-include Core/Src/IO/subdir.mk
+-include Core/Src/Error/subdir.mk
 -include Core/Src/AppMain/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk

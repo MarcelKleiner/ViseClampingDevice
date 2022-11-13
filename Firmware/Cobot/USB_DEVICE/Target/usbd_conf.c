@@ -68,11 +68,22 @@ extern void SystemClock_Config(void);
 
 void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
 {
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(pcdHandle->Instance==USB)
   {
   /* USER CODE BEGIN USB_MspInit 0 */
 
   /* USER CODE END USB_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+    PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     /* Peripheral clock enable */
     __HAL_RCC_USB_CLK_ENABLE();
 
@@ -820,7 +831,7 @@ void USBD_static_free(void *p)
   */
 static void SystemClockConfig_Resume(void)
 {
-  SystemClock_Config();
+ // SystemClock_Config();
 }
 /* USER CODE END 5 */
 
