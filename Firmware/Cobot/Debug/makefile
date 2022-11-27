@@ -17,6 +17,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/Tools/subdir.mk
 -include Core/Src/Taskhandler/subdir.mk
+-include Core/Src/Status/subdir.mk
 -include Core/Src/Settings/subdir.mk
 -include Core/Src/RFM95W/subdir.mk
 -include Core/Src/IO/subdir.mk

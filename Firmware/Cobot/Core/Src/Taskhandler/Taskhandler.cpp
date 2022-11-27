@@ -35,7 +35,7 @@ void TaskHandler::UpdateTasks() {
 
 	//50ms
 	if(counter % 50 == 0){
-		comTask = true;
+
 	}
 
 
@@ -46,11 +46,17 @@ void TaskHandler::UpdateTasks() {
 	}
 
 
-	//1000ms
-	if(counter % 1000 == 0){
+	//500ms
+	if(counter % 500 == 0){
 		ledUpdateTask = true;
+		comTask = true;
 	}
 
+
+	//1000ms
+	if(counter % 1000 == 0){
+
+	}
 
 
 
@@ -97,11 +103,6 @@ bool TaskHandler::isLEDUpdateTask(){
 	ledUpdateTask = false;
 	return ledUpdateTaskTemp;
 }
-
-
-
-
-
 
 
 void TaskHandler::setAdcUpdateTaskEnable(bool adcUpdateTaskEnable ) {

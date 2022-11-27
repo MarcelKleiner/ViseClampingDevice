@@ -30,14 +30,6 @@ void AppMain::Startup()
 
 	Delay::DWT_Init();
 
-	closed.Reset();
-	open.Reset();
-	viseReady.Reset();
-	error.Reset();
-	batteryLow.Reset();
-	signal.Reset();
-	res1.Reset();
-	res2.Reset();
 
 	Main();
 }
@@ -60,16 +52,13 @@ void AppMain::Main()
 
 		if (taskStatus.isComTask())
 		{
-
+			com.UpdateCom();
+			com.ReadData();
 		}
 
 		if (taskStatus.isIoUpdateTask())
 		{
-			DigitalIn.Read();
-			if (DigitalIn.IsDataReady())
-			{
-				uint8_t data = DigitalIn.GetData();
-			}
+			DigitalInOut.Read();
 		}
 
 	}

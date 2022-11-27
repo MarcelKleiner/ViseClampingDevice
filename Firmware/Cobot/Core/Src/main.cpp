@@ -107,7 +107,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 
-  	  appMain.Startup();
+  appMain.Startup();
 
   /* USER CODE END 2 */
 
@@ -204,37 +204,6 @@ void PeriphCommonClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-//	/*IO_COM Synchronisationstimer*/
-//	if(htim->Instance == TIM1){
-//		appMain.oIO_COM.IO_COM_SyncTimerInterrupt();
-//	}
-//	/*IO_COM Rx Timer*/
-//	if(htim->Instance == TIM2){
-//		appMain.oIO_COM.IO_COM_Rx_Tx_Interrupt();
-//	}
-//
-//	/*IO_COM Kommunikationsunterbruch*/
-//	if(htim->Instance == TIM4){
-//		appMain.oIO_COM.IO_COM_Kommunikationsunterbruch();
-//	}
-//	/*Taskhandler Timer*/
-//	if(htim->Instance == TIM6){
-//		appMain.taskhandler.TaskhandlerInterrupt();
-//	}
-//
-//
-//	if(htim->Instance == TIM7){
-//		appMain.updateUSBConnection(USB_SENDER_TIMER);
-//	}
-//
-//	if(htim->Instance == TIM15){
-//		appMain.updateIO();
-//
-//	}
-//
-//	if(htim->Instance == TIM17){
-//		msCounter++;
-//	}
 
 
 	if(htim->Instance == TIM7){

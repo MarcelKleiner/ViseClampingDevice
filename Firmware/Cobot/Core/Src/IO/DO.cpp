@@ -25,7 +25,6 @@ void DigitalOut::Set() {
 	HAL_GPIO_WritePin(GPIOx_N, GPIO_Pin_N, GPIO_PIN_RESET);
 	Delay::DWT_Delay_us(25);
 	HAL_GPIO_WritePin(GPIOx_P, GPIO_Pin_P, GPIO_PIN_SET);
-
 	status = true;
 }
 
@@ -37,7 +36,6 @@ void DigitalOut::Reset() {
 	HAL_GPIO_WritePin(GPIOx_P, GPIO_Pin_P, GPIO_PIN_RESET);
 	Delay::DWT_Delay_us(25);
 	HAL_GPIO_WritePin(GPIOx_N, GPIO_Pin_N, GPIO_PIN_SET);
-
 	status = false;
 }
 

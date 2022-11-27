@@ -36,6 +36,7 @@ Core/Src/Error \
 Core/Src/IO \
 Core/Src/RFM95W \
 Core/Src/Settings \
+Core/Src/Status \
 Core/Src/Taskhandler \
 Core/Src/Tools \
 Core/Src \

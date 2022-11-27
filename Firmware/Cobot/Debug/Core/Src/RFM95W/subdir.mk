@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Core/Src/RFM95W/Communication.cpp \
 ../Core/Src/RFM95W/RFM95.cpp 
 
 OBJS += \
+./Core/Src/RFM95W/Communication.o \
 ./Core/Src/RFM95W/RFM95.o 
 
 CPP_DEPS += \
+./Core/Src/RFM95W/Communication.d \
 ./Core/Src/RFM95W/RFM95.d 
 
 
@@ -21,7 +24,7 @@ Core/Src/RFM95W/%.o Core/Src/RFM95W/%.su: ../Core/Src/RFM95W/%.cpp Core/Src/RFM9
 clean: clean-Core-2f-Src-2f-RFM95W
 
 clean-Core-2f-Src-2f-RFM95W:
-	-$(RM) ./Core/Src/RFM95W/RFM95.d ./Core/Src/RFM95W/RFM95.o ./Core/Src/RFM95W/RFM95.su
+	-$(RM) ./Core/Src/RFM95W/Communication.d ./Core/Src/RFM95W/Communication.o ./Core/Src/RFM95W/Communication.su ./Core/Src/RFM95W/RFM95.d ./Core/Src/RFM95W/RFM95.o ./Core/Src/RFM95W/RFM95.su
 
 .PHONY: clean-Core-2f-Src-2f-RFM95W
 

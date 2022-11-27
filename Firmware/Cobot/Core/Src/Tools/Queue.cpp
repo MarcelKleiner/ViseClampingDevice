@@ -59,7 +59,7 @@ uint8_t Queue::Dequeue()
 		return 0;
 	}
 	//get acutal dequeue pointer
-	byte dequeuePointerTemp = dequeuePointer;
+	uint8_t dequeuePointerTemp = dequeuePointer;
 
 	//incfement dequeuePointer, set to 0 if queue overflow occures
 	if (dequeuePointer == BUFFER_SIZE - 1)
