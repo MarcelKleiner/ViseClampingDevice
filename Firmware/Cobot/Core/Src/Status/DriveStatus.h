@@ -15,6 +15,11 @@ class DriveStatus
 
 		DriveStatus();
 
+		enum _ERROR{
+			E_FLASH_ERROR,
+		};
+
+
 		bool isClose();
 		void setClose(bool close);
 
@@ -39,8 +44,14 @@ class DriveStatus
 		bool isWriteConfig();
 		void setWriteConfig(bool writeConfig);
 
+		_ERROR getError();
+		void setError(_ERROR error);
+
 	private:
 
+
+
+		_ERROR error;
 		//reset by read
 		bool close;
 		bool open;
@@ -51,6 +62,8 @@ class DriveStatus
 		bool disable;
 
 		bool writeConfig;
+
+		uint8_t error;
 };
 
 #endif /* SRC_STATUS_DRIVESTATUS_H_ */
