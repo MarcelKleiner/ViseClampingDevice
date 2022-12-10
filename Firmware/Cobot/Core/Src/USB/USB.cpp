@@ -22,13 +22,14 @@ bool USBCom::USB_Transmit(uint8_t *data, uint8_t length)
 		counter++;
 		if (counter >= 1000)
 		{
+			//ToDo USB Error
 			return false;	//Trasmit faild
 		}
 	}
 	return true;	//Transmit successful
 }
 
-void USBCom::USB_Receive(uint8_t *data, uint32_t length)
+void USBCom::(uint8_t *data, uint32_t length)
 {
 
 	uint8_t response[2];
@@ -40,6 +41,7 @@ void USBCom::USB_Receive(uint8_t *data, uint32_t length)
 	switch (data[0])
 	{
 		case CLOSE:
+
 		case OPEN:
 		case TEACH:
 		case RESET:
