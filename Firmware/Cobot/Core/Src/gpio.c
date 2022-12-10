@@ -57,7 +57,7 @@ void MX_GPIO_Init(void)
                           |DI_OUT_3_N_Pin|DI_OUT_3_P_Pin|DI_OUT_1_N_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-   HAL_GPIO_WritePin(GPIOB, DI_OUT_4_P_Pin|DI_OUT_6_P_Pin|DI_OUT_2_N_Pin|DI_OUT_4_N_Pin
+  HAL_GPIO_WritePin(GPIOB, DI_OUT_4_P_Pin|DI_OUT_6_P_Pin|DI_OUT_2_N_Pin|DI_OUT_4_N_Pin
                           |DI_OUT_2_P_Pin|DI_OUT_7_N_Pin|DI_OUT_7_P_Pin|DI_OUT_5_N_Pin
                           |RFM_NSS_Pin|RFM_RST_Pin|RFM_DI_3_Pin|RFM_DI_0_Pin
                           |RFM_DI_2_Pin, GPIO_PIN_RESET);

@@ -33,12 +33,14 @@ CPP_DEPS :=
 SUBDIRS := \
 Core/Src/AppMain \
 Core/Src/Error \
+Core/Src/Flash \
 Core/Src/IO \
 Core/Src/RFM95W \
 Core/Src/Settings \
 Core/Src/Status \
 Core/Src/Taskhandler \
 Core/Src/Tools \
+Core/Src/USB \
 Core/Src \
 Core/Startup \
 Drivers/STM32L4xx_HAL_Driver/Src \

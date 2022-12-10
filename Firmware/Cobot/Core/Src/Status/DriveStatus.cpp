@@ -121,7 +121,9 @@ void DriveStatus::setTeach(bool teach)
  /****************************************************************************************/
 bool DriveStatus::isWriteConfig()
 {
-	return writeConfig;
+	bool writeConfigTemp = writeConfig;
+	writeConfig = false;
+	return writeConfigTemp;
 }
 
 void DriveStatus::setWriteConfig(bool writeConfig)

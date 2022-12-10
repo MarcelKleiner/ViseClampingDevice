@@ -15,6 +15,7 @@
 #include "../IO/DO.h"
 #include "../IO/LED.h"
 #include "../IO/DI.h"
+#include "../USB/USB.h"
 #include "tim.h"
 #include "main.h"
 
@@ -38,6 +39,9 @@ class AppMain
 
 		Digitll_IN_OUT DigitalInOut = Digitll_IN_OUT(&driveSettings, &driveStatus);
 		Communication com = Communication(&driveStatus, &driveSettings, &rfm95, &DigitalInOut);
+
+		USBCom USBCDC = USBCom(&driveSettings, &driveStatus);
+
 
 	private:
 

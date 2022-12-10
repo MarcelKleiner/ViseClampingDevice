@@ -1,33 +1,24 @@
 /*
  * Communication.h
  *
- *  Created on: 26.11.2022
+ *  Created on: 09.12.2022
  *      Author: marce
  */
 
-#ifndef SRC_RFM95W_COMMUNICATION_H_
-#define SRC_RFM95W_COMMUNICATION_H_
+#ifndef SRC_RFM95_COMMUNICATION_H_
+#define SRC_RFM95_COMMUNICATION_H_
 
 #include "../Settings/DriveSettings.h"
 #include "../Status/DriveStatus.h"
-#include "../IO/DI.h"
 #include "RFM95.h"
 #include "stdio.h"
+
 
 #define SEND_SETTINGS		0x01
 #define SEND_COMMAND		0x02
 #define SEND_STATUS_REQ		0x03
 
 #define RCV_STATUS			0x11
-
-//Registers
-
-
-
-
-
-
-
 
 #define MAX_PACKET_2_SEND		10
 #define MAX_PACKET_2_RECEIVE 	10
@@ -40,27 +31,28 @@
 #error "MAX_PACKET_2_SEND canot be greather than MAX_PKT_LENGTH"
 #endif
 
-
 class Communication
 {
-
 	public:
-		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut);
 
-		bool UpdateCom();
+		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings, RFM95_LoRa *rfm95);
+
 		void ReadData();
-	private:
+		bool SendData();
 
+	private:
+		//private instance reference
 		DriveStatus *driveStatus;
 		DriveSettings *driveSettings;
 		RFM95_LoRa *rfm95;
-		Digitll_IN_OUT *digitalInOut;
 
+		//private function declaration
 		uint8_t CRC8(uint8_t *data, uint8_t length);
 
-		uint8_t rxData[MAX_PACKET_2_SEND] ={ 0 };
+		//private variable declaration
+		uint8_t rxData[MAX_PACKET_2_RECEIVE] ={ 0 };
+		uint8_t txData[MAX_PACKET_2_SEND] ={ 0 };
 
 };
 
-#endif /* SRC_RFM95W_COMMUNICATION_H_ */
+#endif /* SRC_RFM95_COMMUNICATION_H_ */
