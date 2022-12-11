@@ -13,6 +13,7 @@
 #include "../Tools/Queue.h"
 #include "../Settings/DriveSettings.h"
 #include "../Status/DriveStatus.h"
+#include "../Status/DriveCommand.h"
 #include "DO.h"
 
 
@@ -56,6 +57,8 @@
 #define OVER_CURRENT_WARNING	0x19
 #define OVER_CURRENT_ERROR		0x1A
 
+#define DEVICE_ADDRESS			0x20
+
 
 
 #define TEACH_TORQUE_CHANGE				0x0001
@@ -79,7 +82,7 @@ class Digitll_IN_OUT{
 
 public:
 
-	Digitll_IN_OUT(DriveSettings *driveSettings, DriveStatus *driveStatus);
+	Digitll_IN_OUT(DriveSettings *driveSettings, DriveStatus *driveStatus, DriveCommand *driveCommand);
 
 	void Read();
 	bool CheckAddress(uint8_t data);
@@ -123,6 +126,7 @@ private:
 
 	DriveSettings *driveSettings;
 	DriveStatus *driveStatus;
+	DriveCommand *driveCommand;
 
 
 	uint16_t settingsChangedReg;

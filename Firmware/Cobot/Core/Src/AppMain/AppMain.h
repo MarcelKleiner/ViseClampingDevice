@@ -16,6 +16,7 @@
 #include "../IO/LED.h"
 #include "../IO/DI.h"
 #include "../USB/USB.h"
+#include "../Flash/Flash.h"
 #include "tim.h"
 #include "main.h"
 
@@ -36,12 +37,13 @@ class AppMain
 
 		DriveSettings driveSettings = DriveSettings();
 		DriveStatus driveStatus = DriveStatus();
+		DriveCommand driveCommand = DriveCommand();
 
-		Digitll_IN_OUT DigitalInOut = Digitll_IN_OUT(&driveSettings, &driveStatus);
-		Communication com = Communication(&driveStatus, &driveSettings, &rfm95, &DigitalInOut);
+		Digitll_IN_OUT DigitalInOut = Digitll_IN_OUT(&driveSettings, &driveStatus, &driveCommand);
+		Communication com = Communication(&driveStatus, &driveSettings, &rfm95, &DigitalInOut, &driveCommand);
 
-		USBCom USBCDC = USBCom(&driveSettings, &driveStatus);
-
+		USBCom USBCDC = USBCom(&driveSettings, &driveStatus, &driveCommand);
+		Flash Storage = Flash(&driveSettings, &driveStatus);
 
 	private:
 

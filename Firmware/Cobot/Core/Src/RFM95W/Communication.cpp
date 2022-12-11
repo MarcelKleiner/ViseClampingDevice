@@ -8,12 +8,13 @@
 #include "Communication.h"
 
 Communication::Communication(DriveStatus *driveStatus,
-		DriveSettings *driveSettings, RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut)
+		DriveSettings *driveSettings, RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut, DriveCommand *driveCommand)
 {
 	this->driveSettings = driveSettings;
 	this->driveStatus = driveStatus;
 	this->rfm95 = rfm95;
 	this->digitalInOut = digitalInOut;
+	this->driveCommand = driveCommand;
 }
 
 
@@ -32,14 +33,14 @@ bool Communication::UpdateCom()
 
 	if (digitalInOut->isStatusChanged())
 	{
-		uint8_t data = ((uint8_t) driveStatus->isClose() << 8)
-				| ((uint8_t) driveStatus->isDisable() << 8)
-				| ((uint8_t) driveStatus->isEnable() << 8)
-				| ((uint8_t) driveStatus->isOpen() << 8)
-				| ((uint8_t) driveStatus->isReset() << 8)
-				| ((uint8_t) driveStatus->isStop() << 8)
-				| ((uint8_t) driveStatus->isTeach() << 8)
-				| ((uint8_t) driveStatus->isWriteConfig() << 8);
+		uint8_t data = ((uint8_t) driveCommand->isClose() << 8)
+				| ((uint8_t) driveCommand->isDisable() << 8)
+				| ((uint8_t) driveCommand->isEnable() << 8)
+				| ((uint8_t) driveCommand->isOpen() << 8)
+				| ((uint8_t) driveCommand->isReset() << 8)
+				| ((uint8_t) driveCommand->isStop() << 8)
+				| ((uint8_t) driveCommand->isTeach() << 8)
+				| ((uint8_t) driveCommand->isWriteConfig() << 8);
 
 		data2send[0] = driveSettings->getDeviceAddress();
 		data2send[1] = SEND_COMMAND;

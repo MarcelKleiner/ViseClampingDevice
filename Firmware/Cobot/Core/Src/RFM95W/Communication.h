@@ -46,7 +46,7 @@ class Communication
 
 	public:
 		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut);
+				RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut, DriveCommand *driveCommand);
 
 		bool UpdateCom();
 		void ReadData();
@@ -54,6 +54,7 @@ class Communication
 
 		DriveStatus *driveStatus;
 		DriveSettings *driveSettings;
+		DriveCommand *driveCommand;
 		RFM95_LoRa *rfm95;
 		Digitll_IN_OUT *digitalInOut;
 

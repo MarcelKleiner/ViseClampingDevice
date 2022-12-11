@@ -3,6 +3,7 @@
 "./Core/Src/Encoder/Encoder.o"
 "./Core/Src/Error/Error.o"
 "./Core/Src/IO/IO.o"
+"./Core/Src/RFM95/Communication.o"
 "./Core/Src/RFM95/RFM95.o"
 "./Core/Src/Settings/DriveSettings.o"
 "./Core/Src/Status/DriveStatus.o"

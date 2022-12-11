@@ -35,23 +35,19 @@ class Communication
 {
 	public:
 
-		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings, RFM95_LoRa *rfm95);
+		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings,
+				RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut);
 
 		void ReadData();
 		bool SendData();
 
 	private:
-		//private instance reference
 		DriveStatus *driveStatus;
 		DriveSettings *driveSettings;
 		RFM95_LoRa *rfm95;
+		Digitll_IN_OUT *digitalInOut;
 
-		//private function declaration
-		uint8_t CRC8(uint8_t *data, uint8_t length);
-
-		//private variable declaration
-		uint8_t rxData[MAX_PACKET_2_RECEIVE] ={ 0 };
-		uint8_t txData[MAX_PACKET_2_SEND] ={ 0 };
+		uint8_t rxData[MAX_PACKET_2_SEND] ={ 0 };
 
 };
 

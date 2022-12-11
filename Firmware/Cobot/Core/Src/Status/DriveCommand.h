@@ -1,27 +1,18 @@
 /*
- * DriveStatus.h
+ * DriveCommand.h
  *
- *  Created on: Oct 20, 2022
+ *  Created on: 11.12.2022
  *      Author: marce
  */
 
-#ifndef SRC_STATUS_DRIVESTATUS_H_
-#define SRC_STATUS_DRIVESTATUS_H_
+#ifndef SRC_STATUS_DRIVECOMMAND_H_
+#define SRC_STATUS_DRIVECOMMAND_H_
 
-#include "main.h"
-
-class DriveStatus
+class DriveCommand
 {
-
 	public:
 
-		DriveStatus();
-
-		enum _ERROR{
-			E_FLASH_ERROR,
-
-		};
-
+		DriveCommand();
 
 		bool isClose();
 		void setClose(bool close);
@@ -47,20 +38,19 @@ class DriveStatus
 		bool isWriteConfig();
 		void setWriteConfig(bool writeConfig);
 
-		_ERROR getError();
-		void setError(_ERROR error);
-
 	private:
 
-		_ERROR error;
-		//reset by read
-		bool close;
-		bool open;
-		bool teach;
-		bool reset;
-		bool enable;
-		bool stop;
-		bool disable;
+		bool close = false;
+		bool open = false;
+		bool teach = false;
+		bool reset = false;
+		bool enable = false;
+		bool stop = false;
+		bool disable = false;
+
+		bool writeConfig = false;
 };
 
-#endif /* SRC_STATUS_DRIVESTATUS_H_ */
+
+
+#endif /* SRC_STATUS_DRIVECOMMAND_H_ */

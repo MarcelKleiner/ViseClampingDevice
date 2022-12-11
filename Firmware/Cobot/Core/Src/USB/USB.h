@@ -11,6 +11,7 @@
 
 #include "../Settings/DriveSettings.h"
 #include "../Status/DriveStatus.h"
+#include "../Status/DriveCommand.h"
 #include "../IO/DI.h"
 #include "stdio.h"
 
@@ -20,7 +21,7 @@ class USBCom
 
 	public:
 
-		USBCom(DriveSettings *driveSettings, DriveStatus *driveStatus);
+		USBCom(DriveSettings *driveSettings, DriveStatus *driveStatus,DriveCommand *driveCommand);
 		bool USB_Transmit(uint8_t *data, uint8_t length);
 		void USB_Receive(uint8_t *data, uint32_t length);
 
@@ -32,7 +33,7 @@ class USBCom
 
 		DriveSettings *driveSettings;
 		DriveStatus *driveStatus;
-
+		DriveCommand *driveCommand;
 };
 
 

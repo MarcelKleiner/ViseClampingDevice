@@ -9,6 +9,7 @@
 #define SRC_SETTINGS_DRIVESETTINGS_H_
 
 #include "stdint.h"
+#include "main.h"
 
 class DriveSettings{
 

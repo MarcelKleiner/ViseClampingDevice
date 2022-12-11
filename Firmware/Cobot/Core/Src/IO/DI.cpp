@@ -7,11 +7,13 @@
 
 #include "DI.h"
 
-Digitll_IN_OUT::Digitll_IN_OUT(DriveSettings *driveSettings, DriveStatus *driveStatus)
+Digitll_IN_OUT::Digitll_IN_OUT(DriveSettings *driveSettings, DriveStatus *driveStatus,DriveCommand *driveCommand)
 {
 	this->driveSettings = driveSettings;
 	this->driveStatus = driveStatus;
+	this->driveCommand = driveCommand;
 	timeoutCounter = 0;
+
 }
 
 void Digitll_IN_OUT::Read()
@@ -103,32 +105,32 @@ void Digitll_IN_OUT::CheckData()
 	switch (receivedAddress)
 	{
 		case CLOSE:
-			driveStatus->setClose(queue.Dequeue() == 0x01);
+			driveCommand->setClose(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case OPEN:
-			driveStatus->setOpen(queue.Dequeue() == 0x01);
+			driveCommand->setOpen(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			statusChangedReg = true;
 			break;
 		case TEACH:
-			driveStatus->setTeach(queue.Dequeue() == 0x01);
+			driveCommand->setTeach(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case RESET:
-			driveStatus->setReset(queue.Dequeue() == 0x01);
+			driveCommand->setReset(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case ENABLE:
-			driveStatus->setEnable(queue.Dequeue() == 0x01);
+			driveCommand->setEnable(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case DISABLE:
-			driveStatus->setDisable(queue.Dequeue() == 0x01);
+			driveCommand->setDisable(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case STOP:
-			driveStatus->setStop(queue.Dequeue() == 0x01);
+			driveCommand->setStop(queue.Dequeue() == 0x01);
 			statusChangedReg = true;
 			break;
 		case TEACH_TORQUE:

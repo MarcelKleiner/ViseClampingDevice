@@ -7,127 +7,111 @@
 
 #include "DriveStatus.h"
 
-DriveStatus::DriveStatus() {
+DriveStatus::DriveStatus()
+{
 }
 
 /****************************************************************************************
- / * 	close get/set (read reset)
+ / * 	close get/set
  ****************************************************************************************/
-bool DriveStatus::isClose() {
-	bool closeTemp = close;
-	close = false;
-	return closeTemp;
+bool DriveStatus::isClose()
+{
+	return close;
 }
 
-void DriveStatus::setClose(bool close) {
+void DriveStatus::setClose(bool close)
+{
 	this->close = close;
 }
 
 /****************************************************************************************
- / * 	open get/set (read reset)
+ / * 	open get/set
  ****************************************************************************************/
-bool DriveStatus::isOpen() {
-	bool openTemp = open;
-	open = false;
-	return openTemp;
+bool DriveStatus::isOpen()
+{
+	return open;
 }
 
-void DriveStatus::setOpen(bool open) {
+void DriveStatus::setOpen(bool open)
+{
 	this->open = open;
 }
 
 /****************************************************************************************
- / * 	disable get/set (read reset)
+ / * 	disable get/set
  ****************************************************************************************/
-bool DriveStatus::isDisable() {
-	bool disableTemp = disable;
-	disable = false;
-	return disableTemp;
+bool DriveStatus::isDisable()
+{
+	return disable;
 }
 
-void DriveStatus::setDisable(bool disable) {
+void DriveStatus::setDisable(bool disable)
+{
 	this->disable = disable;
 }
 
 /****************************************************************************************
- / * 	enable get/set (read reset)
+ / * 	enable get/set
  ****************************************************************************************/
-bool DriveStatus::isEnable() {
-	bool enableTemp = enable;
-	enable = false;
-	return enableTemp;
+bool DriveStatus::isEnable()
+{
+	return enable;
 }
 
-void DriveStatus::setEnable(bool enable) {
+void DriveStatus::setEnable(bool enable)
+{
 	this->enable = enable;
 }
 
 /****************************************************************************************
- / * 	reset get/set (read reset)
+ / * 	reset get/set
  ****************************************************************************************/
-bool DriveStatus::isReset() {
-	bool resetTemp = reset;
-	reset = false;
-	return resetTemp;
+bool DriveStatus::isReset()
+{
+	return reset;
 }
 
-void DriveStatus::setReset(bool reset) {
+void DriveStatus::setReset(bool reset)
+{
 	this->reset = reset;
 }
 
 /****************************************************************************************
- / * 	stop get/set (read reset)
+ / * 	stop get/set
  /****************************************************************************************/
-bool DriveStatus::isStop() {
-	bool stopTemp = stop;
-	stop = false;
-	return stopTemp;
+bool DriveStatus::isStop()
+{
+	return stop;
 }
 
-void DriveStatus::setStop(bool stop) {
+void DriveStatus::setStop(bool stop)
+{
 	this->stop = stop;
 }
 
 /****************************************************************************************
- / * 	teach get/set (read reset)
+ / * 	teach get/set
  /****************************************************************************************/
-bool DriveStatus::isTeach() {
-	bool teachTemp = teach;
-	teach = false;
-	return teachTemp;
+bool DriveStatus::isTeach()
+{
+	return teach;
 }
 
-void DriveStatus::setTeach(bool teach) {
+void DriveStatus::setTeach(bool teach)
+{
 	this->teach = teach;
 }
 
+
 /****************************************************************************************
- / * 	write config get/set (read reset)
-<<<<<<< HEAD
- /****************************************************************************************/
-bool DriveStatus::isWriteConfig()
+ / * 	write config get/set
+ ****************************************************************************************/
+DriveStatus::_ERROR DriveStatus::getError()
 {
-	bool writeConfigTemp = writeConfig;
-	writeConfig = false;
-	return writeConfigTemp;
-=======
- ****************************************************************************************/
-bool DriveStatus::isWriteConfig() {
-	return writeConfig;
->>>>>>> origin/main
-}
-
-void DriveStatus::setWriteConfig(bool writeConfig) {
-	this->writeConfig = writeConfig;
-}
-
-/****************************************************************************************
- / * 	write config get/set (read reset)
- ****************************************************************************************/
-_ERROR DriveStatus::getError() {
 	return this->error;
 }
 
-void DriveStatus::setError(_ERROR error) {
-	error
+void DriveStatus::setError(_ERROR error)
+{
+	this->error = error;
 }
