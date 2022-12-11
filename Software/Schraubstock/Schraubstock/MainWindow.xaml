@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Schraubstock"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="547" Width="478">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="227"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="groupBox" Header="Kommunikation" Margin="5,5,5,5">
+            <Grid Margin="5,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="label" Content="COM Port"/>
+                <ComboBox x:Name="comboBox" Grid.Column="1" Height="18" IsReadOnly="True" IsEditable="True"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox1" Header="Steuerung" Margin="5,5,5,5" Grid.Row="1">
+            <Grid Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="106*"/>
+                    <ColumnDefinition Width="171*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="enable" Content="Enable" Margin="5,3,5,3" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White"/>
+                <Button x:Name="close" Content="Schliessen" Margin="5,3,5,3" Grid.Row="1" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White"/>
+                <Button x:Name="open" Content="Öffnen" Margin="5,3,5,3" Grid.Row="2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" />
+                <Button x:Name="stop" Content="Stopp" Margin="5,3,5,3" Grid.Row="3" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" />
+                <Button x:Name="reset" Content="Reset" Margin="5,3,5,3" Grid.Row="4" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" />
+                <Button x:Name="teach" Content="Teach" Margin="5,3,5,3" Grid.Row="5" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" />
+                <Label x:Name="lblisEnable" Grid.Column="2" Content="Enable" Margin="5,3,5,3" HorizontalContentAlignment="Center" Background="#FFF7D7D7"/>
+                <Label x:Name="lblisClose" Grid.Column="2" Content="Geschlossen" Margin="5,3,5,3" HorizontalContentAlignment="Center" Grid.Row="1" Background="#FFF7D7D7"/>
+                <Label x:Name="lblisOpen" Grid.Column="2" Content="Geöffnet" Margin="5,3,5,3" HorizontalContentAlignment="Center" Grid.Row="2" Background="#FFF7D7D7"/>
+                <Label x:Name="lblisStoped" Grid.Column="2" Content="Gestoppt" Margin="5,3,5,3" HorizontalContentAlignment="Center" Grid.Row="3" Background="#FFF7D7D7"/>
+                <Label x:Name="lblisInTeachmode" Grid.Column="2" Content="Enable" Margin="5,3,5,3" HorizontalContentAlignment="Center" Grid.Row="4" Background="#FFF7D7D7"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox1_Copy" Header="Einstellungen" Margin="5,5,5,5" Grid.Row="2">
+            <Grid/>
+        </GroupBox>
 
     </Grid>
 </Window>

@@ -24,5 +24,10 @@ namespace Schraubstock
         {
             InitializeComponent();
         }
+
+        private void button_Copy1_Click()
+        {
+
+        }
     }
 }
