@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Schraubstock"
         mc:Ignorable="d"
-        Title="MainWindow" Height="547" Width="478">
+        Title="MainWindow" Height="721" Width="762">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -35,10 +35,10 @@
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="85*"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="106*"/>
-                    <ColumnDefinition Width="171*"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="enable" Content="Enable" Margin="5,3,5,3" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White"/>
                 <Button x:Name="close" Content="Schliessen" Margin="5,3,5,3" Grid.Row="1" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White"/>
@@ -54,7 +54,85 @@
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox1_Copy" Header="Einstellungen" Margin="5,5,5,5" Grid.Row="2">
-            <Grid/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="140*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="label1" Content="Geräteadresse"/>
+                <Label x:Name="label1_Copy" Content="Teachgeschw." Grid.Row="1"/>
+                <Label x:Name="label1_Copy1" Content="Teachdrehmoment" Grid.Row="2"/>
+                <Label x:Name="label1_Copy2" Content="Anzuggeschw." Grid.Row="3"/>
+                <Label x:Name="label1_Copy3" Content="Anzugdrehmoment" Grid.Row="4"/>
+                <Label x:Name="label1_Copy4" Content="Selbstabschaltverzögerung" Grid.Row="5"/>
+                <Label x:Name="label1_Copy5" Content="Hysterese" Grid.Column="5"/>
+                <Label x:Name="label1_Copy6" Content="Selbstabschaltverzögerung" Grid.Row="1" Grid.Column="5"/>
+                <Label x:Name="label1_Copy7" Content="Überstromwarnung" Grid.Row="2" Grid.Column="5"/>
+                <Label x:Name="label1_Copy8" Content="Überstromerror" Grid.Row="9"/>
+                <Label x:Name="label1_Copy9" Content="Unterspannungswarnung" Grid.Row="10"/>
+                <Label x:Name="label1_Copy10" Content="Unterspannungserror" Grid.Row="11"/>
+
+                <Button x:Name="teach_Copy" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" />
+                <Button x:Name="teach_Copy2" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="1" />
+                <Button x:Name="teach_Copy3" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="2" />
+                <Button x:Name="teach_Copy4" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="3" />
+                <Button x:Name="teach_Copy5" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="4" />
+                <Button x:Name="teach_Copy6" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="5" />
+                <Button x:Name="teach_Copy7" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="6" />
+                <Button x:Name="teach_Copy8" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="7" />
+                <Button x:Name="teach_Copy9" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="8" />
+                <Button x:Name="teach_Copy10" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="9" />
+                <Button x:Name="teach_Copy11" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="10" />
+                <Button x:Name="teach_Copy12" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="11" />
+
+                <Button x:Name="teach_Copy1" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3"/>
+                <Button x:Name="teach_Copy44" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="1"/>
+                <Button x:Name="teach_Copy45" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="2"/>
+                <Button x:Name="teach_Copy46" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="3"/>
+                <Button x:Name="teach_Copy47" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="4"/>
+                <Button x:Name="teach_Copy48" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="5"/>
+                <Button x:Name="teach_Copy49" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="6"/>
+                <Button x:Name="teach_Copy40" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="7"/>
+                <Button x:Name="teach_Copy41" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="8"/>
+                <Button x:Name="teach_Copy42" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="9"/>
+                <Button x:Name="teach_Copy43" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="10"/>
+                <Button x:Name="teach_Copy50" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="11"/>
+                <TextBox x:Name="textBox" Grid.Column="1" TextWrapping="Wrap" Height="18" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="1" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy1" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="2" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy2" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="3" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy3" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="4" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy4" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="5" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy5" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="6" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy6" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="7" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy7" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="8" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy8" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="9" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy9" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="10" Margin="0,6,0,6"/>
+                <TextBox x:Name="textBox_Copy10" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="11" Margin="0,6,0,6"/>
+            </Grid>
         </GroupBox>
 
     </Grid>

@@ -29,5 +29,10 @@ namespace Schraubstock
         {
 
         }
+
+        private void teach_Copy1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
