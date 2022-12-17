@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Schraubstock.Communication;
+using Schraubstock.UControl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,15 +25,20 @@ namespace Schraubstock
         public MainWindow()
         {
             InitializeComponent();
-        }
+            USB_CDC usbCom = new USB_CDC();
+            usbCom.Connect("COM3");
+            usbCom.Write(0x10, 0x01, null);
 
-        private void button_Copy1_Click()
-        {
 
-        }
+            Setting s = new Setting(btnDeviceIDRead, btnDeivceIDWrite, txtDeviceID)
+            {
+                MaxValue = 254,
+                MinValue = 1,
+                Register = 0x20,
+                COM = usbCom
+            };
 
-        private void teach_Copy1_Click(object sender, RoutedEventArgs e)
-        {
+
 
         }
     }

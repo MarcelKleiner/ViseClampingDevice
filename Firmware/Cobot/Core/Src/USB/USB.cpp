@@ -35,15 +35,17 @@ bool USBCom::USB_Transmit(uint8_t *data, uint8_t length)
 void USBCom::USB_Receive(uint8_t *data, uint32_t length)
 {
 
-	uint8_t data2send[5];
-	uint16_t convertedData = 0;
-	uint8_t readWrite = data[0];
-	uint8_t command = data[1];
+
 
 	if (length == 0)
 	{
 		return;
 	}
+
+	uint8_t data2send[5];
+	uint16_t convertedData = 0;
+	uint8_t readWrite = data[0];
+	uint8_t command = data[1];
 
 	if (readWrite)
 	{
@@ -195,6 +197,8 @@ void USBCom::USB_Receive(uint8_t *data, uint32_t length)
 				convertedData = TypeConverter::byteToUint16(data, 2);
 				driveSettings->setOverCurrentError(convertedData);
 				break;
+			case DEVICE_ADDRESS:
+				driveSettings->setDeviceAddress(data[2]);
 			default:
 				data2send[0] = 0x1F;
 				data2send[1] = 0xAA;

@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "P0iu5O38JyV7u58LZ4LS3X9Gb+kxcfpQIQ3BYHVxhMdd80IlMYkWLnOOYhPmJBrKfT3TQp/znO9Ys6SikoXeGg==",
+  "dgSpecHash": "JFnmhbFje39K6KHk0WnaYdDSo0Xb5a0fjguVHOjjJkBzicWedBVYZr68aWDgjlHWEN03pWH9Q8S7ErXG6KDQxA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
