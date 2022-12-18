@@ -20,7 +20,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="label" Content="COM Port"/>
-                <ComboBox x:Name="comboBox" Grid.Column="1" Height="18" IsReadOnly="True" IsEditable="True"/>
+                <ComboBox x:Name="comboBox" Grid.Column="1" Height="22" IsReadOnly="True" IsEditable="True" ItemsSource="{Binding ComPorts}" SelectionChanged="ComPort_SelectionChanged"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox1" Header="Steuerung" Margin="5,5,5,5" Grid.Row="1">
@@ -83,49 +83,46 @@
                 <Label x:Name="label1_Copy3" Content="Anzugdrehmoment" Grid.Row="4"/>
                 <Label x:Name="label1_Copy4" Content="Selbstabschaltverzögerung" Grid.Row="5"/>
                 <Label x:Name="label1_Copy5" Content="Hysterese" Grid.Column="5"/>
-                <Label x:Name="label1_Copy6" Content="Selbstabschaltverzögerung" Grid.Row="1" Grid.Column="5"/>
-                <Label x:Name="label1_Copy7" Content="Überstromwarnung" Grid.Row="2" Grid.Column="5"/>
-                <Label x:Name="label1_Copy8" Content="Überstromerror" Grid.Row="3" Grid.Column="5"/>
-                <Label x:Name="label1_Copy9" Content="Unterspannungswarnung" Grid.Row="4" Grid.Column="5"/>
-                <Label x:Name="label1_Copy10" Content="Unterspannungserror" Grid.Row="5" Grid.Column="5"/>
+                <Label x:Name="label1_Copy7" Content="Überstromwarnung" Grid.Row="1" Grid.Column="5"/>
+                <Label x:Name="label1_Copy8" Content="Überstromerror" Grid.Row="2" Grid.Column="5"/>
+                <Label x:Name="label1_Copy9" Content="Unterspannungswarnung" Grid.Row="3" Grid.Column="5"/>
+                <Label x:Name="label1_Copy10" Content="Unterspannungserror" Grid.Row="4" Grid.Column="5"/>
 
-                <Button x:Name="btnDeviceIDRead" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" />
-                <Button x:Name="teach_Copy2" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="1" />
-                <Button x:Name="teach_Copy3" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="2" />
-                <Button x:Name="teach_Copy4" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="3" />
-                <Button x:Name="teach_Copy5" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="4" />
-                <Button x:Name="teach_Copy6" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="5" />
-                <Button x:Name="teach_Copy7" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" />
-                <Button x:Name="teach_Copy8" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="1" />
-                <Button x:Name="teach_Copy9" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="2" />
-                <Button x:Name="teach_Copy10" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="3" />
-                <Button x:Name="teach_Copy11" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="4" />
-                <Button x:Name="teach_Copy12" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="5" />
+                <Button x:Name="btnDeviceIDRead"            Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" />
+                <Button x:Name="btnTeachSpeedRead"          Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="1" />
+                <Button x:Name="btnTeachTorqueRead"         Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="2" />
+                <Button x:Name="btnDriveSpeedRead"          Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="3" />
+                <Button x:Name="btnDriveTroqueRead"         Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="4" />
+                <Button x:Name="btnSelfShutdownDelayRead"   Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="2" Grid.Row="5" />
+                <Button x:Name="btnHysteresisRead"          Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" />
+                <Button x:Name="btnOverCurrentWarningRead"  Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="1" />
+                <Button x:Name="btnOverCurrentErrorRead"    Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="2" />
+                <Button x:Name="btnUnderVoltageWarningRead" Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="3" />
+                <Button x:Name="btnUnderVoltageErrorRead"   Content="read" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="7" Grid.Row="4" />
 
-                <Button x:Name="btnDeivceIDWrite" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3"/>
-                <Button x:Name="teach_Copy44" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="1"/>
-                <Button x:Name="teach_Copy45" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="2"/>
-                <Button x:Name="teach_Copy46" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="3"/>
-                <Button x:Name="teach_Copy47" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="4"/>
-                <Button x:Name="teach_Copy48" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="5"/>
-                <Button x:Name="teach_Copy49" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8"/>
-                <Button x:Name="teach_Copy40" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="1"/>
-                <Button x:Name="teach_Copy41" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="2"/>
-                <Button x:Name="teach_Copy42" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="3"/>
-                <Button x:Name="teach_Copy43" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="4"/>
-                <Button x:Name="teach_Copy50" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="5"/>
-                <TextBox x:Name="txtDeviceID" Grid.Column="1" TextWrapping="Wrap" Height="18" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="1" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy1" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="2" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy2" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="3" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy3" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="4" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy4" Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="5" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy5" Grid.Column="6" TextWrapping="Wrap" Height="18" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy6" Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="1" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy7" Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="2" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy8" Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="3" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy9" Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="4" Margin="0,6,0,6"/>
-                <TextBox x:Name="textBox_Copy10" Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="5" Margin="0,6,0,6"/>
+                <Button x:Name="btnDeivceIDWrite"           Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3"/>
+                <Button x:Name="btnTeachSpeedWrite"         Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="1"/>
+                <Button x:Name="btnTeachTorqueWrite"        Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="2"/>
+                <Button x:Name="btnDriveSpeedWrite"         Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="3"/>
+                <Button x:Name="btnDriveTroqueWrite"        Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="4"/>
+                <Button x:Name="btnSelfShutdownDelayWrite"  Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="3" Grid.Row="5"/>
+                <Button x:Name="btnHysteresisWrite"         Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8"/>
+                <Button x:Name="btnOverCurrentWarningWrite" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="1"/>
+                <Button x:Name="btnOverCurrentErrorWrite"   Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="2"/>
+                <Button x:Name="btnUnderVoltageWarningWrite" Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="3"/>
+                <Button x:Name="btnUnderVoltageErrorWrite"  Content="write" Margin="5,2,5,2" Background="#FF183C9B" BorderBrush="#FF326AFF" Foreground="White" Grid.Column="8" Grid.Row="4"/>
+                
+                <TextBox x:Name="txtDeviceID"               Grid.Column="1" TextWrapping="Wrap" Height="18" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtTeachSpeed"             Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="1" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtTeachTorque"            Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="2" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtDriveSpeed"             Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="3" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtDriveTroque"            Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="4" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtSelfShutdownDelay"      Grid.Column="1" TextWrapping="Wrap" Height="18" Grid.Row="5" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtHysteresis"             Grid.Column="6" TextWrapping="Wrap" Height="18" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtOverCurrentWarning"     Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="1" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtOverCurrentError"       Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="2" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtUnderVoltageWarning"    Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="3" Margin="0,6,0,6"/>
+                <TextBox x:Name="txtUnderVoltageError"      Grid.Column="6" TextWrapping="Wrap" Height="18" Grid.Row="4" Margin="0,6,0,6"/>
             </Grid>
         </GroupBox>
 

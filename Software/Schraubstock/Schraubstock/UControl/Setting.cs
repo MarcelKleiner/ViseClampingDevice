@@ -71,18 +71,33 @@ namespace Schraubstock.UControl
 
         private void Read_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var data = COM.Write(Register, 0x01, null);
+            try
+            {
+                var data = COM.Write(Register, 0x01, null);
 
-            if (data == null || data[0] != 0x1D)
-            {
-                //MessageBox.Show("Ungültige Daten");
-                return;
+                if (data == null || data[0] != 0x1D)
+                {
+                    //MessageBox.Show("Ungültige Daten");
+                    return;
+                }
+                else
+                {
+                    if (data[1] != Register)
+                    {
+                        MessageBox.Show("Falsche Daten");
+                    }
+                    else
+                    {
+                        txtValue.Text = TypeConverter.ByteToInt16(data, 2).ToString();
+                        currentTxtValue = txtValue.Text;
+                    }
+                }
             }
-            else
+            catch
             {
-                txtValue.Text = TypeConverter.ByteToInt16(data, 1).ToString();
-                currentTxtValue = txtValue.Text;
+                MessageBox.Show("Daten konnte nicht gelesen werden");
             }
+
 
         }
 

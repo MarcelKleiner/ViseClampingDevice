@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JFnmhbFje39K6KHk0WnaYdDSo0Xb5a0fjguVHOjjJkBzicWedBVYZr68aWDgjlHWEN03pWH9Q8S7ErXG6KDQxA==",
+  "dgSpecHash": "s9JVSiFcJzp0g2VwllmE7n9XifpcdumVTyDG8LUZjVowFc2Oi2GEGbLyW6GOlWvUPMvp+JwtVaFFT/yHr5Mlvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
+  "projectFilePath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marce\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",

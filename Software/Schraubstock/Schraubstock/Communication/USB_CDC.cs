@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Schraubstock.Communication
 {
@@ -16,7 +18,7 @@ namespace Schraubstock.Communication
         }
 
         public List<byte> Data { get; private set; }
-        public bool IsDataReady { get; private set; }
+        private readonly List<byte> rxData = new List<byte>();
 
         public bool Connect(string comport)
         {
@@ -37,13 +39,63 @@ namespace Schraubstock.Communication
             }
             catch
             {
+                MessageBox.Show($"Verbindung zu {sPort.PortName} konnte nicht hergestellt werden");
                 return false;
             }
         }
 
+
+        /// <summary>
+        /// serial port data receive interrupt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //Data.Add(Convert.ToByte(sPort.ReadByte()));
+            int counter = 0;
+            byte[] buffer = new byte[5];
+
+            try
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    buffer[i] = (byte)sPort.ReadByte();
+                    counter++;
+                }
+            }
+            catch { }
+
+            rxData.Clear();
+            for (int i = 0; i < counter; i++)
+            {
+                rxData.Add(buffer[i]);
+            }
+            IsDataReady = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<byte> GetData()
+        {
+            return rxData;
+        }
+
+
+        private bool isDataReady;
+        public bool IsDataReady
+        {
+            get
+            {
+                if (isDataReady)
+                {
+                    isDataReady = false;
+                    return true;
+                }
+                return false;
+            }
+            set => isDataReady = value;
         }
 
 
@@ -63,21 +115,32 @@ namespace Schraubstock.Communication
                 }
 
                 data2Write[length + 2] = CRC8(data2Write);
-
+                IsDataReady = false;
                 sPort.Write(data2Write, 0, data2Write.Length);
 
-                byte[] result = new byte[5];
-                sPort.Read(result, 0, 5);
+                byte[] result = new byte[20];
+                int timeout = 1000;
+                while (!IsDataReady && (--timeout) > 0)
+                {
+                    Thread.Sleep(1);
+                }
+
+                if(timeout == 0)
+                {
+                    MessageBox.Show("Daten konnten nicht gelesen werden");
+                }
+                else
+                {
+                    result = rxData.ToArray();
+                }
+
+                //sPort.Read(result, 0, 20);
 
                 return result;
             }
             return null;
         }
 
-        private bool IsPortOpen()
-        {
-            return sPort.IsOpen;
-        }
 
         private byte CRC8(byte[] data)
         {

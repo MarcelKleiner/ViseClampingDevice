@@ -63,10 +63,14 @@
           "runtime.native.System.IO.Ports": "7.0.0"
         },
         "compile": {
-          "lib/net6.0/System.IO.Ports.dll": {}
+          "lib/net6.0/System.IO.Ports.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/System.IO.Ports.dll": {}
+          "lib/net6.0/System.IO.Ports.dll": {
+            "related": ".xml"
+          }
         },
         "build": {
           "buildTransitive/net6.0/_._": {}
@@ -227,18 +231,18 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
+      "projectUniqueName": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
       "projectName": "Schraubstock",
-      "projectPath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
+      "projectPath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock\\Schraubstock\\Schraubstock.csproj",
       "packagesPath": "C:\\Users\\marce\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock\\Schraubstock\\obj\\",
+      "outputPath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock\\Schraubstock\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marce\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -271,7 +275,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -283,7 +288,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

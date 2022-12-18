@@ -51,74 +51,75 @@ void USBCom::USB_Receive(uint8_t *data, uint32_t length)
 	{
 		//usb read
 		data2send[0] = 0x1D;	//random preamble
+		data2send[1] = command;
 		switch (command)
 		{
 			case CLOSE:
-				data2send[1] = driveStatus->isClose();
+				data2send[2] = driveStatus->isClose();
 				break;
 			case OPEN:
-				data2send[1] = driveStatus->isOpen();
+				data2send[2] = driveStatus->isOpen();
 				break;
 			case TEACH:
-				data2send[1] = driveStatus->isTeach();
+				data2send[2] = driveStatus->isTeach();
 				break;
 			case RESET:
-				data2send[1] = driveStatus->isReset();
+				data2send[2] = driveStatus->isReset();
 				break;
 			case ENABLE:
-				data2send[1] = driveStatus->isEnable();
+				data2send[2] = driveStatus->isEnable();
 				break;
 			case DISABLE:
-				data2send[1] = driveStatus->isDisable();
+				data2send[2] = driveStatus->isDisable();
 				break;
 			case STOP:
-				data2send[1] = driveStatus->isStop();
+				data2send[2] = driveStatus->isStop();
 				break;
 			case TEACH_TORQUE:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getTeachTroque(), 1);
+						driveSettings->getTeachTroque(), 2);
 				break;
 			case TEACH_SPEED:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getTeachSpeed(), 1);
+						driveSettings->getTeachSpeed(), 2);
 				break;
 			case CLAMPING_TORQUE:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getClampingTorque(), 1);
+						driveSettings->getClampingTorque(), 2);
 				break;
 			case CLAMPING_SPEED:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getClampingSpeed(), 1);
+						driveSettings->getClampingSpeed(), 2);
 				break;
 			case SELF_SHUTDOWN_DELAY:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getSelfShutdownDelay(), 1);
+						driveSettings->getSelfShutdownDelay(), 2);
 				break;
 			case IN_POS_DIFF:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getInPosDiff(), 1);
+						driveSettings->getInPosDiff(), 2);
 			case OPENING_DISTANCE:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getOpeningDistance(), 1);
+						driveSettings->getOpeningDistance(), 2);
 				break;
 			case UNDERVOLTAGE_WARNING:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getUnderVoltageWarning(), 1);
+						driveSettings->getUnderVoltageWarning(),2);
 				break;
 			case UNDERVOLTAGE_ERROR:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getUnderVoltageError(), 1);
+						driveSettings->getUnderVoltageError(), 2);
 				break;
 			case OVER_CURRENT_WARNING:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getOverCurrentWarning(), 1);
+						driveSettings->getOverCurrentWarning(), 2);
 				break;
 			case OVER_CURRENT_ERROR:
 				TypeConverter::uint16ToByte(data2send,
-						driveSettings->getOverCurrentError(), 1);
+						driveSettings->getOverCurrentError(), 2);
 				break;
 			case DEVICE_ADDRESS:
-				data2send[1] = driveSettings->getDeviceAddress();
+				data2send[2] = driveSettings->getDeviceAddress();
 				break;
 			default:
 				data2send[1] = 0x1F;
