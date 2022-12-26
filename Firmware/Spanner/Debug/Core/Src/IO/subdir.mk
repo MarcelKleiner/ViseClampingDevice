@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Core/Src/IO/IO.cpp 
+../Core/Src/IO/IO.cpp \
+../Core/Src/IO/LED.cpp 
 
 OBJS += \
-./Core/Src/IO/IO.o 
+./Core/Src/IO/IO.o \
+./Core/Src/IO/LED.o 
 
 CPP_DEPS += \
-./Core/Src/IO/IO.d 
+./Core/Src/IO/IO.d \
+./Core/Src/IO/LED.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/IO/%.o Core/Src/IO/%.su: ../Core/Src/IO/%.cpp Core/Src/IO/subdir.mk
 clean: clean-Core-2f-Src-2f-IO
 
 clean-Core-2f-Src-2f-IO:
-	-$(RM) ./Core/Src/IO/IO.d ./Core/Src/IO/IO.o ./Core/Src/IO/IO.su
+	-$(RM) ./Core/Src/IO/IO.d ./Core/Src/IO/IO.o ./Core/Src/IO/IO.su ./Core/Src/IO/LED.d ./Core/Src/IO/LED.o ./Core/Src/IO/LED.su
 
 .PHONY: clean-Core-2f-Src-2f-IO
 

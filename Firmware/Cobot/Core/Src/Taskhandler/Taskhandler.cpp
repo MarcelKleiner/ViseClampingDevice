@@ -55,7 +55,7 @@ void TaskHandler::UpdateTasks() {
 
 	//1000ms
 	if(counter % 1000 == 0){
-
+		saveTask = true;
 	}
 
 
@@ -75,6 +75,12 @@ bool TaskHandler::isComTask()  {
 	bool comTaskTemp = (comTask & comTaskEnable);
 	comTask = false;
 	return comTaskTemp;
+}
+
+bool TaskHandler::isSaveTask(){
+	bool saveTaskTemp = (saveTask & saveTaskEnable);
+	saveTask = false;
+	return saveTaskTemp;
 }
 
 
@@ -114,7 +120,6 @@ void TaskHandler::setComTaskEnable(bool comTaskEnable ) {
 	this->comTaskEnable = comTaskEnable;
 }
 
-
 void TaskHandler::setErrorTaskEnable(bool errorTaskEnable ) {
 	this->errorTaskEnable = errorTaskEnable;
 }
@@ -126,5 +131,9 @@ void TaskHandler::setIoUpdateTaskEnable(bool ioUpdateTaskEnable ) {
 
 void TaskHandler::setLEDUpdateTaskEnable(bool ledUpdateTaskEnable){
 	this->ledUpdateTaskEnable = ledUpdateTaskEnable;
+}
+
+void TaskHandler::setSaveTaskEnable(bool saveTaskEnable){
+	this->saveTaskEnable = saveTaskEnable;
 }
 

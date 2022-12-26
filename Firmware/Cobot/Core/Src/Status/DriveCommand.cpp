@@ -7,7 +7,6 @@
 
 #include "DriveCommand.h"
 
-
 DriveCommand::DriveCommand()
 {
 }
@@ -88,8 +87,8 @@ void DriveCommand::setReset(bool reset)
 }
 
 /****************************************************************************************
-* 	stop get/set (read reset)
-****************************************************************************************/
+ * 	stop get/set (read reset)
+ ****************************************************************************************/
 bool DriveCommand::isStop()
 {
 	bool stopTemp = stop;
@@ -103,8 +102,8 @@ void DriveCommand::setStop(bool stop)
 }
 
 /****************************************************************************************
-* 	teach get/set (read reset)
-****************************************************************************************/
+ * 	teach get/set (read reset)
+ ****************************************************************************************/
 bool DriveCommand::isTeach()
 {
 	bool teachTemp = teach;
@@ -114,12 +113,16 @@ bool DriveCommand::isTeach()
 
 void DriveCommand::setTeach(bool teach)
 {
-	this->teach = teach;
+	if (this->teach != teach)
+	{
+		this->teach = teach;
+	}
+
 }
 
 /****************************************************************************************
-* 	write config get/set (read reset)
-****************************************************************************************/
+ * 	write config get/set (read reset)
+ ****************************************************************************************/
 bool DriveCommand::isWriteConfig()
 {
 	bool writeConfigTemp = writeConfig;
@@ -131,3 +134,23 @@ void DriveCommand::setWriteConfig(bool status)
 {
 	writeConfig = status;
 }
+
+/****************************************************************************************
+ * 	has commands changed get/set (read reset)
+ ****************************************************************************************/
+
+bool DriveCommand::isCommandChanged() const
+{
+	return (commandChangeReg != 0);
+}
+
+uint8_t DriveCommand::getCommandChangedReg() const
+{
+	return this->commandChangeReg;
+}
+
+void DriveCommand::ResetCommandChanged(uint8_t bit)
+{
+	this->commandChangeReg &= ~bit;
+}
+

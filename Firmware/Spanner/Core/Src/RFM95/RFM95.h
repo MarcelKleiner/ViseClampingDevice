@@ -99,6 +99,7 @@ public:
   void onReceive(void(*callback)(int));
   void receive(int size = 0);
   void idle();
+  void rxMode();
   void sleep();
   void setTxPower(int level, int outputPin = PA_OUTPUT_PA_BOOST_PIN);
   void setFrequency(long frequency);

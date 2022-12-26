@@ -8,6 +8,8 @@
 #ifndef SRC_STATUS_DRIVECOMMAND_H_
 #define SRC_STATUS_DRIVECOMMAND_H_
 
+#include "stdint.h"
+
 class DriveCommand
 {
 	public:
@@ -38,6 +40,10 @@ class DriveCommand
 		bool isWriteConfig();
 		void setWriteConfig(bool writeConfig);
 
+		bool isCommandChanged() const;
+		uint8_t getCommandChangedReg() const;
+		void ResetCommandChanged(uint8_t bit);
+
 	private:
 
 		bool close = false;
@@ -49,6 +55,9 @@ class DriveCommand
 		bool disable = false;
 
 		bool writeConfig = false;
+
+		bool commandChanged = false;
+		uint8_t commandChangeReg = 0;
 };
 
 

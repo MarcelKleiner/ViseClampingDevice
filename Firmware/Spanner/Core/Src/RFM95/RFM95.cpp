@@ -250,6 +250,11 @@ void RFM95_LoRa::idle(){
   writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_STDBY);
 }
 
+void RFM95_LoRa::rxMode(){
+	writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_RX_SINGLE);
+}
+
+
 void RFM95_LoRa::sleep(){
   writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_SLEEP);
 }
@@ -407,13 +412,12 @@ void RFM95_LoRa::handleDio0Rise(){
 
 bool RFM95_LoRa::InitRFM(){
 
-	uint8_t rfmCounter = 0;
 	setFrequency(868000000);
 	setTxPower(17, PA_OUTPUT_PA_BOOST_PIN);
 	setSignalBandwidth(31.25E3);
 	setSpreadingFactor(12);
 	setCodingRate4(5);
-	if (begin(866E6)) {
+	if (!begin(866E6)) {
 		return false;
 	}
 	return true;

@@ -14,11 +14,7 @@
 #include "RFM95.h"
 #include "stdio.h"
 
-#define SEND_SETTINGS		0x01
-#define SEND_COMMAND		0x02
-#define SEND_STATUS_REQ		0x03
 
-#define RCV_STATUS			0x11
 
 //Registers
 
@@ -61,7 +57,6 @@ class Communication
 		uint8_t CRC8(uint8_t *data, uint8_t length);
 
 		uint8_t rxData[MAX_PACKET_2_SEND] ={ 0 };
-
 };
 
 #endif /* SRC_RFM95W_COMMUNICATION_H_ */

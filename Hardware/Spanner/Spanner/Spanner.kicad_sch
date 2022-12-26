@@ -120,6 +120,9 @@
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/213a2e9f-90ef-4c74-bd0d-66f165e26508"
       (reference "#PWR0127") (unit 1) (value "+5V") (footprint "")
     )
+    (path "/cb73e00e-b752-4474-a136-20146bf8e401/9b40c392-1ffb-4eeb-8ec6-ec67b99c27e4"
+      (reference "#PWR0128") (unit 1) (value "VBUS") (footprint "")
+    )
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/d6011259-a7eb-4d52-bcc4-c31648db8311"
       (reference "#PWR0129") (unit 1) (value "GND") (footprint "")
     )
@@ -188,12 +191,6 @@
     )
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/50472be9-988a-4b96-9624-9b496c32178c"
       (reference "#PWR0152") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/cb73e00e-b752-4474-a136-20146bf8e401/5eb4b94c-1b83-4c4c-ab01-903e7ec5e290"
-      (reference "#PWR0153") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/cb73e00e-b752-4474-a136-20146bf8e401/d1ab8957-9ae8-4e94-b52a-9ac30429d6cc"
-      (reference "#PWR0154") (unit 1) (value "+5V") (footprint "")
     )
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/173f5d8b-5e8e-42df-ac26-97c0aa3b0e9a"
       (reference "#PWR0155") (unit 1) (value "+24V") (footprint "")
@@ -270,6 +267,9 @@
     (path "/8ecd5ebf-2547-4882-86e9-d1153428a5cc/c02915c6-3e72-4648-affe-ce3f75c3cdb6"
       (reference "D6") (unit 1) (value "D_TVS") (footprint "Diode_SMD:D_0603_1608Metric")
     )
+    (path "/cb73e00e-b752-4474-a136-20146bf8e401/44828a05-885d-46f3-aac2-94cb4b1fbc4f"
+      (reference "D7") (unit 1) (value "SD0603") (footprint "Diode_SMD:D_0603_1608Metric")
+    )
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/0c3f4d7d-96f3-42f5-b1aa-653f0fe5929b"
       (reference "H1") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_3.2mm_M3")
     )
@@ -299,9 +299,6 @@
     )
     (path "/8ecd5ebf-2547-4882-86e9-d1153428a5cc/99714597-09ea-4502-986f-5780d48a5eb7"
       (reference "J6") (unit 1) (value "Conn_01x05_Male") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical")
-    )
-    (path "/cb73e00e-b752-4474-a136-20146bf8e401/cf024133-23bb-4e9e-b6cb-c09212747272"
-      (reference "J7") (unit 1) (value "Conn_01x02_Male") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
     )
     (path "/cb73e00e-b752-4474-a136-20146bf8e401/c5793b8a-fa9d-4167-9570-0711baade1ec"
       (reference "J8") (unit 1) (value "MOTOR") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")

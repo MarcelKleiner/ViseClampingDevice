@@ -850,7 +850,7 @@ void USBD_static_free(void *p)
   */
 static void SystemClockConfig_Resume(void)
 {
-  SystemClock_Config();
+ // SystemClock_Config();
 }
 /* USER CODE END 5 */
 

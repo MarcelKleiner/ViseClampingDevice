@@ -53,10 +53,16 @@ public:
 		uint8_t getDeviceAddress() const;
 		void setDeviceAddress(uint8_t deviceAddress);
 
+		bool isSaveSettings();
+		void setSaveSettings(bool saveSettings);
+		
+		bool isSettingsChanged();
+		uint16_t getSettingsChangedReg() const;
+		void ResetSettingsChanged(uint16_t bit);
+
 private:
 
 		uint8_t deviceAddress = 0x1F;
-
 
 		uint16_t teachTroque = 0;
 		uint16_t clampingTorque = 0;					//torque in nm
@@ -75,7 +81,9 @@ private:
 		uint16_t overCurrentError = 100;
 		uint16_t overCurrentTimeThreshold = 1000; 	//delay for overcurrent shutdown in ms
 
+		bool saveSettings = false;
 
+		uint16_t settingsChangedReg = 0;
 };
 
 

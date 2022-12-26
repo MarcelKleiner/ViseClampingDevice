@@ -215,8 +215,6 @@ void Digitll_IN_OUT::CheckData()
 
 
 uint16_t Digitll_IN_OUT::isSettingsChanged(){
-	settingsChangedReg |= UNDERVOLTAGE_ERROR_CHANGE;
-	settingsChangedReg |= UNDERVOLTAGE_WARNING_CHANGE;
 	return settingsChangedReg;
 }
 
@@ -232,19 +230,6 @@ bool Digitll_IN_OUT::isStatusChanged(){
 
 
 
-
-
-void Digitll_IN_OUT::WriteOutput(uint8_t data){
-
-	data & 0x01 ? Out1.Set() : Out1.Reset();
-	data & 0x02 ? Out2.Set() : Out2.Reset();
-	data & 0x04 ? Out3.Set() : Out3.Reset();
-	data & 0x08 ? Out4.Set() : Out4.Reset();
-	data & 0x10 ? Out5.Set() : Out5.Reset();
-	data & 0x20 ? Out6.Set() : Out6.Reset();
-	data & 0x40 ? Out7.Set() : Out7.Reset();
-	data & 0x80 ? Out8.Set() : Out7.Reset();
-}
 
 
 

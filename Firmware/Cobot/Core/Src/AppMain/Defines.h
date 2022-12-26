@@ -1,0 +1,98 @@
+/*
+ * Defines.h
+ *
+ *  Created on: 25.12.2022
+ *      Author: marce
+ */
+#include "gpio.h"
+
+
+#ifndef SRC_APPMAIN_DEFINES_H_
+#define SRC_APPMAIN_DEFINES_H_
+
+#define SEND_SETTINGS		0x01
+#define SEND_COMMAND		0x02
+#define SEND_STATUS			0x03
+
+#define GET_SETTINGS		0x11
+#define GET_COMMAND			0x12
+#define GET_STATUS			0x13
+
+
+
+
+#define CLOSE_ADDR					0x01
+#define OPEN_ADDR					0x02
+#define TEACH_ADDR					0x03
+#define RESET_ADDR					0x04
+#define ENABLE_ADDR					0x05
+#define DISABLE_ADDR				0x06
+#define STOP_ADDR					0x07
+#define ERROR_ADDR					0x08
+
+#define TEACH_TORQUE_ADDR			0x10
+#define TEACH_SPEED_ADDR			0x11
+
+#define CLAMPING_TORQUE_ADDR		0x12
+#define CLAMPING_SPEED_ADDR			0x13
+
+#define SELF_SHUTDOWN_DELAY_ADDR	0x14
+#define IN_POS_DIFF_ADDR			0x15
+#define OPENING_DISTANCE_ADDR		0x16
+
+#define UNDERVOLTAGE_WARNING_ADDR	0x17
+#define UNDERVOLTAGE_ERROR_ADDR		0x18
+
+#define OVER_CURRENT_WARNING_ADDR	0x19
+#define OVER_CURRENT_ERROR_ADDR		0x1A
+
+#define DEVICE_ADDRESS_ADDR			0x20
+
+#define SAVE_SETTINGS_ADDR			0x55
+
+//#define MAX_ADDR					0x7F
+
+
+#define TEACH_TORQUE_CHANGE				0x0001
+#define TEACH_SPEED_CHANGE				0x0002
+
+#define CLAMPING_TORQUE_CHANGE			0x0004
+#define CLAMPING_SPEED_CHANGE			0x0008
+
+#define SELF_SHUTDOWN_DELAY_CHANGE		0x0010
+#define IN_POS_DIFF_CHANGE				0x0020
+#define OPENING_DISTANCE_CHANGE			0x0040
+
+#define UNDERVOLTAGE_WARNING_CHANGE		0x0080
+#define UNDERVOLTAGE_ERROR_CHANGE		0x0100
+
+#define OVER_CURRENT_WARNING_CHANGE		0x0200
+#define OVER_CURRENT_ERROR_CHANGE		0x0400
+#define OVER_CURRENT_TIME_TH_CHANGE		0x0800
+
+
+
+
+#define CLOSE_CHANGE					0x01
+#define OPEN_CHANGE						0x02
+#define TEACH_CHANGE					0x04
+#define RESET_CHANGE					0x08
+#define ENABLE_CHANGE					0x10
+#define DISABLE_CHANGE					0x20
+#define STOP_CHANGE						0x40
+#define ERROR_CHANGE					0x80
+
+
+
+
+
+#define CONFIG_WRITE 	HAL_GPIO_ReadPin(DI_1_GPIO_Port, DI_1_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_1 	HAL_GPIO_ReadPin(DI_2_GPIO_Port, DI_2_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_2 	HAL_GPIO_ReadPin(DI_3_GPIO_Port, DI_3_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_3 	HAL_GPIO_ReadPin(DI_4_GPIO_Port, DI_4_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_4 	HAL_GPIO_ReadPin(DI_5_GPIO_Port, DI_5_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_5 	HAL_GPIO_ReadPin(DI_6_GPIO_Port, DI_6_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_6 	HAL_GPIO_ReadPin(DI_7_GPIO_Port, DI_7_Pin) == GPIO_PIN_SET
+#define CONFIG_ADDR_7 	HAL_GPIO_ReadPin(DI_8_GPIO_Port, DI_8_Pin) == GPIO_PIN_SET
+
+#endif /* SRC_APPMAIN_DEFINES_H_ */

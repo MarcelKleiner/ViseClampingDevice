@@ -62,7 +62,7 @@ uint8_t RFM95_LoRa::readRegister(uint8_t addr){
 	uint8_t txData[1] = {addr};
 
 	selectRFM();
-		HAL_SPI_TransmitReceive(&hspi3,(uint8_t*)txData,(uint8_t*)rxData,2,100);
+	HAL_SPI_TransmitReceive(&hspi3,(uint8_t*)txData,(uint8_t*)rxData,2,100);
 	deselectRFM();
 	return rxData[1];
 }

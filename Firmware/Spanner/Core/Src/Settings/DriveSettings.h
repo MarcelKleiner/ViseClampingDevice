@@ -52,7 +52,7 @@ public:
 
 private:
 
-	uint8_t deviceAddress = 0x15;		//device address
+	uint8_t deviceAddress = 0x20;		//device address
 
 	uint16_t teachTroque = 0;
 	uint16_t clampingTorque = 0;					//torque in nm

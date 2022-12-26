@@ -40,6 +40,7 @@
 #define ENABLE					0x05
 #define DISABLE					0x06
 #define STOP					0x07
+#define ERROR					0x08
 
 #define TEACH_TORQUE			0x10
 #define TEACH_SPEED				0x11

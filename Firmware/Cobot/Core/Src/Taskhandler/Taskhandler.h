@@ -21,6 +21,7 @@ public:
 	void UpdateTasks();
 
 	bool isComTask();
+	bool isSaveTask();
 	bool isErrorTask();
 	bool isIoUpdateTask() ;
 	bool isADCUpdateTask();
@@ -44,6 +45,9 @@ public:
 	bool isLedUpdateTaskEnable() const;
 	void setLEDUpdateTaskEnable(bool ledUpdateTaskEnable = true);
 
+	bool isSaveTaskEnable() const;
+	void setSaveTaskEnable(bool ledUpdateTaskEnable = true);
+
 private:
 
 
@@ -52,6 +56,7 @@ private:
 	volatile bool ioUpdateTask = false;
 	volatile bool adcUpdateTask = false;
 	volatile bool ledUpdateTask = false;
+	volatile bool saveTask = false;
 
 
 	volatile bool errorTaskEnable = true;
@@ -59,7 +64,7 @@ private:
 	volatile bool ioUpdateTaskEnable = true;
 	volatile bool adcUpdateTaskEnable = true;
 	volatile bool ledUpdateTaskEnable = true;
-
+	volatile bool saveTaskEnable = true;
 	uint16_t counter;
 };
 

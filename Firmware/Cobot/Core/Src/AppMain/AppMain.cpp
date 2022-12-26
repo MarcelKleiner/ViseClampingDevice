@@ -19,7 +19,6 @@ void AppMain::Startup()
 {
 	Storage.ReadFlash();
 
-
 	HAL_TIM_Base_Start_IT(&htim7);
 
 	LED_Green.OFF();
@@ -31,7 +30,6 @@ void AppMain::Startup()
 	}
 
 	Delay::DWT_Init();
-
 
 	Main();
 }
@@ -54,13 +52,23 @@ void AppMain::Main()
 
 		if (taskStatus.isComTask())
 		{
+			rfm95COM->Transmitt();
+			rfm95COM->Receive();
 			com.UpdateCom();
-			com.ReadData();
+			//com.ReadData();
 		}
 
 		if (taskStatus.isIoUpdateTask())
 		{
 			DigitalInOut.Read();
+		}
+
+		if (taskStatus.isSaveTask())
+		{
+			if (this->driveSettings.isSaveSettings())
+			{
+				Storage.SaveFlash();
+			}
 		}
 
 	}

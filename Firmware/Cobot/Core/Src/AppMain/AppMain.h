@@ -15,10 +15,14 @@
 #include "../IO/DO.h"
 #include "../IO/LED.h"
 #include "../IO/DI.h"
-#include "../USB/USB.h"
 #include "../Flash/Flash.h"
 #include "tim.h"
 #include "main.h"
+
+#include "../COM/USBCom.h"
+#include "../COM/ICom.h"
+#include "../COM/RFM95Com.h"
+#include "../COM/IOCom.h"
 
 class AppMain
 {
@@ -42,7 +46,11 @@ class AppMain
 		Digitll_IN_OUT DigitalInOut = Digitll_IN_OUT(&driveSettings, &driveStatus, &driveCommand);
 		Communication com = Communication(&driveStatus, &driveSettings, &rfm95, &DigitalInOut, &driveCommand);
 
-		USBCom USBCDC = USBCom(&driveSettings, &driveStatus, &driveCommand);
+
+		ICom *rfm95COM 	= 	 new RFM95Com	(&driveStatus, &driveSettings, &driveCommand, &rfm95);
+		ICom *usbCOM	= 	 new USBCom	 	(&driveStatus, &driveSettings, &driveCommand);
+		ICom *ioCOM	 	= 	 new IOCom		(&driveStatus, &driveSettings, &driveCommand);
+
 		Flash Storage = Flash(&driveSettings, &driveStatus);
 
 	private:

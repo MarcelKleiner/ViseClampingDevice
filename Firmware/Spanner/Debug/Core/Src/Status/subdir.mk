@@ -5,16 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Core/Src/Status/DriveStatus.cpp \
-../Core/Src/Status/TaskHandler.cpp 
+../Core/Src/Status/DriveStatus.cpp 
 
 OBJS += \
-./Core/Src/Status/DriveStatus.o \
-./Core/Src/Status/TaskHandler.o 
+./Core/Src/Status/DriveStatus.o 
 
 CPP_DEPS += \
-./Core/Src/Status/DriveStatus.d \
-./Core/Src/Status/TaskHandler.d 
+./Core/Src/Status/DriveStatus.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +21,7 @@ Core/Src/Status/%.o Core/Src/Status/%.su: ../Core/Src/Status/%.cpp Core/Src/Stat
 clean: clean-Core-2f-Src-2f-Status
 
 clean-Core-2f-Src-2f-Status:
-	-$(RM) ./Core/Src/Status/DriveStatus.d ./Core/Src/Status/DriveStatus.o ./Core/Src/Status/DriveStatus.su ./Core/Src/Status/TaskHandler.d ./Core/Src/Status/TaskHandler.o ./Core/Src/Status/TaskHandler.su
+	-$(RM) ./Core/Src/Status/DriveStatus.d ./Core/Src/Status/DriveStatus.o ./Core/Src/Status/DriveStatus.su
 
 .PHONY: clean-Core-2f-Src-2f-Status
 

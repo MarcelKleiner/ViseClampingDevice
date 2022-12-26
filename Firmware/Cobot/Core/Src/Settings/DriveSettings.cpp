@@ -6,6 +6,7 @@
  */
 
 #include "DriveSettings.h"
+#include "../AppMain/Defines.h"
 
 /****************************************************************************************
  / * 	Clamping speed get/set
@@ -17,7 +18,11 @@ uint16_t DriveSettings::getClampingSpeed() const
 
 void DriveSettings::setClampingSpeed(uint16_t clampingSpeed)
 {
-	this->clampingSpeed = clampingSpeed;
+	if (this->clampingSpeed != clampingSpeed)
+	{
+		this->clampingSpeed = clampingSpeed;
+		this->settingsChangedReg |= CLAMPING_SPEED_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -30,7 +35,11 @@ uint16_t DriveSettings::getClampingTorque() const
 
 void DriveSettings::setClampingTorque(uint16_t clampingTorque)
 {
-	this->clampingTorque = clampingTorque;
+	if (this->clampingTorque != clampingTorque)
+	{
+		this->clampingTorque = clampingTorque;
+		this->settingsChangedReg |= CLAMPING_TORQUE_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -43,7 +52,12 @@ uint16_t DriveSettings::getInPosDiff() const
 
 void DriveSettings::setInPosDiff(uint16_t inPosDiff)
 {
-	this->inPosDiff = inPosDiff;
+	if (this->inPosDiff != inPosDiff)
+	{
+		this->inPosDiff = inPosDiff;
+		this->settingsChangedReg |= IN_POS_DIFF_CHANGE;
+	}
+
 }
 
 /****************************************************************************************
@@ -56,7 +70,11 @@ uint16_t DriveSettings::getOpeningDistance() const
 
 void DriveSettings::setOpeningDistance(uint16_t openingDistance)
 {
-	this->openingDistance = openingDistance;
+	if (this->openingDistance != openingDistance)
+	{
+		this->openingDistance = openingDistance;
+		this->settingsChangedReg |= OPENING_DISTANCE_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -67,9 +85,14 @@ uint16_t DriveSettings::getOverCurrentTimeThreshold() const
 	return overCurrentTimeThreshold;
 }
 
-void DriveSettings::setOverCurrentTimeThreshold(uint16_t overCurrentTimeThreshold)
+void DriveSettings::setOverCurrentTimeThreshold(
+		uint16_t overCurrentTimeThreshold)
 {
-	this->overCurrentTimeThreshold = overCurrentTimeThreshold;
+	if (this->overCurrentTimeThreshold != overCurrentTimeThreshold)
+	{
+		this->overCurrentTimeThreshold = overCurrentTimeThreshold;
+		this->settingsChangedReg |= OVER_CURRENT_TIME_TH_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -82,9 +105,12 @@ uint16_t DriveSettings::getOverCurrentWarning() const
 
 void DriveSettings::setOverCurrentWarning(uint16_t overCurrentWarning)
 {
-	this->overCurrentWarning = overCurrentWarning;
+	if (this->overCurrentWarning != overCurrentWarning)
+	{
+		this->overCurrentWarning = overCurrentWarning;
+		this->settingsChangedReg |= OVER_CURRENT_WARNING_CHANGE;
+	}
 }
-
 /****************************************************************************************
  / * 	self shutdown delay get/set
  ****************************************************************************************/
@@ -95,7 +121,11 @@ uint16_t DriveSettings::getSelfShutdownDelay() const
 
 void DriveSettings::setSelfShutdownDelay(uint16_t selfShutdownDelay)
 {
-	this->selfShutdownDelay = selfShutdownDelay;
+	if (this->selfShutdownDelay != selfShutdownDelay)
+	{
+		this->selfShutdownDelay = selfShutdownDelay;
+		this->settingsChangedReg |= SELF_SHUTDOWN_DELAY_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -108,9 +138,12 @@ uint16_t DriveSettings::getTeachSpeed() const
 
 void DriveSettings::setTeachSpeed(uint16_t teachSpeed)
 {
-	this->teachSpeed = teachSpeed;
+	if (this->teachSpeed != teachSpeed)
+	{
+		this->teachSpeed = teachSpeed;
+		this->settingsChangedReg |= TEACH_SPEED_CHANGE;
+	}
 }
-
 /****************************************************************************************
  / * 	teach torque get/set
  ****************************************************************************************/
@@ -121,9 +154,12 @@ uint16_t DriveSettings::getTeachTroque() const
 
 void DriveSettings::setTeachTroque(uint16_t teachTroque)
 {
-	this->teachTroque = teachTroque;
+	if (this->teachTroque != teachTroque)
+	{
+		this->teachTroque = teachTroque;
+		this->settingsChangedReg |= TEACH_TORQUE_CHANGE;
+	}
 }
-
 /****************************************************************************************
  / * 	undervoltage error get/set
  ****************************************************************************************/
@@ -134,7 +170,11 @@ uint16_t DriveSettings::getUnderVoltageError() const
 
 void DriveSettings::setUnderVoltageError(uint16_t underVoltageError)
 {
-	this->underVoltageError = underVoltageError;
+	if (this->underVoltageError != underVoltageError)
+	{
+		this->underVoltageError = underVoltageError;
+		this->settingsChangedReg |= UNDERVOLTAGE_ERROR_CHANGE;
+	}
 }
 
 /****************************************************************************************
@@ -147,9 +187,12 @@ uint16_t DriveSettings::getUnderVoltageWarning() const
 
 void DriveSettings::setUnderVoltageWarning(uint16_t underVoltageWarning)
 {
-	this->underVoltageWarning = underVoltageWarning;
+	if (this->underVoltageWarning != underVoltageWarning)
+	{
+		this->underVoltageWarning = underVoltageWarning;
+		this->settingsChangedReg |= UNDERVOLTAGE_WARNING_CHANGE;
+	}
 }
-
 /****************************************************************************************
  / * 	overcurrent error get/set
  ****************************************************************************************/
@@ -160,10 +203,12 @@ uint16_t DriveSettings::getOverCurrentError() const
 
 void DriveSettings::setOverCurrentError(uint16_t overCurrentError)
 {
-	this->overCurrentError = overCurrentError;
+	if (this->overCurrentError != overCurrentError)
+	{
+		this->overCurrentError = overCurrentError;
+		this->settingsChangedReg |= OVER_CURRENT_ERROR_CHANGE;
+	}
 }
-
-
 /****************************************************************************************
  / * 	device address get/set
  ****************************************************************************************/
@@ -175,4 +220,38 @@ uint8_t DriveSettings::getDeviceAddress() const
 void DriveSettings::setDeviceAddress(uint8_t deviceAddress = 0)
 {
 	this->deviceAddress = deviceAddress;
+}
+
+/****************************************************************************************
+ / * 	device address get/set
+ ****************************************************************************************/
+bool DriveSettings::isSaveSettings()
+{
+	bool saveSettingsTemp = this->saveSettings;
+	this->saveSettings = false;
+	return saveSettingsTemp;
+}
+
+void DriveSettings::setSaveSettings(bool saveSettings)
+{
+	this->saveSettings = saveSettings;
+}
+
+
+
+
+
+
+bool DriveSettings::isSettingsChanged()
+{
+	return (settingsChangedReg != 0);
+}
+
+uint16_t DriveSettings::getSettingsChangedReg() const
+{
+	return this->settingsChangedReg;
+}
+
+void DriveSettings::ResetSettingsChanged(uint16_t bit){
+	settingsChangedReg &= ~bit;
 }

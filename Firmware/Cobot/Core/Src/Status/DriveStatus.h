@@ -18,8 +18,8 @@ class DriveStatus
 		DriveStatus();
 
 		enum _ERROR{
-			E_FLASH_ERROR,
-
+			E_FLASH_ERROR = 0x0001,
+			E_COM_ERROR = 0x0002,
 		};
 
 
@@ -50,10 +50,12 @@ class DriveStatus
 		_ERROR getError();
 		void setError(_ERROR error);
 
+
+		bool isStatusChanged();
+
 	private:
 
 		_ERROR error;
-		//reset by read
 		bool close;
 		bool open;
 		bool teach;
@@ -61,6 +63,8 @@ class DriveStatus
 		bool enable;
 		bool stop;
 		bool disable;
+
+		bool statusChanged = false;
 };
 
 #endif /* SRC_STATUS_DRIVESTATUS_H_ */

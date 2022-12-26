@@ -18,7 +18,7 @@
 #define SEND_COMMAND		0x02
 #define SEND_STATUS_REQ		0x03
 
-#define RCV_STATUS			0x11
+
 
 #define MAX_PACKET_2_SEND		10
 #define MAX_PACKET_2_RECEIVE 	10
@@ -35,19 +35,18 @@ class Communication
 {
 	public:
 
-		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				RFM95_LoRa *rfm95, Digitll_IN_OUT *digitalInOut);
+		Communication(DriveStatus *driveStatus, DriveSettings *driveSettings, RFM95_LoRa *rfm95);
 
 		void ReadData();
 		bool SendData();
-
+		bool UpdateCom();
 	private:
 		DriveStatus *driveStatus;
 		DriveSettings *driveSettings;
 		RFM95_LoRa *rfm95;
-		Digitll_IN_OUT *digitalInOut;
 
 		uint8_t rxData[MAX_PACKET_2_SEND] ={ 0 };
+		uint8_t CRC8(uint8_t *data, uint8_t length);
 
 };
 

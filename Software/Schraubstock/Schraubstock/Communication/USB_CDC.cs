@@ -11,14 +11,40 @@ namespace Schraubstock.Communication
 {
     internal class USB_CDC
     {
-        SerialPort sPort;
-        public USB_CDC()
-        {
+        private SerialPort? sPort;
+        private List<byte> rxData = new List<byte>();
+        private bool isDataReady;
+        private string comPort;
 
+        public enum ReadWrite
+        {
+            Write,
+            Read
         }
 
-        public List<byte> Data { get; private set; }
-        private readonly List<byte> rxData = new List<byte>();
+        public bool IsDataReady
+        {
+            get
+            {
+                if (isDataReady)
+                {
+                    isDataReady = false;
+                    return true;
+                }
+                return false;
+            }
+            set => isDataReady = value;
+        }
+
+        public bool IsConnected()
+        {
+            return sPort == null ? false: sPort.IsOpen;
+        }
+
+        public string GetComPort()
+        {
+            return comPort;
+        }
 
         public bool Connect(string comport)
         {
@@ -35,6 +61,7 @@ namespace Schraubstock.Communication
             {
                 sPort.Open();
                 sPort.DataReceived += SPort_DataReceived;
+                comPort = sPort.PortName;
                 return true;
             }
             catch
@@ -44,69 +71,35 @@ namespace Schraubstock.Communication
             }
         }
 
+        public bool Dissconnect()
+        {
+            if(sPort != null && sPort.IsOpen)
+            {
+                sPort.Dispose();
+                return true;
+            }
+            return false;
+        }
 
-        /// <summary>
-        /// serial port data receive interrupt
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void SPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            int counter = 0;
-            byte[] buffer = new byte[5];
+            SerialPort port = (SerialPort)sender;
+            if(port.BytesToRead == 0) { return; }
 
-            try
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    buffer[i] = (byte)sPort.ReadByte();
-                    counter++;
-                }
-            }
-            catch { }
-
-            rxData.Clear();
-            for (int i = 0; i < counter; i++)
-            {
-                rxData.Add(buffer[i]);
-            }
+            byte[] buffer = new byte[port.BytesToRead];
+            var result = port.Read(buffer, 0, port.BytesToRead);
+            rxData = buffer.ToList();
             IsDataReady = true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<byte> GetData()
-        {
-            return rxData;
-        }
-
-
-        private bool isDataReady;
-        public bool IsDataReady
-        {
-            get
-            {
-                if (isDataReady)
-                {
-                    isDataReady = false;
-                    return true;
-                }
-                return false;
-            }
-            set => isDataReady = value;
-        }
-
-
-        public byte[]? Write(byte register, byte readWrite, byte[]? data)
+        public byte[]? Write(byte register, ReadWrite readWrite, byte[]? data = null)
         {
             int length = data != null ? data.Length : 0;
             byte[] data2Write = new byte[length + 3];
 
             if (sPort.IsOpen)
             {
-                data2Write[0] = readWrite;
+                data2Write[0] = (byte)readWrite;
                 data2Write[1] = register;
 
                 for (int i = 0; i < length; i++)
@@ -118,7 +111,6 @@ namespace Schraubstock.Communication
                 IsDataReady = false;
                 sPort.Write(data2Write, 0, data2Write.Length);
 
-                byte[] result = new byte[20];
                 int timeout = 1000;
                 while (!IsDataReady && (--timeout) > 0)
                 {
@@ -127,20 +119,13 @@ namespace Schraubstock.Communication
 
                 if(timeout == 0)
                 {
-                    MessageBox.Show("Daten konnten nicht gelesen werden");
-                }
-                else
-                {
-                    result = rxData.ToArray();
+                    return null;
                 }
 
-                //sPort.Read(result, 0, 20);
-
-                return result;
+                return rxData.ToArray(); 
             }
             return null;
         }
-
 
         private byte CRC8(byte[] data)
         {

@@ -39,6 +39,7 @@ Core/Src/IO \
 Core/Src/RFM95 \
 Core/Src/Settings \
 Core/Src/Status \
+Core/Src/Taskhandler \
 Core/Src \
 Core/Startup \
 Drivers/STM32L4xx_HAL_Driver/Src \

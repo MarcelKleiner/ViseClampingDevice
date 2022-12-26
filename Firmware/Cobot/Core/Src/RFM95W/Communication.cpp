@@ -43,7 +43,7 @@ bool Communication::UpdateCom()
 				| ((uint8_t) driveCommand->isWriteConfig() << 8);
 
 		data2send[0] = driveSettings->getDeviceAddress();
-		data2send[1] = SEND_COMMAND;
+		//data2send[1] = SEND_COMMAND;
 		data2send[2] = data;
 		data2send[3] = 5;
 		data2send[4] = CRC8(data2send, data2send[3] - 1);
@@ -52,7 +52,7 @@ bool Communication::UpdateCom()
 	{
 		uint16_t commands = digitalInOut->isSettingsChanged();
 		data2send[0] = driveSettings->getDeviceAddress();
-		data2send[1] = SEND_SETTINGS;
+		//data2send[1] = SEND_SETTINGS;
 
 		if (commands & TEACH_TORQUE_CHANGE)
 		{
@@ -149,48 +149,21 @@ bool Communication::UpdateCom()
 	else
 	{
 		data2send[0] = driveSettings->getDeviceAddress();
-		data2send[1] = SEND_STATUS_REQ;
+		//data2send[1] = SEND_STATUS_REQ;
 		data2send[2] = 4;
 		data2send[3] = CRC8(data2send, data2send[2]-1);
 	}
 
+	rfm95->beginPacket();
 	rfm95->write(data2send, 6);
+	rfm95->endPacket();
 	return true;
 }
 
 
 void Communication::ReadData(){
 
-	uint8_t packetSize = rfm95->parsePacket();
-	if(packetSize != 0){
-		uint8_t counter = 0;
-		while(rfm95->available()){
-			rxData[counter] = rfm95->read();
-			if(counter > MAX_PACKET_2_RECEIVE){
-				return;
-			}
-		}
 
-		//uint8_t addr = rxData[0];
-		uint8_t command = rxData[1];
-		//data = rxData[2...(counter-1)]
-		//uint8_t size = rxData[counter-1];
-		uint8_t crc8 = rxData[counter];
-
-		if(CRC8(rxData, counter-1) != crc8){
-			//error crc error //ToDO
-			return;
-		}
-
-		switch (command) {
-			case RCV_STATUS:
-				digitalInOut->WriteOutput(rxData[2]);
-				break;
-			default:
-				//error no supported command //ToDO
-				break;
-		}
-	}
 }
 
 

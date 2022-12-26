@@ -13,7 +13,6 @@ Flash::Flash(DriveSettings *driveSettings, DriveStatus *driveStatus)
 {
 	this->driveSettings = driveSettings;
 	this->driveStatus = driveStatus;
-	this->factoryResetFlag = false;
 }
 
 /*
@@ -29,8 +28,49 @@ void Flash::ReadFlash()
 	{
 		tmpFlashArray[i] = *(uint64_t*) (FLASH_STAR_PAGE_ADDR + 64 * i);
 	}
-	//write flash to config and status file
+
+	driveSettings->setClampingSpeed(tmpFlashArray[0]);
+	driveSettings->setClampingTorque(tmpFlashArray[1]);
+	driveSettings->setTeachSpeed(tmpFlashArray[2]);
+	driveSettings->setTeachTroque(tmpFlashArray[3]);
+
+	driveSettings->setOverCurrentError(tmpFlashArray[4]);
+	driveSettings->setOverCurrentWarning(tmpFlashArray[5]);
+	driveSettings->setUnderVoltageError(tmpFlashArray[6]);
+	driveSettings->setUnderVoltageWarning(tmpFlashArray[7]);
+
+	driveSettings->setSelfShutdownDelay(tmpFlashArray[8]);
+	driveSettings->setInPosDiff(tmpFlashArray[9]);
+	driveSettings->setOpeningDistance(tmpFlashArray[10]);
+
+	driveSettings->setOverCurrentTimeThreshold(tmpFlashArray[11]);
+	driveSettings->setDeviceAddress(tmpFlashArray[12]);
 }
+
+
+
+void Flash::SaveFlash(){
+
+		tmpFlashArray[0] = driveSettings->getClampingSpeed();
+		tmpFlashArray[1] = driveSettings->getClampingTorque();
+		tmpFlashArray[2] = driveSettings->getTeachSpeed();
+		tmpFlashArray[3] = driveSettings->getTeachTroque();
+
+		tmpFlashArray[4] = driveSettings->getOverCurrentError();
+		tmpFlashArray[5] = driveSettings->getOverCurrentWarning();
+		tmpFlashArray[6] = driveSettings->getUnderVoltageError();
+		tmpFlashArray[7] = driveSettings->getUnderVoltageWarning();
+
+		tmpFlashArray[8] = driveSettings->getSelfShutdownDelay();
+		tmpFlashArray[9] = driveSettings->getInPosDiff();
+		tmpFlashArray[10] = driveSettings->getOpeningDistance();
+
+		tmpFlashArray[11] = driveSettings->getOverCurrentTimeThreshold();
+		tmpFlashArray[12] = driveSettings->getDeviceAddress();
+		WriteFlash();
+}
+
+
 
 /*
  * Speichert das tmpFlashArry in's Flash
@@ -78,16 +118,4 @@ HAL_StatusTypeDef Flash::WriteFlash()
 
 	return HAL_OK;
 }
-
-//void Flash::SystemReboot()
-//{
-//	NVIC_SystemReset(); //System Reset
-//}
-//
-//void Flash::SystemFactoryReset()
-//{
-//	this->factoryResetFlag = true;
-//	this->flashSchreiben();
-//	this->systemReboot();
-//}
 

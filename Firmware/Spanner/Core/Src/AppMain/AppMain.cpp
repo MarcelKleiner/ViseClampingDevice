@@ -7,6 +7,7 @@
 
 #include "AppMain.h"
 
+extern TIM_HandleTypeDef htim16;
 
 
 AppMain::AppMain()
@@ -17,12 +18,19 @@ AppMain::AppMain()
 
 void AppMain::Startup()
 {
+	HAL_SPI_MspInit(&hspi1);
+	//HAL_TIM_Base_Start_IT(&htim16);
+
+	HAL_Delay(100);
+
 	if(!rfm95.InitRFM()){
-		error.setError(Error::COM_ERROR);
-		taskHandler.setDriveTaskEnable(false);
+			error.setError(Error::COM_ERROR);
+			taskHandler.setDriveTaskEnable(false);
 	}
+	rfm95.receive(0);
 
-
+	  HAL_TIM_Base_MspInit(&htim16);
+	  HAL_TIM_Base_Start_IT(&htim16);
 	Main();
 }
 
@@ -49,7 +57,7 @@ void AppMain::Main()
 		}
 
 		if(taskHandler.isComTask()){
-
+			com.ReadData();
 		}
 
 		if(taskHandler.isDriveTask()){
@@ -67,6 +75,9 @@ void AppMain::Main()
 
 		}
 
+		if(taskHandler.isLEDTask()){
+			//this->led.Toggle();
+		}
 
 
 	}

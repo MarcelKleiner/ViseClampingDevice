@@ -21,7 +21,11 @@ bool DriveStatus::isClose()
 
 void DriveStatus::setClose(bool close)
 {
-	this->close = close;
+	if (this->close != close)
+	{
+		this->close = close;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -34,7 +38,11 @@ bool DriveStatus::isOpen()
 
 void DriveStatus::setOpen(bool open)
 {
-	this->open = open;
+	if (this->open = open)
+	{
+		this->open = open;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -47,7 +55,11 @@ bool DriveStatus::isDisable()
 
 void DriveStatus::setDisable(bool disable)
 {
-	this->disable = disable;
+	if (this->disable = disable)
+	{
+		this->disable = disable;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -60,7 +72,11 @@ bool DriveStatus::isEnable()
 
 void DriveStatus::setEnable(bool enable)
 {
-	this->enable = enable;
+	if (this->enable = enable)
+	{
+		this->enable = enable;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -73,7 +89,11 @@ bool DriveStatus::isReset()
 
 void DriveStatus::setReset(bool reset)
 {
-	this->reset = reset;
+	if (this->reset = reset)
+	{
+		this->reset = reset;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -86,7 +106,11 @@ bool DriveStatus::isStop()
 
 void DriveStatus::setStop(bool stop)
 {
-	this->stop = stop;
+	if (this->stop = stop)
+	{
+		this->stop = stop;
+		statusChanged = true;
+	}
 }
 
 /****************************************************************************************
@@ -99,9 +123,12 @@ bool DriveStatus::isTeach()
 
 void DriveStatus::setTeach(bool teach)
 {
-	this->teach = teach;
+	if (this->teach = teach)
+	{
+		this->teach = teach;
+		statusChanged = true;
+	}
 }
-
 
 /****************************************************************************************
  / * 	write config get/set
@@ -113,5 +140,8 @@ DriveStatus::_ERROR DriveStatus::getError()
 
 void DriveStatus::setError(_ERROR error)
 {
-	this->error = error;
+	if (this->error = error)
+	{
+		statusChanged = true;
+	}
 }

@@ -1,20 +1,13 @@
 ﻿using Schraubstock.Communication;
 using Schraubstock.UControl;
 using System;
-using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Control = Schraubstock.UControl.Control;
 
 namespace Schraubstock
 {
@@ -33,14 +26,13 @@ namespace Schraubstock
             viewModel = new ViewModel();
             this.DataContext = viewModel;
 
-            viewModel.ComPorts = SerialPort.GetPortNames().ToList();
+            InitControll();
+            Thread tReadStatus = new Thread(() => ReadStatus());
+            //tReadStatus.Start();
+        }
 
-
-
-            //usbCom.Connect("COM3");
-            //usbCom.Write(0x10, 0x01, null);
-
-
+        private void InitControll()
+        {
             Setting sDeviceID = new Setting(btnDeviceIDRead, btnDeivceIDWrite, txtDeviceID)
             {
                 MaxValue = 254,
@@ -120,7 +112,55 @@ namespace Schraubstock
                 COM = usbCom
             };
 
+            Setting sOpeningDistance = new Setting(btnOpeningDistanceRead, btnOpeningDistanceWrite, txtOpeningDistance)
+            {
+                MaxValue = 200,
+                MinValue = 10,
+                Register = 0x16,
+                COM = usbCom
+            };
+
+
+
+            Control cClose = new Control(btnClose)
+            {
+                Register = 0x01,
+                COM = usbCom
+            };
+            Control cOpen = new Control(btnOpen)
+            {
+                Register = 0x02,
+                COM = usbCom
+            };
+            Control cTeach = new Control(btnTeach)
+            {
+                Register = 0x03,
+                COM = usbCom
+            };
+            Control cReset = new Control(btnReset)
+            {
+                Register = 0x04,
+                COM = usbCom
+            };
+            Control cEnable = new Control(btnEnable)
+            {
+                Register = 0x05,
+                COM = usbCom
+            };
+            Control cDisable = new Control(btnDisable)
+            {
+                Register = 0x06,
+                COM = usbCom
+            };
+            Control cStop = new Control(btnStop)
+            {
+                Register = 0x07,
+                COM = usbCom
+            };
+
+
         }
+
 
         private void ComPort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -128,10 +168,14 @@ namespace Schraubstock
             {
                 ComboBox cmb = (ComboBox)sender;
                 string? comPort = cmb.SelectedItem.ToString();
-                if(comPort != null)
+                if (comPort != null)
                 {
-                    viewModel.SelectedComPort =  comPort;
-                    usbCom.Connect(comPort);
+                    viewModel.SelectedComPort = comPort;
+                    if (!usbCom.Connect(comPort))
+                    {
+                        viewModel.SelectedComPort = "";
+                        cmb.SelectedIndex = -1;
+                    }
                 }
             }
             catch
@@ -140,6 +184,64 @@ namespace Schraubstock
             }
         }
 
+
+        private void ComPort_DropDownOpend(object sender, EventArgs e)
+        {
+            if (viewModel.ComPorts != null)
+            {
+                viewModel.ComPorts.Clear();
+                viewModel.SelectedComPort = "";
+            }
+
+            viewModel.ComPorts = SerialPort.GetPortNames().ToList();
+        }
+
+
+
+
+        private void ReadStatus()
+        {
+            while (true)
+            {
+                if (usbCom.IsConnected())
+                {
+                    viewModel.LblEnableBrush = ReadStatus(0x01);
+                    Thread.Sleep(10);
+                    viewModel.LblCloseBrush = ReadStatus(0x02);
+                    Thread.Sleep(10);
+                    viewModel.LblOpenBrush = ReadStatus(0x03);
+                    Thread.Sleep(10);
+                    viewModel.LblStopBrush = ReadStatus(0x04);
+                    Thread.Sleep(10);
+                }
+                Thread.Sleep(1000);
+            }
+        }
+
+        int diagnoseCounter = 0;
+
+        private Brush? ReadStatus(byte register)
+        {
+            try
+            {
+                var data = usbCom.Write(register, USB_CDC.ReadWrite.Read);
+                if (data != null && data[1] == register)
+                {
+                    diagnoseCounter++;
+                    return data[2] == 0 ? ViewModel._lightRed : ViewModel._lightGreen;
+                    
+                }
+                return ViewModel._lightYellow;
+            }
+            catch(Exception ex)
+            {
+                //  MessageBox.Show(diagnoseCounter.ToString());
+                usbCom.Dissconnect();
+                usbCom.Connect(usbCom.GetComPort());
+                return ViewModel._lightYellow;
+            }
+
+        }
 
     }
 }

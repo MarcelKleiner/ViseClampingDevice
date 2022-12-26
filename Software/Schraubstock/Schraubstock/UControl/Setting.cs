@@ -1,10 +1,6 @@
 ﻿using Schraubstock.Communication;
 using Schraubstock.Tool;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -57,7 +53,6 @@ namespace Schraubstock.UControl
             }
         }
 
-
         private void Write_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (COM == null || string.IsNullOrEmpty(currentTxtValue))
@@ -66,14 +61,14 @@ namespace Schraubstock.UControl
                 return;
             }
 
-            COM.Write(Register, 0x00, TypeConverter.Int16ToByte(Convert.ToInt16(currentTxtValue)));
+            COM.Write(Register, USB_CDC.ReadWrite.Write, TypeConverter.Int16ToByte(Convert.ToInt16(currentTxtValue)));
         }
 
         private void Read_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
-                var data = COM.Write(Register, 0x01, null);
+                var data = COM.Write(Register, USB_CDC.ReadWrite.Read, null);
 
                 if (data == null || data[0] != 0x1D)
                 {
@@ -97,11 +92,6 @@ namespace Schraubstock.UControl
             {
                 MessageBox.Show("Daten konnte nicht gelesen werden");
             }
-
-
         }
-
-
-
     }
 }

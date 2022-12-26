@@ -222,8 +222,9 @@ void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin){
 
 
 
-void USB_CDC_RX_Interrupt(uint8_t *data, uint32_t length){
-	appMain.USBCDC.USB_Receive(data, length);
+void USB_CDC_RX_Interrupt(uint8_t *data, uint32_t length)
+{
+	appMain.usbCOM->Receive(data, length);
 }
 
 
