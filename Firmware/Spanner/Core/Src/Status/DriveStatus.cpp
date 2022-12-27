@@ -178,3 +178,15 @@ void DriveStatus::setPosition(uint16_t position)
 	this->position = position;
 }
 
+
+
+
+bool DriveStatus::isInPos() const
+{
+	return this->inPos;
+}
+
+void DriveStatus::setInPos(bool flag)
+{
+	this->inPos = flag;
+}

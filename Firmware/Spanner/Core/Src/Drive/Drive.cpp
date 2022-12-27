@@ -79,6 +79,37 @@ void Drive::OpMode()
 
 }
 
+
+void Drive::Close(){
+
+	if(driveStatus->getCurrent() >= (driveSettings->getClampingTorque() * TORQUE_2_CURRENT))
+	{
+		driveStatus->setInPos(true);
+	}
+	else
+	{
+		MoveDrive(DIRECTION::IN, driveSettings->getClampingTorque(), driveSettings->getClampingSpeed());
+	}
+}
+
+void Drive::Open(){
+
+	auto posOut = driveSettings->getOpeningDistance() + driveSettings->getInPosDiff();
+	auto posIn = driveSettings->getOpeningDistance() - driveSettings->getInPosDiff();
+
+
+	if(driveStatus->getPosition() >= posOut && driveStatus->getPosition() < posIn)
+	{
+		driveStatus->setInPos(true);
+	}
+	else
+	{
+		MoveDrive(DIRECTION::OUT, driveSettings->getClampingTorque(), driveSettings->getClampingSpeed());
+	}
+}
+
+
+
 void Drive::Stop()
 {
 	TIM2->CCR1 = 3200; //3200-6400

@@ -174,52 +174,10 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-
-
 	if(htim->Instance == TIM7){
 		appMain.taskStatus.UpdateTasks();
 	}
-
-
-
 }
-
-void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim){
-
-}
-
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
-//	if(hadc->Instance == ADC1){
-//		HAL_ADC_Stop_DMA(&hadc1);
-//	}
-//
-//	if(hadc->Instance == ADC2){
-//		HAL_ADC_Stop_DMA(&hadc2);
-//	}
-//
-//	appMain.updateADC(hadc);
-}
-
-
-
-void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-
-}
-
-void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin){
-//	if(GPIO_Pin == IO_COM_CLK_Pin){
-//		appMain.oIO_COM.IO_COM_clk_Interrupt();
-//	}
-}
-
-
-void HAL_GPIO_EXTI_Falling_Callback(uint16_t GPIO_Pin){
-//	if(GPIO_Pin == IO_COM_CLK_Pin){
-//		appMain.oIO_COM.IO_COM_clk_Interrupt();
-//	}
-}
-
-
 
 
 void USB_CDC_RX_Interrupt(uint8_t *data, uint32_t length)

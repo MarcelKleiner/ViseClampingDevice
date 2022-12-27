@@ -54,6 +54,11 @@ class DriveStatus
 		uint16_t getPosition() const;
 		void setPosition(uint16_t position);
 
+		bool isInPos() const;
+		void setInPos(bool flag);
+
+
+
 		uint8_t getStatus() const;
 
 		bool isStatusChanged();
@@ -70,6 +75,8 @@ class DriveStatus
 		bool disable;
 		uint16_t current;
 		uint16_t position;
+
+		bool inPos = false;
 
 		uint16_t autoShutdownCounter;
 

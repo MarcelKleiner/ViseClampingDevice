@@ -9,6 +9,7 @@
 #define SRC_APPMAIN_DEFINES_H_
 
 #define GEAR_RATIO			1
+#define TORQUE_2_CURRENT	1
 
 
 

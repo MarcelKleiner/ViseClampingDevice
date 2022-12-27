@@ -67,6 +67,9 @@ class Drive
 		void OpMode();
 		void TeachMode();
 
+		void Open();
+		void Close();
+
 		void MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
 
 };
