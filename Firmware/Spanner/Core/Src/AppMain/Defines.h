@@ -11,6 +11,15 @@
 #define GEAR_RATIO			1
 
 
+
+#define SEND_SETTINGS		0x01
+#define SEND_COMMAND		0x02
+#define SEND_STATUS			0x03
+
+#define GET_SETTINGS		0x11
+#define GET_COMMAND			0x12
+#define GET_STATUS			0x13
+
 //Address
 #define CLOSE_ADDR					0x01
 #define OPEN_ADDR					0x02
@@ -20,6 +29,7 @@
 #define DISABLE_ADDR				0x06
 #define STOP_ADDR					0x07
 #define ERROR_ADDR					0x08
+#define STATUS_ADDR					0x09
 
 #define TEACH_TORQUE_ADDR			0x10
 #define TEACH_SPEED_ADDR			0x11

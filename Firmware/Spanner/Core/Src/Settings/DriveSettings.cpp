@@ -14,6 +14,8 @@ void DriveSettings::setClampingSpeed(uint16_t clampingSpeed) {
 	this->clampingSpeed = clampingSpeed;
 }
 
+
+
 uint16_t DriveSettings::getClampingTorque() const {
 	return clampingTorque;
 }
@@ -21,6 +23,8 @@ uint16_t DriveSettings::getClampingTorque() const {
 void DriveSettings::setClampingTorque(uint16_t clampingTorque) {
 	this->clampingTorque = clampingTorque;
 }
+
+
 
 uint8_t DriveSettings::getDeviceAddress() const {
 	return deviceAddress;
@@ -30,6 +34,8 @@ void DriveSettings::setDeviceAddress(uint8_t deviceAddress) {
 	this->deviceAddress = deviceAddress;
 }
 
+
+
 uint16_t DriveSettings::getInPosDiff() const {
 	return inPosDiff;
 }
@@ -38,6 +44,8 @@ void DriveSettings::setInPosDiff(uint16_t inPosDiff ) {
 	this->inPosDiff = inPosDiff;
 }
 
+
+
 uint16_t DriveSettings::getOpeningDistance() const {
 	return openingDistance;
 }
@@ -45,6 +53,8 @@ uint16_t DriveSettings::getOpeningDistance() const {
 void DriveSettings::setOpeningDistance(uint16_t openingDistance ) {
 	this->openingDistance = openingDistance;
 }
+
+
 
 uint16_t DriveSettings::getOverCurrentTimeThreshold() const {
 	return overCurrentTimeThreshold;
@@ -62,6 +72,14 @@ uint16_t DriveSettings::getOverCurrentWarning() const {
 void DriveSettings::setOverCurrentWarning(uint16_t overCurrentWarning) {
 	this->overCurrentWarning = overCurrentWarning;
 }
+
+uint16_t DriveSettings::getOverCurrentError() const{
+	return this->overCurrentError;
+}
+void DriveSettings::setOverCurrentError(uint16_t overCurrentError){
+	this->overCurrentError = overCurrentError;
+}
+
 
 uint16_t DriveSettings::getSelfShutdownDelay() const {
 	return selfShutdownDelay;

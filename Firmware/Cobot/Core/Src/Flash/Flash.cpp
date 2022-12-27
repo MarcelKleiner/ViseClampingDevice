@@ -50,7 +50,8 @@ void Flash::ReadFlash()
 
 
 void Flash::SaveFlash(){
-
+	if (this->driveSettings->isSettingsChanged())
+	{
 		tmpFlashArray[0] = driveSettings->getClampingSpeed();
 		tmpFlashArray[1] = driveSettings->getClampingTorque();
 		tmpFlashArray[2] = driveSettings->getTeachSpeed();
@@ -68,6 +69,7 @@ void Flash::SaveFlash(){
 		tmpFlashArray[11] = driveSettings->getOverCurrentTimeThreshold();
 		tmpFlashArray[12] = driveSettings->getDeviceAddress();
 		WriteFlash();
+	}
 }
 
 

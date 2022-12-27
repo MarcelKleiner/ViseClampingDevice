@@ -35,6 +35,9 @@ public:
 	uint16_t getOverCurrentWarning() const;
 	void setOverCurrentWarning(uint16_t overCurrentWarning);
 
+	uint16_t getOverCurrentError() const;
+	void setOverCurrentError(uint16_t overCurrentError);
+
 	uint16_t getSelfShutdownDelay() const;
 	void setSelfShutdownDelay(uint16_t selfShutdownDelay);
 
@@ -68,6 +71,7 @@ private:
 	uint16_t underVoltageError = 12000;		//self shutdown undervoltage threshold
 
 	uint16_t overCurrentWarning = 50;		//in A
+	uint16_t overCurrentError = 100;
 	uint16_t overCurrentTimeThreshold = 1000; 	//delay for overcurrent shutdown in ms
 
 };

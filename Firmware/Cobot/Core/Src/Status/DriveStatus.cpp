@@ -38,7 +38,7 @@ bool DriveStatus::isOpen()
 
 void DriveStatus::setOpen(bool open)
 {
-	if (this->open = open)
+	if (this->open != open)
 	{
 		this->open = open;
 		statusChanged = true;
@@ -55,7 +55,7 @@ bool DriveStatus::isDisable()
 
 void DriveStatus::setDisable(bool disable)
 {
-	if (this->disable = disable)
+	if (this->disable != disable)
 	{
 		this->disable = disable;
 		statusChanged = true;
@@ -72,7 +72,7 @@ bool DriveStatus::isEnable()
 
 void DriveStatus::setEnable(bool enable)
 {
-	if (this->enable = enable)
+	if (this->enable != enable)
 	{
 		this->enable = enable;
 		statusChanged = true;
@@ -89,7 +89,7 @@ bool DriveStatus::isReset()
 
 void DriveStatus::setReset(bool reset)
 {
-	if (this->reset = reset)
+	if (this->reset != reset)
 	{
 		this->reset = reset;
 		statusChanged = true;
@@ -106,7 +106,7 @@ bool DriveStatus::isStop()
 
 void DriveStatus::setStop(bool stop)
 {
-	if (this->stop = stop)
+	if (this->stop != stop)
 	{
 		this->stop = stop;
 		statusChanged = true;
@@ -123,7 +123,7 @@ bool DriveStatus::isTeach()
 
 void DriveStatus::setTeach(bool teach)
 {
-	if (this->teach = teach)
+	if (this->teach != teach)
 	{
 		this->teach = teach;
 		statusChanged = true;

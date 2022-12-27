@@ -11,59 +11,64 @@
 #include "stdint.h"
 #include "../Settings/DriveSettings.h"
 #include "../Status/DriveStatus.h"
+#include "../Status/DriveCommand.h"
+#include "../Encoder/Encoder.h"
 
-class Drive{
+class Drive
+{
 
-public:
+	public:
 
-	Drive(DriveSettings *driveSettings, DriveStatus *driveStatus);
+		Drive(DriveSettings *driveSettings, DriveStatus *driveStatus,
+				DriveCommand *driveCommand, Encoder *encoder);
 
-	enum EDRIVE_MODE{
-		TEACH_MODE,
-		OP_MODE
-	};
+		enum EDRIVE_MODE
+		{
+			TEACH_MODE, OP_MODE
+		};
 
-	enum TEACH_STATE{
-		TEACH_MODE_ENTER,
-		TEACH_RDY,
-		DRIVE_OUT,
-		DRIVE_IN,
-		TEACH_END,
-		CHECK_CLK,
-		CLK_1,
-		CLK_2,
-	};
+		enum TEACH_STATE
+		{
+			TEACH_MODE_ENTER,
+			TEACH_RDY,
+			DRIVE_OUT,
+			DRIVE_IN,
+			TEACH_END,
+			CHECK_CLK,
+			CLK_1,
+			CLK_2,
+		};
 
-	enum DIRECTION{
-		IN,
-		OUT,
-	};
+		enum DIRECTION
+		{
+			IN, OUT,
+		};
 
+		void updateDrive();
+		void Reset();
+		void Stop();
+		EDRIVE_MODE getDriveMode() const;
+		void setDriveMode(EDRIVE_MODE driveMode);
 
+	private:
 
-	void updateDrive();
-	void Stop();
-	EDRIVE_MODE getDriveMode() const;
-	void setDriveMode(EDRIVE_MODE driveMode);
+		DriveSettings *driveSettings;
+		DriveStatus *driveStatus;
+		DriveCommand *driveCommand;
+		Encoder *encoder;
 
-private:
+		EDRIVE_MODE driveMode;
 
-	DriveSettings *driveSettings;
-	DriveStatus *driveStatus;
+		TEACH_STATE currentState = TEACH_MODE_ENTER;
+		TEACH_STATE nextState;
 
-	EDRIVE_MODE driveMode;
+		bool isDriveStoped = false;
 
-	TEACH_STATE currentState = TEACH_MODE_ENTER;
-	TEACH_STATE nextState;
+		void OpMode();
+		void TeachMode();
 
-
-	void OpMode();
-	void TeachMode();
-
-	void MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
+		void MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
 
 };
-
-
 
 #endif /* SRC_DRIVE_DRIVE_H_ */

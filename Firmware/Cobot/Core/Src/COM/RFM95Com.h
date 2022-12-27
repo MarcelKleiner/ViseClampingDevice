@@ -17,8 +17,8 @@
 
 
 
-#define MAX_PACKET_2_SEND		10
-#define MAX_PACKET_2_RECEIVE 	10
+#define MAX_PACKET_2_SEND		7
+#define MAX_PACKET_2_RECEIVE 	7
 
 
 #if MAX_PACKET_2_RECEIVE > MAX_PKT_LENGTH
@@ -56,7 +56,7 @@ class RFM95Com :  public ICom, public BaseCOM
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
 
-		uint8_t data[5] ={ 0 };
+		uint8_t data[7] ={ 0 };
 
 };
 

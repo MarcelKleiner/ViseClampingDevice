@@ -114,13 +114,15 @@ bool RFM95Com::Transmitt(uint8_t *data, uint8_t length)
 	}
 	else
 	{
-		uint8_t dataTemp[] = {0x1F, driveSettings->getDeviceAddress(),GET_STATUS,0x00,0x00};
-		dataTemp[5] = CRC8(dataTemp, 4);
+		uint8_t dataTemp[] =
+		{ 0x1F, driveSettings->getDeviceAddress(), GET_STATUS, 0x00, 0x00, 0x00,
+				0x00 };
+		dataTemp[6] = CRC8(dataTemp, 6);
 		txData = dataTemp;
 	}
 
 	rfm95->beginPacket();
-	rfm95->write(txData, 5);
+	rfm95->write(txData, 7);
 	rfm95->endPacket();
 	return true;
 }
@@ -145,10 +147,11 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 			{
 				return false;
 			}
+			counter++;
 		}
 
 		//check CRC
-		if (CRC8(data, 4) != data[5])
+		if (CRC8(data, 6) != data[6])
 		{
 			//error crc error //ToDO
 			return false;

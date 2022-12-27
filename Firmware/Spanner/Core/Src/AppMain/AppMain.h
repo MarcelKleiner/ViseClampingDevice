@@ -11,12 +11,18 @@
 #include "../Error/Error.h"
 #include "../Taskhandler/TaskHandler.h"
 #include "../RFM95/RFM95.h"
-#include "../RFM95/Communication.h"
+
 
 #include "../Drive/Drive.h"
 
 #include "../Settings/DriveSettings.h"
 #include "../Status/DriveStatus.h"
+#include "../Status/DriveCommand.h"
+
+#include "../COM/BaseCOM.h"
+#include "../COM/ICom.h"
+#include "../COM/RFM95Com.h"
+
 
 #include "../IO/LED.h"
 
@@ -36,11 +42,17 @@
 
 	 Error error = Error();
 	 RFM95_LoRa rfm95 = RFM95_LoRa();
+
+
 	 DriveSettings driveSettings = DriveSettings();
 	 DriveStatus driveStatus = DriveStatus();
-	 Communication com = Communication(&driveStatus, &driveSettings, &rfm95);
+	 DriveCommand driveCommand = DriveCommand();
 
-	 Drive drive = Drive(&driveSettings, &driveStatus);
+	 Encoder encoder = Encoder(&driveStatus);
+	 ICom *rfm95COM 	= 	 new RFM95Com	(&driveStatus, &driveSettings, &driveCommand, &rfm95);
+	 //ICom rfm95Com = new RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95);
+
+	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder);
 
 	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
 

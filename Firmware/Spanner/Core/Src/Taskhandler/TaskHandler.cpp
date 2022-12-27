@@ -31,8 +31,6 @@ void TaskHandler::UpdateTasks() {
 		comTask = true;
 	}
 
-
-
 	//100ms
 	if(counter % 100 == 0){
 		errorTask = true;

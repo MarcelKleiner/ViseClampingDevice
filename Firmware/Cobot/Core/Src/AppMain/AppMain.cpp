@@ -54,21 +54,17 @@ void AppMain::Main()
 		{
 			rfm95COM->Transmitt();
 			rfm95COM->Receive();
-			com.UpdateCom();
-			//com.ReadData();
 		}
 
 		if (taskStatus.isIoUpdateTask())
 		{
-			DigitalInOut.Read();
+			ioCOM->Receive();
+			ioCOM->Transmitt();
 		}
 
 		if (taskStatus.isSaveTask())
 		{
-			if (this->driveSettings.isSaveSettings())
-			{
-				Storage.SaveFlash();
-			}
+			Storage.SaveFlash();
 		}
 
 	}

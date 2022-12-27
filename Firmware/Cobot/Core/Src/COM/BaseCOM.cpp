@@ -79,7 +79,7 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 			data2send[1] = 0x1D;
 			break;
 	}
-	data2send[5] = CRC8(data2send, 5);
+	data2send[6] = CRC8(data2send, 6);
 	return data2send;
 }
 
@@ -122,7 +122,7 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 			data2send[0] = 0x1D;
 			break;
 	}
-	data2send[5] = CRC8(data2send, 5);
+	data2send[6] = CRC8(data2send, 6);
 
 	return data2send;
 }
@@ -162,7 +162,7 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 			data2send[0] = 0x1D;
 			break;
 	}
-	data2send[5] = CRC8(data2send, 5);
+	data2send[6] = CRC8(data2send, 6);
 
 	return data2send;
 }
@@ -176,7 +176,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
 	//data[4..n] = Payload
-	//data[5] = crc
+	//data[6] = crc
 
 	uint16_t value = 0;
 	switch (data[3])
@@ -240,7 +240,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
 	//data[4..n] = Payload
-	//data[5] = crc
+	//data[6] = crc
 
 	switch (data[3])
 	{
@@ -277,7 +277,7 @@ void BaseCOM::SetCommand(uint8_t *data)
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
 	//data[4..n] = Payload
-	//data[5] = crc
+	//data[6] = crc
 
 	switch (data[3])
 	{

@@ -10,25 +10,71 @@
 
 #include "stdint.h"
 
-class DriveStatus{
+class DriveStatus
+{
 
-public:
-	uint16_t getCurrent() const;
-	void setCurrent(uint16_t current);
+	public:
 
-	uint16_t getPosition() const;
-	void setPosition(uint16_t position);
+		enum _ERROR
+		{
+			E_FLASH_ERROR = 0x0001,
+			E_COM_ERROR = 0x0002,
+		};
 
-private:
+		bool isClose();
+		void setClose(bool close);
 
-	uint16_t current;
-	uint16_t position;
+		bool isOpen();
+		void setOpen(bool open);
 
-	uint16_t autoShutdownCounter;
+		bool isDisable();
+		void setDisable(bool disable);
 
-	uint8_t error;
+		bool isEnable();
+		void setEnable(bool enable);
+
+		bool isReset();
+		void setReset(bool reset);
+
+		bool isStop();
+		void setStop(bool stop);
+
+		bool isTeach();
+		void setTeach(bool teach);
+
+		bool isWriteConfig();
+		void setWriteConfig(bool writeConfig);
+
+		_ERROR getError();
+		void setError(_ERROR error);
+
+		uint16_t getCurrent() const;
+		void setCurrent(uint16_t current);
+
+		uint16_t getPosition() const;
+		void setPosition(uint16_t position);
+
+		uint8_t getStatus() const;
+
+		bool isStatusChanged();
+
+	private:
+
+		_ERROR error;
+		bool close;
+		bool open;
+		bool teach;
+		bool reset;
+		bool enable;
+		bool stop;
+		bool disable;
+		uint16_t current;
+		uint16_t position;
+
+		uint16_t autoShutdownCounter;
+
+
+		bool statusChanged = false;
 };
-
-
 
 #endif /* SRC_STATUS_DRIVESTATUS_H_ */

@@ -20,7 +20,7 @@ public:
 	bool init();
     bool update(void);
     void ResetEncoder();
-
+    int32_t GetValue();
 
 private:
 
