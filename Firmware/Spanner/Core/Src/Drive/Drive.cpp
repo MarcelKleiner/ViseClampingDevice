@@ -24,6 +24,14 @@ void Drive::Reset()
 
 void Drive::updateDrive()
 {
+	if (driveCommand->isStop() || isDriveStoped)
+	{
+		isDriveStoped = true;
+		Stop();
+		return;
+	}
+
+
 	switch (driveMode)
 	{
 		case Drive::OP_MODE:
@@ -38,43 +46,13 @@ void Drive::updateDrive()
 
 void Drive::OpMode()
 {
-
-	if (isDriveStoped)
+	if (driveCommand->isClose())
 	{
-		Stop();
-		return;
-	}
-
-	int32_t encoderValue = encoder->GetValue();
-	uint16_t posOut = driveSettings->getOpeningDistance();
-	uint16_t posDiff = driveSettings->getInPosDiff();
-
-	if (driveCommand->isStop())
-	{
-		isDriveStoped = true;
-	}
-	else if (driveCommand->isClose())
-	{
-		int32_t posAsMM = encoderValue * GEAR_RATIO;
-		if (posAsMM < posDiff || posAsMM > -posDiff)
-		{
-			//in position
-		}
-		else if (posAsMM > posDiff)
-		{
-			MoveDrive(DIRECTION::IN, driveSettings->getClampingTorque(),
-					driveSettings->getClampingTorque());
-		}
-		else if (posAsMM < -posDiff)
-		{
-			MoveDrive(DIRECTION::OUT, driveSettings->getClampingTorque(),
-					driveSettings->getClampingTorque());
-		}
-
+		Close();
 	}
 	else if (driveCommand->isOpen())
 	{
-
+		Open();
 	}
 
 }

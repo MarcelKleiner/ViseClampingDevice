@@ -10,6 +10,10 @@
 
 #include "stdint.h"
 
+#define ADC_2_VOLTAGE		2
+#define ADC_2_CURRENT		2
+
+
 class DriveStatus
 {
 
@@ -17,8 +21,13 @@ class DriveStatus
 
 		enum _ERROR
 		{
+			E_NO_ERROR = 0x0000,
 			E_FLASH_ERROR = 0x0001,
 			E_COM_ERROR = 0x0002,
+			E_UNDERVOLTAGE_ERROR= 0x004,
+			E_UNDERVOLTAGE_WARNING = 0x0008,
+			E_OVERCURRENT_WARNING= 0x0010,
+			E_OVERCURRENT_ERROR= 0x020,
 		};
 
 		bool isClose();
@@ -57,7 +66,11 @@ class DriveStatus
 		bool isInPos() const;
 		void setInPos(bool flag);
 
+		uint16_t getZCurrent() const;
+		void setZCurrent(uint16_t zeroCurrentValue);
 
+		uint16_t getVoltage() const;
+		void setVoltage(uint16_t voltage);
 
 		uint8_t getStatus() const;
 
@@ -74,6 +87,8 @@ class DriveStatus
 		bool stop;
 		bool disable;
 		uint16_t current;
+		uint16_t zeroCurrentValue;
+		uint16_t voltage;
 		uint16_t position;
 
 		bool inPos = false;

@@ -16,6 +16,7 @@
 "./Core/Src/Tools/Queue.o"
 "./Core/Src/Tools/TypeConverter.o"
 "./Core/Src/adc.o"
+"./Core/Src/dma.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"
 "./Core/Src/spi.o"

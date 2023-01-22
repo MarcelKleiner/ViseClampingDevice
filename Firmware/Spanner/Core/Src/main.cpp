@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
-//#include "dma.h"
+#include "dma.h"
 #include "spi.h"
 #include "tim.h"
 #include "usb_device.h"
@@ -90,13 +90,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_ADC1_Init();
+  MX_DMA_Init();
   MX_SPI1_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_USB_DEVICE_Init();
   MX_TIM6_Init();
   MX_TIM16_Init();
-
 
 
  // MX_USB_DEVICE_Init();
@@ -178,6 +178,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		appMain.taskHandler.UpdateTasks();
 	}
 
+}
+
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
+	if(hadc->Instance == ADC1){
+		HAL_ADC_Stop_DMA(&hadc1);
+		appMain.ADCRead(hadc);
+	}
 }
 
 

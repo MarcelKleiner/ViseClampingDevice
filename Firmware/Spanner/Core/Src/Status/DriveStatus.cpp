@@ -144,10 +144,10 @@ void DriveStatus::setError(_ERROR error)
 
 uint8_t DriveStatus::getStatus() const
 {
-	uint8_t result = (uint8_t)enable << 7 | (uint8_t)open << 6
-			| (uint8_t)close << 5 | (uint8_t)teach << 4 | (uint8_t)stop << 3;
+	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
+			| (uint8_t) close << 5 | (uint8_t) teach << 4 | (uint8_t) stop << 3;
 
-		return result;
+	return result;
 }
 
 /*******************************************************************
@@ -156,12 +156,47 @@ uint8_t DriveStatus::getStatus() const
 
 uint16_t DriveStatus::getCurrent() const
 {
-	return current;
+	if (zeroCurrentValue > current)
+	{
+		return (zeroCurrentValue - current) * ADC_2_CURRENT;
+	}
+	else
+	{
+		return (current - zeroCurrentValue) * ADC_2_CURRENT;
+	}
 }
 
 void DriveStatus::setCurrent(uint16_t current)
 {
 	this->current = current;
+}
+
+/*******************************************************************
+ * 0 Current settings
+ ******************************************************************/
+
+uint16_t DriveStatus::getZCurrent() const
+{
+	return zeroCurrentValue;
+}
+
+void DriveStatus::setZCurrent(uint16_t zeroCurrentValueADC)
+{
+	this->zeroCurrentValue = zeroCurrentValue;
+}
+
+/*******************************************************************
+ * Voltage settings
+ ******************************************************************/
+
+uint16_t DriveStatus::getVoltage() const
+{
+	return voltage * ADC_2_VOLTAGE;
+}
+
+void DriveStatus::setVoltage(uint16_t voltageADC)
+{
+	this->voltage = voltage;
 }
 
 /*******************************************************************
@@ -177,9 +212,6 @@ void DriveStatus::setPosition(uint16_t position)
 {
 	this->position = position;
 }
-
-
-
 
 bool DriveStatus::isInPos() const
 {

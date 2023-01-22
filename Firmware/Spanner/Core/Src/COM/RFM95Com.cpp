@@ -95,6 +95,7 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 
 
 		Transmitt(txDataTemp , 7);
+		return true;
 	}
-	return true;
+	return false;
 }

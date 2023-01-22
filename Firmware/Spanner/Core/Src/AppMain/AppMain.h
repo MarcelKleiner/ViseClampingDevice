@@ -26,6 +26,8 @@
 
 #include "../IO/LED.h"
 
+#define BUFFER_SIZE_ADC1	4
+
 
  class AppMain{
 
@@ -35,7 +37,7 @@
 	 void Startup(void);
 	 void Main(void);
 	 void Reset(void);
-
+	 void ADCRead(ADC_HandleTypeDef *hadc);
 	 TaskHandler taskHandler = TaskHandler();
 
  private:
@@ -55,8 +57,15 @@
 	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder);
 
 	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
+	 LED ledExt = LED(LED_EXT_GPIO_Port, LED_EXT_Pin, false);
+
+	volatile int16_t adc1Buffer[BUFFER_SIZE_ADC1];
+	bool init = true;
+	uint16_t comLoseCounter = 0;
 
 
+	uint8_t zCurrentCounter = 0;
+	uint16_t zCurrent = 0;
 };
 
 

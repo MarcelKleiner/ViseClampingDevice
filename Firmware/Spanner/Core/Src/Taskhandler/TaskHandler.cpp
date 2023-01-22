@@ -6,12 +6,14 @@
  */
 
 #include "TaskHandler.h"
+#include "main.h"
 
 
 //update tasks, should be called every 1ms
 void TaskHandler::UpdateTasks() {
 
 	//1ms
+
 
 	//2ms
 	if(counter % 2 == 0){
@@ -28,7 +30,7 @@ void TaskHandler::UpdateTasks() {
 
 	//50ms
 	if(counter % 50 == 0){
-		comTask = true;
+		//comTask = true;
 	}
 
 	//100ms
@@ -36,7 +38,7 @@ void TaskHandler::UpdateTasks() {
 		errorTask = true;
 	}
 
-
+	//250ms
 	if(counter % 250 == 0){
 		comTask = true;
 	}
@@ -44,8 +46,6 @@ void TaskHandler::UpdateTasks() {
 	if(counter % 500 == 0){
 		ledTask = true;
 	}
-
-
 
 	//increment counter
 	if(counter > 2999){
