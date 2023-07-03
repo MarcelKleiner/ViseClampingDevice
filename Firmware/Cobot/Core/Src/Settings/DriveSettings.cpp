@@ -238,10 +238,6 @@ void DriveSettings::setSaveSettings(bool saveSettings)
 }
 
 
-
-
-
-
 bool DriveSettings::isSettingsChanged()
 {
 	return (settingsChangedReg != 0);

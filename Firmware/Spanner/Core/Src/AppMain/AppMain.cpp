@@ -53,7 +53,7 @@ void AppMain::Startup()
 
 	if (!rfm95.InitRFM())
 	{
-		error.setError(Error::COM_ERROR);
+		driveStatus.setError(DriveStatus::E_COM_ERROR);
 		taskHandler.setDriveTaskEnable(false);
 	}
 	rfm95.receive(0);
@@ -66,14 +66,24 @@ int startupCounter = 50;
 
 void AppMain::Reset()
 {
-	error.resetError();
+
 	taskHandler.setAdcUpdateTaskEnable(true);
 	taskHandler.setComTaskEnable(true);
 	taskHandler.setDriveTaskEnable(true);
 	taskHandler.setErrorTaskEnable(true);
 	taskHandler.setIoUpdateTaskEnable(true);
 
+	TIM2->CCR1 = 3600;
+
+	driveCommand.setTeach(false);
+	driveCommand.setClose(false);
+	driveCommand.setOpen(false);
+	driveCommand.setEnable(false);
 	driveCommand.setStop(false);
+	driveCommand.setReset(false);
+
+	driveStatus.setError(DriveStatus::E_NO_ERROR);
+	comLoseCounter = 0;
 }
 
 void AppMain::Main()
@@ -83,52 +93,41 @@ void AppMain::Main()
 
 	while (1)
 	{
-
-		if (init && startupCounter <= 0)
-		{
-			startupCounter = 1;
-			taskHandler.setDriveTaskEnable(true);
-			TIM2->CCR1 = 3600;
-			init = false;
-		}
-
+		//Reset task
 		if (driveCommand.isReset())
 		{
-			drive.Reset();
-			driveCommand.setReset(false);
+			Reset();
 		}
 
-		if (taskHandler.isADCUpdateTask())
-		{
-			//read from ADC DMA register
-		}
 
+		//RFM Communication task
 		if (taskHandler.isComTask())
 		{
 			if (!rfm95COM->Receive())
 			{
 				comLoseCounter++;
+				drive.Stop();
 			}
 			else
 			{
 				comLoseCounter = 0;
-
 			}
 
 			if (comLoseCounter == (driveSettings.getSelfShutdownDelay() * 4))
 			{
 				//Self-shutdown when the delay time for self-shutdown has elapsed
-				HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin,
-						GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_RESET);
 			}
 		}
 
+		//Drive Task
 		if (taskHandler.isDriveTask())
 		{
 			encoder.update();
 			drive.updateDrive();
 		}
 
+		//Error Task
 		if (taskHandler.isErrorTask())
 		{
 			if(driveStatus.getVoltage() < driveSettings.getUnderVoltageWarning()){
@@ -144,22 +143,12 @@ void AppMain::Main()
 			if (driveStatus.getError() != DriveStatus::E_NO_ERROR)
 			{
 				drive.Stop();
-				taskHandler.setAdcUpdateTaskEnable(false);
 				taskHandler.setDriveTaskEnable(false);
-			}
-
-			error.error2LED();
-
-			if (startupCounter > 0)
-			{
-				startupCounter--;
+				taskHandler.setLEDTaskEnable(false);
+				error.error2LED();
 			}
 		}
 
-		if (taskHandler.isIoUpdateTask())
-		{
-
-		}
 
 		if (taskHandler.isLEDTask())
 		{
@@ -169,33 +158,34 @@ void AppMain::Main()
 	}
 }
 
+
+
+
 void AppMain::ADCRead(ADC_HandleTypeDef *hadc)
 {
-	uint16_t current = 0; //1/3
-	uint16_t voltage = 0; //0/2
+    currentSum = currentSum - currentArray[staticCounter] + adc1Buffer[0];
+    currentArray[staticCounter] = adc1Buffer[0];
 
-	current = (adc1Buffer[1] + adc1Buffer[3]) / 2;
-	voltage = (adc1Buffer[0] + adc1Buffer[2]) / 2;
-
-	if (init && zCurrentCounter < 16)
-	{
-		if (zCurrentCounter == 15)
-		{
-			driveStatus.setZCurrent(zCurrent / 15);
-			zCurrentCounter = 16;
-		}
-		else
-		{
-			zCurrent += current;
-			zCurrentCounter++;
-		}
-	}
+    voltageSum = voltageSum - voltageArray[staticCounter] + adc1Buffer[1];
+    voltageArray[staticCounter] = adc1Buffer[1];
 
 
+    if (staticCounter == MEAN_VALUE_SIZE-1)
+    {
+        staticCounter = 0;
+    }
+    else
+    {
+        staticCounter++;
+    }
 
-	driveStatus.setCurrent(current);
-	driveStatus.setVoltage(voltage);
 
+	driveStatus.setCurrent(currentSum/MEAN_VALUE_SIZE);
+	driveStatus.setVoltage(voltageSum/MEAN_VALUE_SIZE);
+
+	//restart ADC DMA Conversion
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc1Buffer, BUFFER_SIZE_ADC1);
 }
+
+
 

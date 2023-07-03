@@ -26,7 +26,9 @@
 
 #include "../IO/LED.h"
 
-#define BUFFER_SIZE_ADC1	4
+#define BUFFER_SIZE_ADC1	2
+
+#define MEAN_VALUE_SIZE 	5
 
 
  class AppMain{
@@ -42,7 +44,7 @@
 
  private:
 
-	 Error error = Error();
+
 	 RFM95_LoRa rfm95 = RFM95_LoRa();
 
 
@@ -59,13 +61,22 @@
 	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
 	 LED ledExt = LED(LED_EXT_GPIO_Port, LED_EXT_Pin, false);
 
-	volatile int16_t adc1Buffer[BUFFER_SIZE_ADC1];
+	 Error error = Error(&ledExt, &driveStatus);
+
 	bool init = true;
 	uint16_t comLoseCounter = 0;
 
 
-	uint8_t zCurrentCounter = 0;
-	uint16_t zCurrent = 0;
+
+
+	//ADC Variables
+	volatile int16_t adc1Buffer[BUFFER_SIZE_ADC1];
+	uint16_t currentArray[MEAN_VALUE_SIZE];
+	uint16_t voltageArray[MEAN_VALUE_SIZE];
+	uint32_t currentSum = 0;
+	uint32_t voltageSum = 0;
+	uint8_t staticCounter = 0;
+
 };
 
 

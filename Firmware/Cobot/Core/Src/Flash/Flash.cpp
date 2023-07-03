@@ -50,7 +50,7 @@ void Flash::ReadFlash()
 
 
 void Flash::SaveFlash(){
-	if (this->driveSettings->isSettingsChanged())
+	if (this->driveSettings->isSaveSettings())
 	{
 		tmpFlashArray[0] = driveSettings->getClampingSpeed();
 		tmpFlashArray[1] = driveSettings->getClampingTorque();

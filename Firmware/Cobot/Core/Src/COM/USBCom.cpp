@@ -32,8 +32,7 @@ bool USBCom::Transmitt(uint8_t *data, uint8_t length)
 
 bool USBCom::Receive(uint8_t *data, uint8_t length)
 {
-	uint8_t data2send[] =
-	{ 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+	uint8_t data2send[] = { 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	uint8_t crc = 0;
 
 	//data[0] = 0x1F
@@ -75,6 +74,10 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 				break;
 		}
 
+		data2send[0] = 0x1F;
+		data2send[1] = driveSettings->getDeviceAddress();
+		data2send[2] = 0x00;
+		data2send[3] = 0x00;
 		data2send[6] = CRC8(data2send, 6);
 		return Transmitt(data2send, 6);
 	}

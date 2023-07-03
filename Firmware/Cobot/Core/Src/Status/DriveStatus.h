@@ -20,6 +20,7 @@ class DriveStatus
 		enum _ERROR{
 			E_FLASH_ERROR = 0x0001,
 			E_COM_ERROR = 0x0002,
+			E_USB_ERROR = 0x0003,
 		};
 
 

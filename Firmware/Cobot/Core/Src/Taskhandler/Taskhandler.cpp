@@ -22,13 +22,13 @@ void TaskHandler::UpdateTasks() {
 	//1ms
 
 	//2ms
-	if(counter % 2 == 0){
+	if(counter % ADC_UPDATE_TIME == 0){
 		adcUpdateTask = true;
 	}
 
 
 	//15ms
-	if(counter % 15 == 0){
+	if(counter % IO_UPDATE_TIME == 0){
 		ioUpdateTask = true;
 	}
 
@@ -41,20 +41,20 @@ void TaskHandler::UpdateTasks() {
 
 
 	//100ms
-	if(counter % 100 == 0){
+	if(counter % ERROR_UPDATE_TIME == 0){
 		errorTask = true;
 	}
 
 
 	//500ms
-	if(counter % 500 == 0){
+	if(counter % LED_UPDATE_TIME == 0){
 		ledUpdateTask = true;
 		comTask = true;
 	}
 
 
 	//1000ms
-	if(counter % 1000 == 0){
+	if(counter % SAVE_UPDATE_TIME == 0){
 		saveTask = true;
 	}
 
@@ -66,7 +66,6 @@ void TaskHandler::UpdateTasks() {
 	}else{
 		counter++;
 	}
-
 }
 
 

@@ -9,44 +9,36 @@
 #include "main.h"
 #include "gpio.h"
 
-
-void Error::setError(EERROR_CODE error) {
-	this->errorCode = error;
-}
-
-Error::EERROR_CODE Error::getError() {
-	return this->errorCode;
-}
-
-void Error::resetError() {
-	this->errorCode = EERROR_CODE::NO_ERROR;
+Error::Error(LED* led, DriveStatus *driveStatus){
+	this->led = led;
+	this->driveStatus = driveStatus;
 }
 
 
 void Error::error2LED() {
 	//function should be call every 100ms
-	static uint8_t errorCounter = 0;
-	static bool risingEdge = 0;
 
-	if(errorCode != NO_ERROR ){
+	if (driveStatus->getError() != DriveStatus::E_NO_ERROR) {
+		if (this->LEDerrorCounter == 1) {
+			this->errorCode = (uint8_t)driveStatus->getError();		//Errorcode vom DriveStatus bei Zyklus 1 einlesen
+		}
 
-		if(risingEdge){
-
-			if((this->errorCode>>errorCounter)& 0x01){
-				//set LED Error
-			}else{
-				//reset LED Error
+		if (LEDerrorCounter <= errorCode * 6) {
+			//Error Code Ausgeben
+			if (LEDerrorCounter % 6 == 0) {
+				led->ON();
+			} else {
+				led->OFF();
 			}
-
-			//increment error counter by 1
-			errorCounter++;
-
-
-			if(errorCounter > 7){
-				errorCounter = 0;
-			}
-
+			LEDerrorCounter++;
+		} else if (LEDerrorCounter <= errorCode * 6 + 15) {
+			//Nach Errorcode 4 Zyklen Pause
+			led->OFF();
+			LEDerrorCounter++;
+		} else {
+			//Nach 4 Pause Widerholen
+			LEDerrorCounter = 1;
 		}
 	}
-	risingEdge != risingEdge;
+
 }

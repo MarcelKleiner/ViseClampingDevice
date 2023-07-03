@@ -9,7 +9,7 @@
 #define SRC_APPMAIN_DEFINES_H_
 
 #define GEAR_RATIO			1
-#define TORQUE_2_CURRENT	1
+#define CURRENT_2_TORQUE	1
 
 
 
@@ -27,7 +27,7 @@
 #define TEACH_ADDR					0x03
 #define RESET_ADDR					0x04
 #define ENABLE_ADDR					0x05
-#define DISABLE_ADDR				0x06
+
 #define STOP_ADDR					0x07
 #define ERROR_ADDR					0x08
 #define STATUS_ADDR					0x09
@@ -51,7 +51,27 @@
 #define DEVICE_ADDRESS_ADDR			0x20
 
 
-
 #define RCV_STATUS			0xAA
+
+
+
+
+#define EXT_LED_SET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_SET)
+#define EXT_LED_RESET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_RESET)
+
+#define LED_SET 			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET)
+#define LED_RESET 			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET)
+
+#define POWER_FET_SET 	 	HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_SET)
+#define POWER_FET_RESET 	HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_RESET)
+
+#define IS_EXT_SWITCH		HAL_GPIO_ReadPin(SW_EXT_GPIO_Port, SW_EXT_Pin)
+
+//general settings
+
+#define DIRECTION_IN	3200
+#define DIRECTION_OUT	6400
+
+
 
 #endif /* SRC_APPMAIN_DEFINES_H_ */

@@ -38,19 +38,6 @@ void DriveCommand::setOpen(bool open)
 }
 
 /****************************************************************************************
- / * 	disable get/set (read reset)
- ****************************************************************************************/
-bool DriveCommand::isDisable()
-{
-	return disable;
-}
-
-void DriveCommand::setDisable(bool disable)
-{
-	this->disable = disable;
-}
-
-/****************************************************************************************
  / * 	enable get/set (read reset)
  ****************************************************************************************/
 bool DriveCommand::isEnable()
@@ -99,44 +86,8 @@ bool DriveCommand::isTeach()
 
 void DriveCommand::setTeach(bool teach)
 {
-	if (this->teach != teach)
-	{
 		this->teach = teach;
-	}
-
 }
 
-/****************************************************************************************
- * 	write config get/set (read reset)
- ****************************************************************************************/
-bool DriveCommand::isWriteConfig()
-{
-	bool writeConfigTemp = writeConfig;
-	writeConfig = false;
-	return writeConfigTemp;
-}
 
-void DriveCommand::setWriteConfig(bool status)
-{
-	writeConfig = status;
-}
-
-/****************************************************************************************
- * 	has commands changed get/set (read reset)
- ****************************************************************************************/
-
-bool DriveCommand::isCommandChanged() const
-{
-	return (commandChangeReg != 0);
-}
-
-uint8_t DriveCommand::getCommandChangedReg() const
-{
-	return this->commandChangeReg;
-}
-
-void DriveCommand::ResetCommandChanged(uint8_t bit)
-{
-	this->commandChangeReg &= ~bit;
-}
 

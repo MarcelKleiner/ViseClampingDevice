@@ -28,6 +28,7 @@ class DriveStatus
 			E_UNDERVOLTAGE_WARNING = 0x0008,
 			E_OVERCURRENT_WARNING= 0x0010,
 			E_OVERCURRENT_ERROR= 0x020,
+			E_CRC_ERROR = 0x040,
 		};
 
 		bool isClose();

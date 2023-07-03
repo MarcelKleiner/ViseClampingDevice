@@ -84,13 +84,12 @@ int16_t TypeConverter::byteToInt16(uint8_t *byteArray) {
 }
 
 
+
+
 void TypeConverter::uint16ToByte(uint8_t* byteArray, uint16_t data, uint8_t offset){
 	byteArray[offset] = data;
 	byteArray[offset+1] = data>>8;
 }
-
-
-
 
 uint16_t TypeConverter::byteToUint16(uint8_t* byteArray, uint8_t offset){
 	uint16_t byte1 = byteArray[offset];

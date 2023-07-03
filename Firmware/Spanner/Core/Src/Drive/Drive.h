@@ -13,6 +13,7 @@
 #include "../Status/DriveStatus.h"
 #include "../Status/DriveCommand.h"
 #include "../Encoder/Encoder.h"
+#include "../IO/LED.h"
 
 class Drive
 {
@@ -20,7 +21,7 @@ class Drive
 	public:
 
 		Drive(DriveSettings *driveSettings, DriveStatus *driveStatus,
-				DriveCommand *driveCommand, Encoder *encoder);
+				DriveCommand *driveCommand, Encoder *encoder, LED *led);
 
 		enum EDRIVE_MODE
 		{
@@ -34,20 +35,16 @@ class Drive
 			DRIVE_OUT,
 			DRIVE_IN,
 			TEACH_END,
-			CHECK_CLK,
-			CLK_1,
-			CLK_2,
 		};
 
 		enum DIRECTION
 		{
-			IN, OUT,
+			IN, OUT, STOP,
 		};
 
 		void updateDrive();
-		void Reset();
 		void Stop();
-		EDRIVE_MODE getDriveMode() const;
+		EDRIVE_MODE getDriveMode();
 		void setDriveMode(EDRIVE_MODE driveMode);
 
 	private:
@@ -56,6 +53,7 @@ class Drive
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
 		Encoder *encoder;
+		LED *led;
 
 		EDRIVE_MODE driveMode;
 
@@ -64,13 +62,15 @@ class Drive
 
 		bool isDriveStoped = false;
 
+		bool torqueOutReached = false;
+
 		void OpMode();
 		void TeachMode();
 
 		void Open();
 		void Close();
 
-		void MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
+		bool MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
 
 };
 

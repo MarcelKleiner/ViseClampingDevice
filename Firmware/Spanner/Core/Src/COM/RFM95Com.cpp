@@ -50,7 +50,8 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 		//check CRC
 		if (CRC8(rxData, 6) != rxData[6])
 		{
-			//error crc error //ToDO
+			//error crc
+			driveStatus->setError(DriveStatus::E_CRC_ERROR);
 			return false;
 		}
 

@@ -8,6 +8,10 @@
 #ifndef SRC_ERROR_ERROR_H_
 #define SRC_ERROR_ERROR_H_
 
+
+#include "../IO/LED.h"
+#include "../Status/DriveStatus.h"
+
 class Error{
 
 public:
@@ -22,6 +26,7 @@ public:
 	};
 
 
+	Error(LED *led, DriveStatus *driveStatus);
 
 	void setError(EERROR_CODE error);
 	void resetError();
@@ -34,9 +39,12 @@ public:
 
 private:
 
-	EERROR_CODE errorCode;
+	LED* led;
+	DriveStatus *driveStatus;
+	uint8_t errorCode;
 
 
+	uint16_t LEDerrorCounter = 0;
 
 };
 

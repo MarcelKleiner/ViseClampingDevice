@@ -175,7 +175,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 	//data[1] = deviceAddress
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
-	//data[4..n] = Payload
+	//data[4..5] = Payload
 	//data[6] = crc
 
 	uint16_t value = 0;

@@ -1,0 +1,150 @@
+Configuration	Cobot
+STM32CubeMX 	6.6.1
+Date	04/30/2023
+MCU	STM32L433RCTxP
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN11 Single-ended	ADC1_IN11	PA6
+ADC1	IN12 Single-ended	ADC1_IN12	PA7
+DAC1	only to external pin	DAC1_OUT1	PA4
+DAC1	only to external pin	DAC1_OUT2	PA5
+SPI3	Full-Duplex Master	SPI3_MISO	PC11
+SPI3	Full-Duplex Master	SPI3_MOSI	PC12
+SPI3	Full-Duplex Master	SPI3_SCK	PC10
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14 (JTCK-SWCLK)
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13 (JTMS-SWDIO)
+USB	Device (FS)	USB_DM	PA11
+USB	Device (FS)	USB_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+3	PC14-OSC32_IN (PC14)	GPIO_Output	DI_OUT_8_P
+4	PC15-OSC32_OUT (PC15)	GPIO_Output	DI_OUT_8_N
+6	PH1-OSC_OUT (PH1)	GPIO_Input	DI_1
+8	PC0	GPIO_Input	DI_2
+9	PC1	GPIO_Input	DI_3
+10	PC2	GPIO_Input	DI_4
+11	PC3	GPIO_Input	DI_5
+14	PA0	GPIO_Input	DI_6
+15	PA1	GPIO_Input	DI_7
+16	PA2	GPIO_Input	DI_8
+20	PA4	DAC1_OUT1	
+21	PA5	DAC1_OUT2	
+22	PA6	ADC1_IN11	
+23	PA7	ADC1_IN12	
+24	PC4	GPIO_Output	DI_OUT_6_N
+25	PB0	GPIO_Output	DI_OUT_4_P
+26	PB1	GPIO_Output	DI_OUT_6_P
+27	PB2	GPIO_Output	DI_OUT_2_N
+28	PB10	GPIO_Output	DI_OUT_4_N
+29	PB11	GPIO_Output	DI_OUT_2_P
+34	PB13	GPIO_Output	DI_OUT_7_N
+35	PB14	GPIO_Output	DI_OUT_7_P
+36	PB15	GPIO_Output	DI_OUT_5_N
+37	PC6	GPIO_Output	DI_OUT_5_P
+38	PC7	GPIO_Output	DI_OUT_3_N
+39	PC8	GPIO_Output	DI_OUT_3_P
+40	PC9	GPIO_Output	DI_OUT_1_N
+41	PA8	GPIO_Output	DI_OUT_1_P
+42	PA9	GPIO_Output	LED_R
+43	PA10	GPIO_Output	LED_G
+44	PA11	USB_DM	
+45	PA12	USB_DP	
+46	PA13 (JTMS-SWDIO)	SYS_JTMS-SWDIO	
+49	PA14 (JTCK-SWCLK)	SYS_JTCK-SWCLK	
+51	PC10	SPI3_SCK	
+52	PC11	SPI3_MISO	
+53	PC12	SPI3_MOSI	
+54	PB3 (JTDO-TRACESWO)	GPIO_Output	RFM_NSS
+55	PB4 (NJTRST)	GPIO_Output	RFM_RST
+56	PB5	GPIO_Output	RFM_DI_3
+57	PB6	GPIO_Output	RFM_DI_0
+58	PB7	GPIO_Output	RFM_DI_2
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN11 Single-ended	ADC1_IN11	PA6
+ADC1	IN12 Single-ended	ADC1_IN12	PA7
+DAC1	only to external pin	DAC1_OUT1	PA4
+DAC1	only to external pin	DAC1_OUT2	PA5
+SPI3	Full-Duplex Master	SPI3_MISO	PC11
+SPI3	Full-Duplex Master	SPI3_MOSI	PC12
+SPI3	Full-Duplex Master	SPI3_SCK	PC10
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14 (JTCK-SWCLK)
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13 (JTMS-SWDIO)
+USB	Device (FS)	USB_DM	PA11
+USB	Device (FS)	USB_DP	PA12
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+3	PC14-OSC32_IN (PC14)	GPIO_Output	DI_OUT_8_P
+4	PC15-OSC32_OUT (PC15)	GPIO_Output	DI_OUT_8_N
+6	PH1-OSC_OUT (PH1)	GPIO_Input	DI_1
+8	PC0	GPIO_Input	DI_2
+9	PC1	GPIO_Input	DI_3
+10	PC2	GPIO_Input	DI_4
+11	PC3	GPIO_Input	DI_5
+14	PA0	GPIO_Input	DI_6
+15	PA1	GPIO_Input	DI_7
+16	PA2	GPIO_Input	DI_8
+20	PA4	DAC1_OUT1	
+21	PA5	DAC1_OUT2	
+22	PA6	ADC1_IN11	
+23	PA7	ADC1_IN12	
+24	PC4	GPIO_Output	DI_OUT_6_N
+25	PB0	GPIO_Output	DI_OUT_4_P
+26	PB1	GPIO_Output	DI_OUT_6_P
+27	PB2	GPIO_Output	DI_OUT_2_N
+28	PB10	GPIO_Output	DI_OUT_4_N
+29	PB11	GPIO_Output	DI_OUT_2_P
+34	PB13	GPIO_Output	DI_OUT_7_N
+35	PB14	GPIO_Output	DI_OUT_7_P
+36	PB15	GPIO_Output	DI_OUT_5_N
+37	PC6	GPIO_Output	DI_OUT_5_P
+38	PC7	GPIO_Output	DI_OUT_3_N
+39	PC8	GPIO_Output	DI_OUT_3_P
+40	PC9	GPIO_Output	DI_OUT_1_N
+41	PA8	GPIO_Output	DI_OUT_1_P
+42	PA9	GPIO_Output	LED_R
+43	PA10	GPIO_Output	LED_G
+44	PA11	USB_DM	
+45	PA12	USB_DP	
+46	PA13 (JTMS-SWDIO)	SYS_JTMS-SWDIO	
+49	PA14 (JTCK-SWCLK)	SYS_JTCK-SWCLK	
+51	PC10	SPI3_SCK	
+52	PC11	SPI3_MISO	
+53	PC12	SPI3_MOSI	
+54	PB3 (JTDO-TRACESWO)	GPIO_Output	RFM_NSS
+55	PB4 (NJTRST)	GPIO_Output	RFM_RST
+56	PB5	GPIO_Output	RFM_DI_3
+57	PB6	GPIO_Output	RFM_DI_0
+58	PB7	GPIO_Output	RFM_DI_2
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : Cobot
+Project Folder : C:\Users\marce\Documents\Repos\ViseClampingDevice\Firmware\Cobot
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_L4 V1.17.2
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : Yes
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

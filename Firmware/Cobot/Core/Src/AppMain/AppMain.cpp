@@ -24,9 +24,9 @@ void AppMain::Startup()
 	LED_Green.OFF();
 	LED_Red.OFF();
 
-	if (rfm95.InitRFM())
+	if (!rfm95.InitRFM())
 	{
-
+		//ToDo set error
 	}
 
 	Delay::DWT_Init();
@@ -42,7 +42,7 @@ void AppMain::Main()
 
 		if (taskStatus.isErrorTask())
 		{
-
+			//ToDo implement error class
 		}
 
 		if (taskStatus.isLEDUpdateTask())

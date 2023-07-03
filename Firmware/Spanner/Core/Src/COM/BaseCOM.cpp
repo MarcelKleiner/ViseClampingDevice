@@ -108,9 +108,6 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 		case ENABLE_ADDR:
 			data2send[4] = driveStatus->isEnable();
 			break;
-		case DISABLE_ADDR:
-			data2send[4] = driveStatus->isDisable();
-			break;
 		case STOP_ADDR:
 			data2send[4] = driveStatus->isStop();
 			break;
@@ -152,9 +149,6 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 			break;
 		case ENABLE_ADDR:
 			data2send[4] = driveCommand->isEnable();
-			break;
-		case DISABLE_ADDR:
-			data2send[4] = driveCommand->isDisable();
 			break;
 		case STOP_ADDR:
 			data2send[4] = driveCommand->isStop();
@@ -257,9 +251,6 @@ void BaseCOM::SetStatus(uint8_t *data)
 		case ENABLE_ADDR:
 			driveStatus->setEnable(data[4] == 0x01);
 			break;
-		case DISABLE_ADDR:
-			driveStatus->setDisable(data[4] == 0x01);
-			break;
 		case STOP_ADDR:
 			driveStatus->setStop(data[4] == 0x01);
 			break;
@@ -293,9 +284,6 @@ void BaseCOM::SetCommand(uint8_t *data)
 			break;
 		case ENABLE_ADDR:
 			driveCommand->setEnable(data[4] == 0x01);
-			break;
-		case DISABLE_ADDR:
-			driveCommand->setDisable(data[4] == 0x01);
 			break;
 		case STOP_ADDR:
 			driveCommand->setStop(data[4] == 0x01);

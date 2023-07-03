@@ -44,6 +44,7 @@ class IOCom: public ICom, public BaseCOM
 		DigitalOut Out8 = DigitalOut(DI_OUT_8_N_GPIO_Port, DI_OUT_8_N_Pin, DI_OUT_8_P_GPIO_Port, DI_OUT_8_P_Pin);
 
 
+		uint16_t timeoutCounter = 0;
 		uint8_t counter = 0;
 		uint8_t reg;
 		uint8_t command;
