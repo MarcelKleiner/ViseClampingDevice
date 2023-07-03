@@ -20,6 +20,16 @@
 
 
 
+#define ADC_UPDATE_TIME			2
+#define IO_UPDATE_TIME			15
+#define ERROR_UPDATE_TIME		100
+#define COM_UPDATE_TIME			200
+#define LED_UPDATE_TIME			500
+#define SAVE_UPDATE_TIME		1000
+
+#define IO_TIMEOUT				100
+
+
 
 #define CLOSE_ADDR					0x01
 #define OPEN_ADDR					0x02

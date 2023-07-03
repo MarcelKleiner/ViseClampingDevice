@@ -1,0 +1,14 @@
+TypeConverter.cpp:19:10:static uint16_t TypeConverter::floatToUint(float)	1
+TypeConverter.cpp:30:7:static float TypeConverter::UintToFloat(uint16_t)	1
+TypeConverter.cpp:34:7:static float TypeConverter::Uint642Float(uint64_t)	1
+TypeConverter.cpp:38:10:static uint64_t TypeConverter::Float2Uint64_t(float)	1
+TypeConverter.cpp:42:7:static float TypeConverter::byteToFloat16(uint8_t*)	1
+TypeConverter.cpp:49:6:static void TypeConverter::floatToByte(uint8_t*, float, uint8_t)	2
+TypeConverter.cpp:67:6:static void TypeConverter::intToByte(uint8_t*, int, uint8_t, uint8_t)	2
+TypeConverter.cpp:80:9:static int16_t TypeConverter::byteToInt16(uint8_t*)	1
+TypeConverter.cpp:87:6:static void TypeConverter::uint16ToByte(uint8_t*, uint16_t, uint8_t)	1
+TypeConverter.cpp:95:10:static uint16_t TypeConverter::byteToUint16(uint8_t*, uint8_t)	1
+TypeConverter.cpp:105:10:static uint64_t TypeConverter::byte2Uint32(uint8_t*)	1
+TypeConverter.cpp:114:6:static void TypeConverter::uint32ToByte(uint8_t*, uint64_t)	1
+TypeConverter.cpp:131:9:static int32_t TypeConverter::byteToInt32(uint8_t*)	1
+TypeConverter.cpp:141:9:static int32_t TypeConverter::byteToInt32(uint8_t*, uint8_t)	1

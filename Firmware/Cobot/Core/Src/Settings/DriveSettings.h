@@ -50,7 +50,7 @@ public:
 		uint16_t getOverCurrentError() const;
 		void setOverCurrentError(uint16_t overCurrentError = 100);
 
-		uint8_t getDeviceAddress() const;
+		uint8_t getDeviceAddress();
 		void setDeviceAddress(uint8_t deviceAddress);
 
 		bool isSaveSettings();

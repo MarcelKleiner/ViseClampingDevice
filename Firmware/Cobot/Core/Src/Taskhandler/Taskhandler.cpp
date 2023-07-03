@@ -15,6 +15,7 @@
 
 #include "TaskHandler.h"
 #include "gpio.h"
+#include "../AppMain/Defines.h"
 
 //update tasks, should be called every 1ms
 void TaskHandler::UpdateTasks() {
@@ -45,11 +46,14 @@ void TaskHandler::UpdateTasks() {
 		errorTask = true;
 	}
 
+	if(counter % COM_UPDATE_TIME == 0){
+		comTask = true;
+	}
+
 
 	//500ms
 	if(counter % LED_UPDATE_TIME == 0){
 		ledUpdateTask = true;
-		comTask = true;
 	}
 
 

@@ -33,11 +33,13 @@ class BaseCOM{
 		uint8_t CRC8(uint8_t *data, uint8_t length);
 
 
-	private:
-
 		DriveSettings *driveSettings;
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
+
+	private:
+
+
 
 
 		uint8_t data2send[7];

@@ -13,13 +13,13 @@
 
 
 
-#define SEND_SETTINGS		0x01
-#define SEND_COMMAND		0x02
-#define SEND_STATUS			0x03
+#define SEND_SETTINGS			0x01
+#define SEND_COMMAND			0x02
+#define SEND_STATUS				0x03
 
-#define GET_SETTINGS		0x11
-#define GET_COMMAND			0x12
-#define GET_STATUS			0x13
+#define GET_SETTINGS			0x11
+#define GET_COMMAND				0x12
+#define GET_STATUS				0x13
 
 //Address
 #define CLOSE_ADDR					0x01
@@ -54,8 +54,6 @@
 #define RCV_STATUS			0xAA
 
 
-
-
 #define EXT_LED_SET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_SET)
 #define EXT_LED_RESET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_RESET)
 
@@ -69,8 +67,8 @@
 
 //general settings
 
-#define DIRECTION_IN	3200
-#define DIRECTION_OUT	6400
+#define DIRECTION_IN		3200
+#define DIRECTION_OUT		6400
 
 
 

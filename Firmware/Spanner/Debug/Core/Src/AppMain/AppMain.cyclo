@@ -1,0 +1,10 @@
+ICom.h:13:7:constexpr ICom::ICom()	1
+RFM95Com.h:37:3:RFM95Com::RFM95Com(DriveStatus*, DriveSettings*, DriveCommand*, RFM95_LoRa*)	1
+TaskHandler.h:14:7:TaskHandler::TaskHandler()	1
+DriveSettings.h:13:7:constexpr DriveSettings::DriveSettings()	1
+DriveStatus.h:17:7:DriveStatus::DriveStatus()	1
+AppMain.cpp:20:1:AppMain::AppMain()	1
+AppMain.cpp:25:6:void AppMain::Startup()	2
+AppMain.cpp:63:6:void AppMain::Reset()	1
+AppMain.cpp:84:6:void AppMain::Main()	13
+AppMain.cpp:168:6:void AppMain::ADCRead(ADC_HandleTypeDef*)	2

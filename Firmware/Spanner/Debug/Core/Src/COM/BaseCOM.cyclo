@@ -1,0 +1,8 @@
+BaseCOM.cpp:12:1:BaseCOM::BaseCOM(DriveStatus*, DriveSettings*, DriveCommand*)	1
+BaseCOM.cpp:21:10:uint8_t* BaseCOM::GetSettings(uint8_t)	13
+BaseCOM.cpp:86:10:uint8_t* BaseCOM::GetStatus(uint8_t)	9
+BaseCOM.cpp:129:10:uint8_t* BaseCOM::GetCommand(uint8_t)	7
+BaseCOM.cpp:167:6:void BaseCOM::SetSettings(uint8_t*)	12
+BaseCOM.cpp:228:6:void BaseCOM::SetStatus(uint8_t*)	7
+BaseCOM.cpp:262:6:void BaseCOM::SetCommand(uint8_t*)	7
+BaseCOM.cpp:299:9:uint8_t BaseCOM::CRC8(uint8_t*, uint8_t)	4

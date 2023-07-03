@@ -22,13 +22,8 @@ public:
 	bool isComTask();
 	bool isDriveTask();
 	bool isErrorTask();
-	bool isIoUpdateTask() ;
-	bool isADCUpdateTask();
-	bool isAdcUpdateTask();
 	bool isLEDTask();
 
-	bool isAdcUpdateTaskEnable() const;
-	void setAdcUpdateTaskEnable(bool adcUpdateTaskEnable = true);
 
 	bool isComTaskEnable() const;
 	void setComTaskEnable(bool comTaskEnable = true);
@@ -39,9 +34,6 @@ public:
 	bool isErrorTaskEnable() const;
 	void setErrorTaskEnable(bool errorTaskEnable = true);
 
-	bool isIoUpdateTaskEnable() const;
-	void setIoUpdateTaskEnable(bool ioUpdateTaskEnable = true);
-
 	bool isLEDTaskEnable() const;
 	void setLEDTaskEnable(bool ledTaskEnable = true);
 
@@ -51,15 +43,11 @@ private:
 	bool errorTask = false;
 	bool comTask = false;
 	bool driveTask = false;
-	bool ioUpdateTask = false;
-	bool adcUpdateTask = false;
 	bool ledTask = false;
 
 	bool errorTaskEnable = true;
 	bool comTaskEnable = true;
 	bool driveTaskEnable = true;
-	bool ioUpdateTaskEnable = true;
-	bool adcUpdateTaskEnable = true;
 	bool ledTaskEnable = true;
 
 	uint16_t counter;

@@ -1,0 +1,26 @@
+DriveSettings.cpp:9:10:uint16_t DriveSettings::getClampingSpeed() const	1
+DriveSettings.cpp:13:6:void DriveSettings::setClampingSpeed(uint16_t)	1
+DriveSettings.cpp:19:10:uint16_t DriveSettings::getClampingTorque() const	1
+DriveSettings.cpp:23:6:void DriveSettings::setClampingTorque(uint16_t)	1
+DriveSettings.cpp:29:9:uint8_t DriveSettings::getDeviceAddress() const	1
+DriveSettings.cpp:33:6:void DriveSettings::setDeviceAddress(uint8_t)	1
+DriveSettings.cpp:39:10:uint16_t DriveSettings::getInPosDiff() const	1
+DriveSettings.cpp:43:6:void DriveSettings::setInPosDiff(uint16_t)	1
+DriveSettings.cpp:49:10:uint16_t DriveSettings::getOpeningDistance() const	1
+DriveSettings.cpp:53:6:void DriveSettings::setOpeningDistance(uint16_t)	1
+DriveSettings.cpp:59:10:uint16_t DriveSettings::getOverCurrentTimeThreshold() const	1
+DriveSettings.cpp:63:6:void DriveSettings::setOverCurrentTimeThreshold(uint16_t)	1
+DriveSettings.cpp:68:10:uint16_t DriveSettings::getOverCurrentWarning() const	1
+DriveSettings.cpp:72:6:void DriveSettings::setOverCurrentWarning(uint16_t)	1
+DriveSettings.cpp:76:10:uint16_t DriveSettings::getOverCurrentError() const	1
+DriveSettings.cpp:79:6:void DriveSettings::setOverCurrentError(uint16_t)	1
+DriveSettings.cpp:84:10:uint16_t DriveSettings::getSelfShutdownDelay() const	1
+DriveSettings.cpp:88:6:void DriveSettings::setSelfShutdownDelay(uint16_t)	1
+DriveSettings.cpp:92:10:uint16_t DriveSettings::getTeachSpeed() const	1
+DriveSettings.cpp:96:6:void DriveSettings::setTeachSpeed(uint16_t)	1
+DriveSettings.cpp:100:10:uint16_t DriveSettings::getTeachTroque() const	1
+DriveSettings.cpp:104:6:void DriveSettings::setTeachTroque(uint16_t)	1
+DriveSettings.cpp:108:10:uint16_t DriveSettings::getUnderVoltageError() const	1
+DriveSettings.cpp:112:6:void DriveSettings::setUnderVoltageError(uint16_t)	1
+DriveSettings.cpp:116:10:uint16_t DriveSettings::getUnderVoltageWarning() const	1
+DriveSettings.cpp:120:6:void DriveSettings::setUnderVoltageWarning(uint16_t)	1

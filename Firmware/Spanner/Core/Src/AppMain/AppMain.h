@@ -54,13 +54,11 @@
 
 	 Encoder encoder = Encoder(&driveStatus);
 	 ICom *rfm95COM 	= 	 new RFM95Com	(&driveStatus, &driveSettings, &driveCommand, &rfm95);
-	 //ICom rfm95Com = new RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95);
-
-	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder);
-
 	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
 	 LED ledExt = LED(LED_EXT_GPIO_Port, LED_EXT_Pin, false);
 
+
+	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder, &led);
 	 Error error = Error(&ledExt, &driveStatus);
 
 	bool init = true;

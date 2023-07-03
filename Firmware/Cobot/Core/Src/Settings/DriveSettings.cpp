@@ -212,7 +212,7 @@ void DriveSettings::setOverCurrentError(uint16_t overCurrentError)
 /****************************************************************************************
  / * 	device address get/set
  ****************************************************************************************/
-uint8_t DriveSettings::getDeviceAddress() const
+uint8_t DriveSettings::getDeviceAddress()
 {
 	return deviceAddress;
 }
