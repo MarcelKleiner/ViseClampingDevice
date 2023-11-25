@@ -14,6 +14,8 @@
 class DriveSettings{
 
 public:
+		DriveSettings();
+
 		uint16_t getClampingSpeed() const;
 		void setClampingSpeed(uint16_t clampingSpeed);
 
@@ -25,9 +27,6 @@ public:
 
 		uint16_t getOpeningDistance() const;
 		void setOpeningDistance(uint16_t openingDistance = 100);
-
-		uint16_t getOverCurrentTimeThreshold() const;
-		void setOverCurrentTimeThreshold(uint16_t overCurrentTimeThreshold = 1000);
 
 		uint16_t getOverCurrentWarning() const;
 		void setOverCurrentWarning(uint16_t overCurrentWarning = 50);
@@ -50,13 +49,13 @@ public:
 		uint16_t getOverCurrentError() const;
 		void setOverCurrentError(uint16_t overCurrentError = 100);
 
-		uint8_t getDeviceAddress();
+		uint8_t getDeviceAddress() const;
 		void setDeviceAddress(uint8_t deviceAddress);
 
 		bool isSaveSettings();
 		void setSaveSettings(bool saveSettings);
 		
-		bool isSettingsChanged();
+		bool isSettingsChanged() const;
 		uint16_t getSettingsChangedReg() const;
 		void ResetSettingsChanged(uint16_t bit);
 

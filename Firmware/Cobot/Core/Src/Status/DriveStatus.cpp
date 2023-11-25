@@ -14,12 +14,12 @@ DriveStatus::DriveStatus()
 /****************************************************************************************
  / * 	close get/set
  ****************************************************************************************/
-bool DriveStatus::isClose()
+bool DriveStatus::IsClose() const
 {
 	return close;
 }
 
-void DriveStatus::setClose(bool close)
+void DriveStatus::SetClose(bool close)
 {
 	if (this->close != close)
 	{
@@ -31,12 +31,12 @@ void DriveStatus::setClose(bool close)
 /****************************************************************************************
  / * 	open get/set
  ****************************************************************************************/
-bool DriveStatus::isOpen()
+bool DriveStatus::IsOpen() const
 {
 	return open;
 }
 
-void DriveStatus::setOpen(bool open)
+void DriveStatus::SetOpen(bool open)
 {
 	if (this->open != open)
 	{
@@ -48,12 +48,12 @@ void DriveStatus::setOpen(bool open)
 /****************************************************************************************
  / * 	disable get/set
  ****************************************************************************************/
-bool DriveStatus::isDisable()
+bool DriveStatus::IsDisable() const
 {
 	return disable;
 }
 
-void DriveStatus::setDisable(bool disable)
+void DriveStatus::SetDisable(bool disable)
 {
 	if (this->disable != disable)
 	{
@@ -65,12 +65,12 @@ void DriveStatus::setDisable(bool disable)
 /****************************************************************************************
  / * 	enable get/set
  ****************************************************************************************/
-bool DriveStatus::isEnable()
+bool DriveStatus::IsEnable() const
 {
 	return enable;
 }
 
-void DriveStatus::setEnable(bool enable)
+void DriveStatus::SetEnable(bool enable)
 {
 	if (this->enable != enable)
 	{
@@ -82,7 +82,7 @@ void DriveStatus::setEnable(bool enable)
 /****************************************************************************************
  / * 	reset get/set
  ****************************************************************************************/
-bool DriveStatus::isReset()
+bool DriveStatus::IsReset() const
 {
 	return reset;
 }
@@ -99,7 +99,7 @@ void DriveStatus::setReset(bool reset)
 /****************************************************************************************
  / * 	stop get/set
  /****************************************************************************************/
-bool DriveStatus::isStop()
+bool DriveStatus::IsStop() const
 {
 	return stop;
 }
@@ -116,12 +116,12 @@ void DriveStatus::setStop(bool stop)
 /****************************************************************************************
  / * 	teach get/set
  /****************************************************************************************/
-bool DriveStatus::isTeach()
+bool DriveStatus::IsTeach() const
 {
 	return teach;
 }
 
-void DriveStatus::setTeach(bool teach)
+void DriveStatus::SetTeach(bool teach)
 {
 	if (this->teach != teach)
 	{
@@ -131,17 +131,48 @@ void DriveStatus::setTeach(bool teach)
 }
 
 /****************************************************************************************
+ / * 	self reset
+ ****************************************************************************************/
+
+void DriveStatus::SetSelfReset() 
+{
+	selfReset = true;
+}
+
+void DriveStatus::ResetSelfReset() 
+{
+	selfReset = false;
+}
+
+bool DriveStatus::IsSelfReset() const 
+{
+	return this->selfReset;
+}
+
+
+/****************************************************************************************
  / * 	write config get/set
  ****************************************************************************************/
-DriveStatus::_ERROR DriveStatus::getError()
+DriveStatus::_ERROR DriveStatus::GetError() const
 {
 	return this->error;
 }
 
+void DriveStatus::ResetError() {
+	this->error = _ERROR::E_NO_ERROR;
+}
+
+void DriveStatus::ResetError(_ERROR error) {
+	if (this->error == error) {
+		this->error = _ERROR::E_NO_ERROR;
+	}
+}
+
 void DriveStatus::setError(_ERROR error)
 {
-	if (this->error = error)
+	if (this->error != error)
 	{
+		this->error = error;
 		statusChanged = true;
 	}
 }

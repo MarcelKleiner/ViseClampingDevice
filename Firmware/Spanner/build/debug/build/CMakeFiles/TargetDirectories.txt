@@ -1,0 +1,3 @@
+C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/build/CMakeFiles/Spanner.dir
+C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/build/CMakeFiles/edit_cache.dir
+C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/build/CMakeFiles/rebuild_cache.dir

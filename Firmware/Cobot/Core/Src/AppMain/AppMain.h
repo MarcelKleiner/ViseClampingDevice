@@ -21,6 +21,7 @@
 #include "../COM/ICom.h"
 #include "../COM/RFM95Com.h"
 #include "../COM/IOCom.h"
+#include "../Error/Error.h"
 
 class AppMain
 {
@@ -42,12 +43,12 @@ class AppMain
 		DriveCommand driveCommand = DriveCommand();
 
 
-		ICom *rfm95COM 	= 	 new RFM95Com	(&driveStatus, &driveSettings, &driveCommand, &rfm95);
-		ICom *usbCOM	= 	 new USBCom	 	(&driveStatus, &driveSettings, &driveCommand);
-		ICom *ioCOM	 	= 	 new IOCom		(&driveStatus, &driveSettings, &driveCommand);
+		ICom *rfm95COM = new RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95);
+		ICom *usbCOM	= new USBCom(&driveStatus, &driveSettings, &driveCommand);
+		ICom *ioCOM	= new IOCom(&driveStatus, &driveSettings, &driveCommand);
 
 		Flash Storage = Flash(&driveSettings, &driveStatus);
-
+		Error error = Error(&driveStatus);
 	private:
 
 };

@@ -1,11 +1,3 @@
-/*
- * Flash.cpp
- *
- <<<<<<< HEAD
- *  Created on: 09.12.2022
- *      Author: marce
- */
-
 #include "Flash.h"
 #include "stm32l4xx_hal.h"
 
@@ -15,12 +7,6 @@ Flash::Flash(DriveSettings *driveSettings, DriveStatus *driveStatus)
 	this->driveStatus = driveStatus;
 }
 
-/*
- * Auslesen vom Flash und speichern in tmpFlashArray
- *
- * @param None
- * @return None
- */
 void Flash::ReadFlash()
 {
 
@@ -43,13 +29,10 @@ void Flash::ReadFlash()
 	driveSettings->setInPosDiff(tmpFlashArray[9]);
 	driveSettings->setOpeningDistance(tmpFlashArray[10]);
 
-	driveSettings->setOverCurrentTimeThreshold(tmpFlashArray[11]);
-	driveSettings->setDeviceAddress(tmpFlashArray[12]);
+	driveSettings->setDeviceAddress(tmpFlashArray[11]);
 }
 
-
-
-void Flash::SaveFlash(){
+void Flash::WriteFlash(){
 	if (this->driveSettings->isSaveSettings())
 	{
 		tmpFlashArray[0] = driveSettings->getClampingSpeed();
@@ -66,24 +49,16 @@ void Flash::SaveFlash(){
 		tmpFlashArray[9] = driveSettings->getInPosDiff();
 		tmpFlashArray[10] = driveSettings->getOpeningDistance();
 
-		tmpFlashArray[11] = driveSettings->getOverCurrentTimeThreshold();
-		tmpFlashArray[12] = driveSettings->getDeviceAddress();
-		WriteFlash();
+		tmpFlashArray[11] = driveSettings->getDeviceAddress();
+		Save();
 	}
 }
 
 
-
-/*
- * Speichert das tmpFlashArry in's Flash
- *
- * @param None
- * @return HAL_StatusTypeDef
- */
-HAL_StatusTypeDef Flash::WriteFlash()
+HAL_StatusTypeDef Flash::Save()
 {
 
-	FLASH_EraseInitTypeDef EraseinitStruct;
+	FLASH_EraseInitTypeDef EraseinitStruct{};
 	uint32_t sectorError = 0;
 
 	if (HAL_FLASH_Unlock() != HAL_OK)

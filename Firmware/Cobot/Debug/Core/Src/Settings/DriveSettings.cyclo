@@ -1,31 +1,30 @@
-DriveSettings.cpp:14:10:uint16_t DriveSettings::getClampingSpeed() const	1
-DriveSettings.cpp:19:6:void DriveSettings::setClampingSpeed(uint16_t)	2
-DriveSettings.cpp:31:10:uint16_t DriveSettings::getClampingTorque() const	1
-DriveSettings.cpp:36:6:void DriveSettings::setClampingTorque(uint16_t)	2
-DriveSettings.cpp:48:10:uint16_t DriveSettings::getInPosDiff() const	1
-DriveSettings.cpp:53:6:void DriveSettings::setInPosDiff(uint16_t)	2
-DriveSettings.cpp:66:10:uint16_t DriveSettings::getOpeningDistance() const	1
-DriveSettings.cpp:71:6:void DriveSettings::setOpeningDistance(uint16_t)	2
-DriveSettings.cpp:83:10:uint16_t DriveSettings::getOverCurrentTimeThreshold() const	1
-DriveSettings.cpp:88:6:void DriveSettings::setOverCurrentTimeThreshold(uint16_t)	2
-DriveSettings.cpp:101:10:uint16_t DriveSettings::getOverCurrentWarning() const	1
-DriveSettings.cpp:106:6:void DriveSettings::setOverCurrentWarning(uint16_t)	2
-DriveSettings.cpp:117:10:uint16_t DriveSettings::getSelfShutdownDelay() const	1
-DriveSettings.cpp:122:6:void DriveSettings::setSelfShutdownDelay(uint16_t)	2
-DriveSettings.cpp:134:10:uint16_t DriveSettings::getTeachSpeed() const	1
-DriveSettings.cpp:139:6:void DriveSettings::setTeachSpeed(uint16_t)	2
-DriveSettings.cpp:150:10:uint16_t DriveSettings::getTeachTroque() const	1
-DriveSettings.cpp:155:6:void DriveSettings::setTeachTroque(uint16_t)	2
-DriveSettings.cpp:166:10:uint16_t DriveSettings::getUnderVoltageError() const	1
-DriveSettings.cpp:171:6:void DriveSettings::setUnderVoltageError(uint16_t)	2
-DriveSettings.cpp:183:10:uint16_t DriveSettings::getUnderVoltageWarning() const	1
-DriveSettings.cpp:188:6:void DriveSettings::setUnderVoltageWarning(uint16_t)	2
-DriveSettings.cpp:199:10:uint16_t DriveSettings::getOverCurrentError() const	1
-DriveSettings.cpp:204:6:void DriveSettings::setOverCurrentError(uint16_t)	2
-DriveSettings.cpp:215:9:uint8_t DriveSettings::getDeviceAddress()	1
-DriveSettings.cpp:220:6:void DriveSettings::setDeviceAddress(uint8_t)	1
-DriveSettings.cpp:228:6:bool DriveSettings::isSaveSettings()	1
-DriveSettings.cpp:235:6:void DriveSettings::setSaveSettings(bool)	1
-DriveSettings.cpp:241:6:bool DriveSettings::isSettingsChanged()	1
-DriveSettings.cpp:246:10:uint16_t DriveSettings::getSettingsChangedReg() const	1
-DriveSettings.cpp:251:6:void DriveSettings::ResetSettingsChanged(uint16_t)	1
+DriveSettings.cpp:12:1:DriveSettings::DriveSettings()	1
+DriveSettings.cpp:21:10:uint16_t DriveSettings::getClampingSpeed() const	1
+DriveSettings.cpp:26:6:void DriveSettings::setClampingSpeed(uint16_t)	2
+DriveSettings.cpp:38:10:uint16_t DriveSettings::getClampingTorque() const	1
+DriveSettings.cpp:43:6:void DriveSettings::setClampingTorque(uint16_t)	2
+DriveSettings.cpp:55:10:uint16_t DriveSettings::getInPosDiff() const	1
+DriveSettings.cpp:60:6:void DriveSettings::setInPosDiff(uint16_t)	2
+DriveSettings.cpp:73:10:uint16_t DriveSettings::getOpeningDistance() const	1
+DriveSettings.cpp:78:6:void DriveSettings::setOpeningDistance(uint16_t)	2
+DriveSettings.cpp:108:10:uint16_t DriveSettings::getOverCurrentWarning() const	1
+DriveSettings.cpp:113:6:void DriveSettings::setOverCurrentWarning(uint16_t)	2
+DriveSettings.cpp:124:10:uint16_t DriveSettings::getSelfShutdownDelay() const	1
+DriveSettings.cpp:129:6:void DriveSettings::setSelfShutdownDelay(uint16_t)	2
+DriveSettings.cpp:141:10:uint16_t DriveSettings::getTeachSpeed() const	1
+DriveSettings.cpp:146:6:void DriveSettings::setTeachSpeed(uint16_t)	2
+DriveSettings.cpp:157:10:uint16_t DriveSettings::getTeachTroque() const	1
+DriveSettings.cpp:162:6:void DriveSettings::setTeachTroque(uint16_t)	2
+DriveSettings.cpp:173:10:uint16_t DriveSettings::getUnderVoltageError() const	1
+DriveSettings.cpp:178:6:void DriveSettings::setUnderVoltageError(uint16_t)	2
+DriveSettings.cpp:190:10:uint16_t DriveSettings::getUnderVoltageWarning() const	1
+DriveSettings.cpp:195:6:void DriveSettings::setUnderVoltageWarning(uint16_t)	2
+DriveSettings.cpp:206:10:uint16_t DriveSettings::getOverCurrentError() const	1
+DriveSettings.cpp:211:6:void DriveSettings::setOverCurrentError(uint16_t)	2
+DriveSettings.cpp:222:9:uint8_t DriveSettings::getDeviceAddress() const	1
+DriveSettings.cpp:227:6:void DriveSettings::setDeviceAddress(uint8_t)	1
+DriveSettings.cpp:235:6:bool DriveSettings::isSaveSettings()	1
+DriveSettings.cpp:242:6:void DriveSettings::setSaveSettings(bool)	1
+DriveSettings.cpp:248:6:bool DriveSettings::isSettingsChanged() const	1
+DriveSettings.cpp:253:10:uint16_t DriveSettings::getSettingsChangedReg() const	1
+DriveSettings.cpp:258:6:void DriveSettings::ResetSettingsChanged(uint16_t)	1

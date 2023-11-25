@@ -1,10 +1,3 @@
-/*
- * BaseCOM.cpp
- *
- *  Created on: 25.12.2022
- *      Author: marce
- */
-
 #include "BaseCOM.h"
 #include "../AppMain/Defines.h"
 #include "../Tools/CRC8.h"
@@ -95,28 +88,28 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 	switch (addr)
 	{
 		case CLOSE_ADDR:
-			data2send[4] = driveStatus->isClose();
+			data2send[4] = driveStatus->IsClose();
 			break;
 		case OPEN_ADDR:
-			data2send[4] = driveStatus->isOpen();
+			data2send[4] = driveStatus->IsOpen();
 			break;
 		case TEACH_ADDR:
-			data2send[4] = driveStatus->isTeach();
+			data2send[4] = driveStatus->IsTeach();
 			break;
 		case RESET_ADDR:
-			data2send[4] = driveStatus->isReset();
+			data2send[4] = driveStatus->IsReset();
 			break;
 		case ENABLE_ADDR:
-			data2send[4] = driveStatus->isEnable();
+			data2send[4] = driveStatus->IsEnable();
 			break;
 		case DISABLE_ADDR:
-			data2send[4] = driveStatus->isDisable();
+			data2send[4] = driveStatus->IsDisable();
 			break;
 		case STOP_ADDR:
-			data2send[4] = driveStatus->isStop();
+			data2send[4] = driveStatus->IsStop();
 			break;
 		case ERROR_ADDR:
-			data2send[4] = driveStatus->getError();
+			data2send[4] = driveStatus->GetError();
 			break;
 		default:
 			data2send[0] = 0x1D;
@@ -245,22 +238,22 @@ void BaseCOM::SetStatus(uint8_t *data)
 	switch (data[3])
 	{
 		case CLOSE_ADDR:
-			driveStatus->setClose(data[4] == 0x01);
+			driveStatus->SetClose(data[4] == 0x01);
 			break;
 		case OPEN_ADDR:
-			driveStatus->setOpen(data[4] == 0x01);
+			driveStatus->SetOpen(data[4] == 0x01);
 			break;
 		case TEACH_ADDR:
-			driveStatus->setTeach(data[4] == 0x01);
+			driveStatus->SetTeach(data[4] == 0x01);
 			break;
 		case RESET_ADDR:
 			driveStatus->setReset(data[4] == 0x01);
 			break;
 		case ENABLE_ADDR:
-			driveStatus->setEnable(data[4] == 0x01);
+			driveStatus->SetEnable(data[4] == 0x01);
 			break;
 		case DISABLE_ADDR:
-			driveStatus->setDisable(data[4] == 0x01);
+			driveStatus->SetDisable(data[4] == 0x01);
 			break;
 		case STOP_ADDR:
 			driveStatus->setStop(data[4] == 0x01);
@@ -301,6 +294,9 @@ void BaseCOM::SetCommand(uint8_t *data)
 			break;
 		case STOP_ADDR:
 			driveCommand->setStop(data[4] == 0x01);
+			break;
+		case SELF_RESET_ADDR:
+			driveStatus->SetSelfReset();
 			break;
 		default:
 			break;

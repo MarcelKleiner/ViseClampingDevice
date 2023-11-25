@@ -819,7 +819,6 @@ void AppMain::Reset()
  800082e:	b082      	sub	sp, #8
  8000830:	af00      	add	r7, sp, #0
  8000832:	6078      	str	r0, [r7, #4]
-
 	taskHandler.setComTaskEnable(true);
  8000834:	687b      	ldr	r3, [r7, #4]
  8000836:	2101      	movs	r1, #1
@@ -926,7 +925,6 @@ void AppMain::Main()
  80008e2:	6878      	ldr	r0, [r7, #4]
  80008e4:	f7ff ffa2 	bl	800082c <_ZN7AppMain5ResetEv>
 		}
-
 
 		//RFM Communication task
 		if (taskHandler.isComTask())

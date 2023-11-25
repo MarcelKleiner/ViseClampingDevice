@@ -3,7 +3,6 @@ USBCom.h:22:3:USBCom::USBCom(DriveStatus*, DriveSettings*, DriveCommand*)	1
 RFM95Com.h:37:3:RFM95Com::RFM95Com(DriveStatus*, DriveSettings*, DriveCommand*, RFM95_LoRa*)	1
 IOCom.h:21:3:IOCom::IOCom(DriveStatus*, DriveSettings*, DriveCommand*)	1
 Taskhandler.h:15:7:TaskHandler::TaskHandler()	1
-DriveSettings.h:14:7:constexpr DriveSettings::DriveSettings()	1
 AppMain.cpp:13:1:AppMain::AppMain()	1
 AppMain.cpp:18:6:void AppMain::Startup()	1
-AppMain.cpp:37:6:void AppMain::Main()	5
+AppMain.cpp:37:6:void AppMain::Main()	4

@@ -27,19 +27,10 @@ void TaskHandler::UpdateTasks() {
 		adcUpdateTask = true;
 	}
 
-
 	//15ms
 	if(counter % IO_UPDATE_TIME == 0){
 		ioUpdateTask = true;
 	}
-
-
-	//50ms
-	if(counter % 50 == 0){
-
-	}
-
-
 
 	//100ms
 	if(counter % ERROR_UPDATE_TIME == 0){
@@ -50,19 +41,20 @@ void TaskHandler::UpdateTasks() {
 		comTask = true;
 	}
 
+	//300ms
+	if (counter % RESET_UPDATE_TIME == 0) {
+		resetTask = true;
+	}
 
 	//500ms
 	if(counter % LED_UPDATE_TIME == 0){
 		ledUpdateTask = true;
 	}
 
-
 	//1000ms
 	if(counter % SAVE_UPDATE_TIME == 0){
 		saveTask = true;
 	}
-
-
 
 	//increment counter
 	if(counter > 2999){
@@ -75,42 +67,47 @@ void TaskHandler::UpdateTasks() {
 
 
 bool TaskHandler::isComTask()  {
-	bool comTaskTemp = (comTask & comTaskEnable);
+	bool comTaskTemp = (comTask && comTaskEnable);
 	comTask = false;
 	return comTaskTemp;
 }
 
 bool TaskHandler::isSaveTask(){
-	bool saveTaskTemp = (saveTask & saveTaskEnable);
+	bool saveTaskTemp = (saveTask && saveTaskEnable);
 	saveTask = false;
 	return saveTaskTemp;
 }
 
-
 bool TaskHandler::isErrorTask()  {
-	bool errorTaskTemp = (errorTask & errorTaskEnable);
+	bool errorTaskTemp = (errorTask && errorTaskEnable);
 	errorTask = false;
 	return errorTaskTemp;
 }
 
 bool TaskHandler::isIoUpdateTask()  {
-	bool ioUpdateTaskTemp = (ioUpdateTask & ioUpdateTaskEnable);
+	bool ioUpdateTaskTemp = (ioUpdateTask && ioUpdateTaskEnable);
 	ioUpdateTask = false;
 	return ioUpdateTaskTemp;
 }
 
 
-bool TaskHandler::isADCUpdateTask() {
-	bool adcUpdateTaskTemp = (adcUpdateTask & adcUpdateTaskEnable);
+bool TaskHandler::IsADCUpdateTask() {
+	bool adcUpdateTaskTemp = (adcUpdateTask && adcUpdateTaskEnable);
 	adcUpdateTask = false;
 	return adcUpdateTaskTemp;
 }
 
 
-bool TaskHandler::isLEDUpdateTask(){
-	bool ledUpdateTaskTemp = (ledUpdateTask & ledUpdateTaskEnable);
+bool TaskHandler::IsLEDUpdateTask(){
+	bool ledUpdateTaskTemp = (ledUpdateTask && ledUpdateTaskEnable);
 	ledUpdateTask = false;
 	return ledUpdateTaskTemp;
+}
+
+bool TaskHandler::IsResetUpdateTask() {
+	bool resetUpdateTaskTemp = resetTask;
+	resetTask = false;
+	return resetUpdateTaskTemp;
 }
 
 

@@ -144,6 +144,8 @@ private:
   int _implicitHeaderMode;
   void (*_onReceive)(int);
 
+  uint16_t transmitCounter = 0;
+
 };
 
 

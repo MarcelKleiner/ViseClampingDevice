@@ -8,6 +8,13 @@
 #include "DriveSettings.h"
 #include "../AppMain/Defines.h"
 
+
+DriveSettings::DriveSettings()
+{
+	settingsChangedReg = 0;
+}
+
+
 /****************************************************************************************
  / * 	Clamping speed get/set
  ****************************************************************************************/
@@ -80,20 +87,20 @@ void DriveSettings::setOpeningDistance(uint16_t openingDistance)
 /****************************************************************************************
  / * 	overcurrent time threshold get/set
  ****************************************************************************************/
-uint16_t DriveSettings::getOverCurrentTimeThreshold() const
-{
-	return overCurrentTimeThreshold;
-}
-
-void DriveSettings::setOverCurrentTimeThreshold(
-		uint16_t overCurrentTimeThreshold)
-{
-	if (this->overCurrentTimeThreshold != overCurrentTimeThreshold)
-	{
-		this->overCurrentTimeThreshold = overCurrentTimeThreshold;
-		this->settingsChangedReg |= OVER_CURRENT_TIME_TH_CHANGE;
-	}
-}
+//uint16_t DriveSettings::getOverCurrentTimeThreshold() const
+//{
+//	return overCurrentTimeThreshold;
+//}
+//
+//void DriveSettings::setOverCurrentTimeThreshold(
+//		uint16_t overCurrentTimeThreshold)
+//{
+//	if (this->overCurrentTimeThreshold != overCurrentTimeThreshold)
+//	{
+//		this->overCurrentTimeThreshold = overCurrentTimeThreshold;
+//		this->settingsChangedReg |= OVER_CURRENT_TIME_TH_CHANGE;
+//	}
+//}
 
 /****************************************************************************************
  / * 	overcurrent warning get/set
@@ -212,7 +219,7 @@ void DriveSettings::setOverCurrentError(uint16_t overCurrentError)
 /****************************************************************************************
  / * 	device address get/set
  ****************************************************************************************/
-uint8_t DriveSettings::getDeviceAddress()
+uint8_t DriveSettings::getDeviceAddress() const
 {
 	return deviceAddress;
 }
@@ -238,7 +245,7 @@ void DriveSettings::setSaveSettings(bool saveSettings)
 }
 
 
-bool DriveSettings::isSettingsChanged()
+bool DriveSettings::isSettingsChanged() const
 {
 	return (settingsChangedReg != 0);
 }

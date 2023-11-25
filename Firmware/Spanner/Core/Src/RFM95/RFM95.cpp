@@ -48,13 +48,11 @@ void RFM95_LoRa::resetRFM(){
 
 bool RFM95_LoRa::writeRegister(uint8_t addr, uint8_t data){
 	uint8_t buff[2] = {(uint8_t)(addr | 0x80), data};
+	bool status = true;
 	selectRFM();
-	if(HAL_SPI_Transmit(&hspi1, (uint8_t*)buff, 2, 100) != HAL_OK){
-		deselectRFM();
-		return false;
-	}
+	status = (HAL_SPI_Transmit(&hspi1, (uint8_t*)buff, 2, 100) == HAL_OK);
 	deselectRFM();
-	return true;
+	return status;
 }
 
 uint8_t RFM95_LoRa::readRegister(uint8_t addr){

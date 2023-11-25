@@ -1,17 +1,17 @@
 DriveStatus.cpp:10:1:DriveStatus::DriveStatus()	1
-DriveStatus.cpp:17:6:bool DriveStatus::isClose()	1
-DriveStatus.cpp:22:6:void DriveStatus::setClose(bool)	2
-DriveStatus.cpp:34:6:bool DriveStatus::isOpen()	1
-DriveStatus.cpp:39:6:void DriveStatus::setOpen(bool)	2
-DriveStatus.cpp:51:6:bool DriveStatus::isDisable()	1
-DriveStatus.cpp:56:6:void DriveStatus::setDisable(bool)	2
-DriveStatus.cpp:68:6:bool DriveStatus::isEnable()	1
-DriveStatus.cpp:73:6:void DriveStatus::setEnable(bool)	2
-DriveStatus.cpp:85:6:bool DriveStatus::isReset()	1
+DriveStatus.cpp:17:6:bool DriveStatus::IsClose() const	1
+DriveStatus.cpp:22:6:void DriveStatus::SetClose(bool)	2
+DriveStatus.cpp:34:6:bool DriveStatus::IsOpen() const	1
+DriveStatus.cpp:39:6:void DriveStatus::SetOpen(bool)	2
+DriveStatus.cpp:51:6:bool DriveStatus::IsDisable() const	1
+DriveStatus.cpp:56:6:void DriveStatus::SetDisable(bool)	2
+DriveStatus.cpp:68:6:bool DriveStatus::IsEnable() const	1
+DriveStatus.cpp:73:6:void DriveStatus::SetEnable(bool)	2
+DriveStatus.cpp:85:6:bool DriveStatus::IsReset() const	1
 DriveStatus.cpp:90:6:void DriveStatus::setReset(bool)	2
-DriveStatus.cpp:102:6:bool DriveStatus::isStop()	1
+DriveStatus.cpp:102:6:bool DriveStatus::IsStop() const	1
 DriveStatus.cpp:107:6:void DriveStatus::setStop(bool)	2
-DriveStatus.cpp:119:6:bool DriveStatus::isTeach()	1
-DriveStatus.cpp:124:6:void DriveStatus::setTeach(bool)	2
-DriveStatus.cpp:136:21:DriveStatus::_ERROR DriveStatus::getError()	1
+DriveStatus.cpp:119:6:bool DriveStatus::IsTeach() const	1
+DriveStatus.cpp:124:6:void DriveStatus::SetTeach(bool)	2
+DriveStatus.cpp:136:21:DriveStatus::_ERROR DriveStatus::GetError() const	1
 DriveStatus.cpp:141:6:void DriveStatus::setError(DriveStatus::_ERROR)	2
