@@ -46,10 +46,6 @@ void AppMain::Startup()
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc1Buffer, BUFFER_SIZE_ADC1);
 	HAL_TIM_Base_Start_IT(&htim6);
 
-	//configure Motor throttle
-	TIM2->CCR1 = 6400;
-	HAL_Delay(7000);
-	TIM2->CCR1 = 3200;
 
 	if (!rfm95.InitRFM())
 	{
@@ -62,16 +58,13 @@ void AppMain::Startup()
 	Main();
 }
 
-int startupCounter = 50;
+
 
 void AppMain::Reset()
 {
-
-	taskHandler.setAdcUpdateTaskEnable(true);
 	taskHandler.setComTaskEnable(true);
 	taskHandler.setDriveTaskEnable(true);
 	taskHandler.setErrorTaskEnable(true);
-	taskHandler.setIoUpdateTaskEnable(true);
 
 	TIM2->CCR1 = 3600;
 
@@ -86,6 +79,7 @@ void AppMain::Reset()
 	comLoseCounter = 0;
 }
 
+
 void AppMain::Main()
 {
 
@@ -99,24 +93,28 @@ void AppMain::Main()
 			Reset();
 		}
 
-
 		//RFM Communication task
 		if (taskHandler.isComTask())
 		{
 			if (!rfm95COM->Receive())
 			{
 				comLoseCounter++;
-				drive.Stop();
 			}
 			else
 			{
 				comLoseCounter = 0;
 			}
 
+			if (comLoseCounter > 20) 
+			{
+				drive.Stop();
+			}
+
 			if (comLoseCounter == (driveSettings.getSelfShutdownDelay() * 4))
 			{
 				//Self-shutdown when the delay time for self-shutdown has elapsed
 				HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_RESET);
+				comLoseCounter = 65000;
 			}
 		}
 
@@ -138,6 +136,19 @@ void AppMain::Main()
 				driveStatus.setError(DriveStatus::E_UNDERVOLTAGE_ERROR);
 			}
 
+<<<<<<< HEAD
+=======
+			if(driveStatus.getCurrent() > driveSettings.getOverCurrentWarning())
+			{
+				driveStatus.setError(DriveStatus::E_OVERCURRENT_WARNING);
+			}
+
+			if(driveStatus.getCurrent() > driveSettings.getOverCurrentError())
+			{
+				driveStatus.setError(DriveStatus::E_OVERCURRENT_ERROR);
+			}
+
+>>>>>>> origin/main
 			if (driveStatus.getError() != DriveStatus::E_NO_ERROR)
 			{
 				drive.Stop();
@@ -150,7 +161,12 @@ void AppMain::Main()
 
 		if (taskHandler.isLEDTask() && driveStatus.getError() == DriveStatus::E_NO_ERROR)
 		{
+<<<<<<< HEAD
 			//led.Toggle(); ToDo
+=======
+			led.Toggle();
+			ledExt.Toggle();
+>>>>>>> origin/main
 		}
 
 	}

@@ -12,29 +12,19 @@
 //update tasks, should be called every 1ms
 void TaskHandler::UpdateTasks() {
 
-	//1ms
-
-
-	//2ms
-	if(counter % 2 == 0){
-		adcUpdateTask = true;
-	}
-
 
 	//15ms
 	if(counter % 15 == 0){
-		ioUpdateTask = true;
 		driveTask = true;
 	}
-
 
 	//100ms
 	if(counter % 100 == 0){
 		errorTask = true;
 	}
 
-	//250ms
-	if(counter % 250 == 0){
+	//ms
+	if(counter % 90 == 0){
 		comTask = true;
 	}
 
@@ -54,48 +44,32 @@ void TaskHandler::UpdateTasks() {
 
 
 bool TaskHandler::isComTask()  {
-	bool comTaskTemp = (comTask & comTaskEnable);
+	bool comTaskTemp = (comTask && comTaskEnable);
 	comTask = false;
 	return comTaskTemp;
 }
 
 bool TaskHandler::isDriveTask()  {
-	bool driveTaskTemp = (driveTask & driveTaskEnable);
+	bool driveTaskTemp = (driveTask && driveTaskEnable);
 	driveTask = false;
 	return driveTaskTemp;
 }
 
 bool TaskHandler::isErrorTask()  {
-	bool errorTaskTemp = (errorTask & errorTaskEnable);
+	bool errorTaskTemp = (errorTask && errorTaskEnable);
 	errorTask = false;
 	return errorTaskTemp;
 }
 
-bool TaskHandler::isIoUpdateTask()  {
-	bool ioUpdateTaskTemp = (ioUpdateTask & ioUpdateTaskEnable);
-	ioUpdateTask = false;
-	return ioUpdateTaskTemp;
-}
-
-
-bool TaskHandler::isADCUpdateTask() {
-	bool adcUpdateTaskTemp = (adcUpdateTask & adcUpdateTaskEnable);
-	adcUpdateTask = false;
-	return adcUpdateTaskTemp;
-}
 
 bool TaskHandler::isLEDTask(){
-	bool ledTaskTemp = (ledTask & ledTaskEnable);
+	bool ledTaskTemp = (ledTask && ledTaskEnable);
 	ledTask = false;
 	return ledTaskTemp;
 }
 
 
 
-
-void TaskHandler::setAdcUpdateTaskEnable(bool adcUpdateTaskEnable ) {
-	this->adcUpdateTaskEnable = adcUpdateTaskEnable;
-}
 
 
 void TaskHandler::setComTaskEnable(bool comTaskEnable ) {
@@ -113,9 +87,6 @@ void TaskHandler::setErrorTaskEnable(bool errorTaskEnable ) {
 }
 
 
-void TaskHandler::setIoUpdateTaskEnable(bool ioUpdateTaskEnable ) {
-	this->ioUpdateTaskEnable = ioUpdateTaskEnable;
-}
 
 void TaskHandler::setLEDTaskEnable(bool ledTaskEnable){
 	this->ledTaskEnable = ledTaskEnable;

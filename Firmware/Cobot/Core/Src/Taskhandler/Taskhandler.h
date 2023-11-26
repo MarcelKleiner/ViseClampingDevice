@@ -25,28 +25,17 @@ public:
 	bool isSaveTask();
 	bool isErrorTask();
 	bool isIoUpdateTask() ;
-	bool isADCUpdateTask();
-	bool isAdcUpdateTask();
-	bool isLEDUpdateTask();
+	bool IsADCUpdateTask();
+	bool IsResetUpdateTask();
+	bool IsLEDUpdateTask();
 
 
 
-	bool isAdcUpdateTaskEnable() const;
 	void setAdcUpdateTaskEnable(bool adcUpdateTaskEnable = true);
-
-	bool isComTaskEnable() const;
 	void setComTaskEnable(bool comTaskEnable = true);
-
-	bool isErrorTaskEnable() const;
 	void setErrorTaskEnable(bool errorTaskEnable = true);
-
-	bool isIoUpdateTaskEnable() const;
 	void setIoUpdateTaskEnable(bool ioUpdateTaskEnable = true);
-
-	bool isLedUpdateTaskEnable() const;
 	void setLEDUpdateTaskEnable(bool ledUpdateTaskEnable = true);
-
-	bool isSaveTaskEnable() const;
 	void setSaveTaskEnable(bool ledUpdateTaskEnable = true);
 
 private:
@@ -58,6 +47,7 @@ private:
 	volatile bool adcUpdateTask = false;
 	volatile bool ledUpdateTask = false;
 	volatile bool saveTask = false;
+	volatile bool resetTask = false;
 
 
 	volatile bool errorTaskEnable = true;

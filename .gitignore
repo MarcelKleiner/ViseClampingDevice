@@ -7,6 +7,9 @@
 *.obj
 *.elf
 
+#visual studio 
+.vs
+
 # Linker output
 *.ilk
 *.map

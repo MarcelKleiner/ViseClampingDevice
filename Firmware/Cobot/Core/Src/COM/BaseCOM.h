@@ -34,11 +34,19 @@ class BaseCOM{
 
 		DriveSettings *driveSettings;
 
+<<<<<<< HEAD
 	private:
 
 
+=======
+		DriveSettings *driveSettings;
+>>>>>>> origin/main
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
+
+	private:
+
+
 
 
 		uint8_t data2send[7];

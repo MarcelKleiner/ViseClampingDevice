@@ -1,22 +1,13 @@
-/*
- * BaseCOM.cpp
- *
- *  Created on: 25.12.2022
- *      Author: marce
- */
-
 #include "BaseCOM.h"
 #include "../AppMain/Defines.h"
 #include "../Tools/TypeConverter.h"
 
-BaseCOM::BaseCOM(DriveStatus *driveStatus, DriveSettings *driveSettings,
-		DriveCommand *driveCommand)
+BaseCOM::BaseCOM(DriveStatus *driveStatus, DriveSettings *driveSettings, DriveCommand *driveCommand)
 {
 	this->driveSettings = driveSettings;
 	this->driveStatus = driveStatus;
 	this->driveCommand = driveCommand;
 }
-
 
 uint8_t* BaseCOM::GetSettings(uint8_t addr)
 {
@@ -292,9 +283,6 @@ void BaseCOM::SetCommand(uint8_t *data)
 			break;
 	}
 }
-
-
-
 
 uint8_t BaseCOM::CRC8(uint8_t *data, uint8_t length)
 {

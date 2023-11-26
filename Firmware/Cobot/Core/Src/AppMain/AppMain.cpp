@@ -42,10 +42,10 @@ void AppMain::Main()
 
 		if (taskStatus.isErrorTask())
 		{
-			//ToDo implement error class
+			error.PrintError();
 		}
 
-		if (taskStatus.isLEDUpdateTask())
+		if (taskStatus.IsLEDUpdateTask())
 		{
 			LED_Green.Toggle();
 		}
@@ -64,7 +64,15 @@ void AppMain::Main()
 
 		if (taskStatus.isSaveTask())
 		{
-			Storage.SaveFlash();
+			Storage.Save();
+		}
+
+		if (taskStatus.IsResetUpdateTask()) {
+			if (driveStatus.IsSelfReset()) 
+			{
+				error.ResetError();
+				driveStatus.ResetSelfReset();
+			}
 		}
 
 	}

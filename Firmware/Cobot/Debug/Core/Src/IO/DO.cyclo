@@ -1,0 +1,4 @@
+DO.cpp:11:1:DigitalOut::DigitalOut(GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t)	1
+DO.cpp:18:6:void DigitalOut::Set()	1
+DO.cpp:26:6:void DigitalOut::Reset()	1
+DO.cpp:33:6:bool DigitalOut::Status() const	1

@@ -1,0 +1,3 @@
+IOCom.cpp:16:6:virtual bool IOCom::Transmitt(uint8_t*, uint8_t)	7
+IOCom.cpp:44:6:virtual bool IOCom::Receive(uint8_t*, uint8_t)	14
+IOCom.cpp:105:6:bool IOCom::CheckData()	5

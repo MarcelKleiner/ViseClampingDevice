@@ -22,6 +22,7 @@ bool IOCom::Transmitt(uint8_t *data, uint8_t length)
 	// data[4..n] = Payload
 	// data[5] = crc
 
+<<<<<<< HEAD
 
 
 	this->driveStatus->isEnable() == true ? Out1.Set() : Out1.Reset();
@@ -34,6 +35,18 @@ bool IOCom::Transmitt(uint8_t *data, uint8_t length)
 	(bool)(errorTemp & 0x01) == true ? Out6.Set() : Out6.Reset();
 	(bool)(errorTemp & 0x02) == true ? Out7.Set() : Out7.Reset();
 	(bool)(errorTemp & 0x04) == true ? Out8.Set() : Out8.Reset();
+=======
+	this->driveStatus->IsEnable() == true ? Out1.Set() : Out1.Reset();
+	this->driveStatus->IsOpen() == true ? Out2.Set() : Out2.Reset();
+	this->driveStatus->IsClose() == true ? Out3.Set() : Out3.Reset();
+	this->driveStatus->IsStop() == true ? Out4.Set() : Out4.Reset();
+	this->driveStatus->IsTeach() == true ? Out5.Set() : Out5.Reset();
+
+	uint8_t errorTemp = (uint8_t)this->driveStatus->GetError();
+	(errorTemp & 0x01) == true ? Out6.Set() : Out6.Reset();
+	(errorTemp & 0x02) == true ? Out7.Set() : Out7.Reset();
+	(errorTemp & 0x04) == true ? Out8.Set() : Out8.Reset();
+>>>>>>> origin/main
 
 	return true;
 }
@@ -45,7 +58,7 @@ bool IOCom::Transmitt(uint8_t *data, uint8_t length)
 /// @return
 bool IOCom::Receive(uint8_t *data, uint8_t length)
 {
-	configeWriteStatus = CONFIG_WRITE;
+	configeWriteStatus = IS_CONFIG_WRITE_SET;
 
 	if (configeWriteStatus == previousConfigeWriteStatus)
 	{
@@ -66,7 +79,13 @@ bool IOCom::Receive(uint8_t *data, uint8_t length)
 	if (configeWriteStatus && !previousConfigeWriteStatus)
 	{
 		// read digial config
-		uint8_t data = ((uint8_t)CONFIG_ADDR_7 << 7) + (((uint8_t)CONFIG_ADDR_6) << 6) + (((uint8_t)CONFIG_ADDR_5) << 5) + (((uint8_t)CONFIG_ADDR_4) << 4) + (((uint8_t)CONFIG_ADDR_3) << 3) + (((uint8_t)CONFIG_ADDR_2) << 2) + (((uint8_t)CONFIG_ADDR_1) << 1);
+		uint8_t data = ((uint8_t)IS_IO7_SET << 7) + 
+			(((uint8_t)IS_IO6_SET) << 6) + 
+			(((uint8_t)IS_IO5_SET) << 5) + 
+			(((uint8_t)IS_IO4_SET) << 4) + 
+			(((uint8_t)IS_IO3_SET) << 3) + 
+			(((uint8_t)IS_IO2_SET) << 2) + 
+			(((uint8_t)IS_IO1_SET) << 1);
 
 		switch (counter)
 		{
@@ -121,16 +140,6 @@ bool IOCom::CheckData()
 	case SEND_STATUS:
 		SetStatus(data);
 		break;
-		// future use
-		//		case GET_SETTINGS:
-		//			GetSettings(reg);
-		//			break;
-		//		case GET_COMMAND:
-		//			GetCommand(reg);
-		//			break;
-		//		case GET_STATUS:
-		//			GetStatus(reg);
-		//			break;
 	default:
 		break;
 	}

@@ -1,0 +1,3 @@
+C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Cobot/build/debug/build/CMakeFiles/Cobot.dir
+C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Cobot/build/debug/build/CMakeFiles/edit_cache.dir
+C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Cobot/build/debug/build/CMakeFiles/rebuild_cache.dir

@@ -58,6 +58,8 @@ class RFM95Com :  public ICom, public BaseCOM
 
 		uint8_t data[7] ={ 0 };
 
+		uint8_t receiveErrorCounter = 0;
+
 };
 
 #endif /* SRC_COM_RFM95COM_H_ */

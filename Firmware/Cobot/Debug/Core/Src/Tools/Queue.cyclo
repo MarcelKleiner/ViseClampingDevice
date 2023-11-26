@@ -1,0 +1,4 @@
+Queue.cpp:17:6:void Queue::Enqueue(uint8_t)	7
+Queue.cpp:54:9:uint8_t Queue::Dequeue()	3
+Queue.cpp:83:6:bool Queue::IsEmpty()	1
+Queue.cpp:94:6:void Queue::Reset()	1

@@ -1,0 +1,5 @@
+Encoder.cpp:10:1:Encoder::Encoder(DriveStatus*)	1
+Encoder.cpp:15:6:bool Encoder::init()	1
+Encoder.cpp:27:6:void Encoder::ResetEncoder()	1
+Encoder.cpp:32:9:int32_t Encoder::GetValue()	1
+Encoder.cpp:37:6:bool Encoder::update()	3

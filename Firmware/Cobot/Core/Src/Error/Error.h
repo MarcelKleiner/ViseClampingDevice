@@ -1,38 +1,18 @@
-/*
- * Error.h
- *
- *  Created on: 22.10.2022
- *      Author: marce
- */
-
 #ifndef SRC_ERROR_ERROR_H_
 #define SRC_ERROR_ERROR_H_
 
+#include <stm32l433xx.h>
+#include "../Status/DriveStatus.h"
 
 class Error{
 public:
-	void FatalError();
-	void Error();
-
-
-	enum FATAL_ERRROR{
-		RFM_COM_F_ERROR,
-
-	};
-
-	enum ERROR{
-
-	};
-
-
+	Error(DriveStatus* driveStatus);
+	void PrintError();
+	void ResetError();
 private:
-
 	uint8_t errorCode;
-
-
+	uint8_t erroCounter = 0;
+	DriveStatus* driveStatus;
 };
-
-
-
 
 #endif /* SRC_ERROR_ERROR_H_ */

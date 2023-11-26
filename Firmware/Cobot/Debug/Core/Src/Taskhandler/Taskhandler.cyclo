@@ -1,0 +1,13 @@
+Taskhandler.cpp:21:6:void TaskHandler::UpdateTasks()	8
+Taskhandler.cpp:64:6:bool TaskHandler::isComTask()	3
+Taskhandler.cpp:70:6:bool TaskHandler::isSaveTask()	3
+Taskhandler.cpp:76:6:bool TaskHandler::isErrorTask()	3
+Taskhandler.cpp:82:6:bool TaskHandler::isIoUpdateTask()	3
+Taskhandler.cpp:89:6:bool TaskHandler::IsADCUpdateTask()	3
+Taskhandler.cpp:96:6:bool TaskHandler::IsLEDUpdateTask()	3
+Taskhandler.cpp:103:6:void TaskHandler::setAdcUpdateTaskEnable(bool)	1
+Taskhandler.cpp:108:6:void TaskHandler::setComTaskEnable(bool)	1
+Taskhandler.cpp:112:6:void TaskHandler::setErrorTaskEnable(bool)	1
+Taskhandler.cpp:117:6:void TaskHandler::setIoUpdateTaskEnable(bool)	1
+Taskhandler.cpp:121:6:void TaskHandler::setLEDUpdateTaskEnable(bool)	1
+Taskhandler.cpp:125:6:void TaskHandler::setSaveTaskEnable(bool)	1

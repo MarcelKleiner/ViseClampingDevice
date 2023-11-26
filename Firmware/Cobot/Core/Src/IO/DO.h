@@ -21,7 +21,7 @@ public:
 	void Reset();
 
 
-	bool Status();
+	bool Status() const;
 
 private:
 

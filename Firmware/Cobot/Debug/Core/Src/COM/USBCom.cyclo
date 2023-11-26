@@ -1,0 +1,2 @@
+USBCom.cpp:13:6:virtual bool USBCom::Transmitt(uint8_t*, uint8_t)	4
+USBCom.cpp:33:6:virtual bool USBCom::Receive(uint8_t*, uint8_t)	9

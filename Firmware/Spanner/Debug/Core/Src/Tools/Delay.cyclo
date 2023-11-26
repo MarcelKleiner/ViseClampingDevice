@@ -1,0 +1,2 @@
+Delay.cpp:14:6:static void Delay::DWT_Init()	1
+Delay.cpp:23:6:static void Delay::DWT_Delay_us(uint32_t)	2

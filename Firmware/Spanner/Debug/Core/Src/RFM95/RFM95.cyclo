@@ -1,0 +1,36 @@
+RFM95.cpp:11:1:RFM95_LoRa::RFM95_LoRa()	1
+RFM95.cpp:28:6:void RFM95_LoRa::selectRFM()	1
+RFM95.cpp:38:6:void RFM95_LoRa::deselectRFM()	1
+RFM95.cpp:42:6:void RFM95_LoRa::resetRFM()	1
+RFM95.cpp:49:6:bool RFM95_LoRa::writeRegister(uint8_t, uint8_t)	2
+RFM95.cpp:60:9:uint8_t RFM95_LoRa::readRegister(uint8_t)	1
+RFM95.cpp:71:5:int RFM95_LoRa::begin(long int)	2
+RFM95.cpp:98:6:void RFM95_LoRa::end()	1
+RFM95.cpp:105:5:int RFM95_LoRa::beginPacket(int)	2
+RFM95.cpp:123:5:int RFM95_LoRa::endPacket()	2
+RFM95.cpp:138:5:int RFM95_LoRa::parsePacket(int)	6
+RFM95.cpp:176:5:int RFM95_LoRa::packetRssi()	2
+RFM95.cpp:181:7:float RFM95_LoRa::packetSnr()	1
+RFM95.cpp:185:8:virtual size_t RFM95_LoRa::write(uint8_t)	1
+RFM95.cpp:191:8:virtual size_t RFM95_LoRa::write(const uint8_t*, size_t)	3
+RFM95.cpp:208:5:virtual int RFM95_LoRa::available()	1
+RFM95.cpp:215:5:virtual int RFM95_LoRa::read()	2
+RFM95.cpp:225:5:virtual int RFM95_LoRa::peek()	2
+RFM95.cpp:239:6:void RFM95_LoRa::receive(int)	2
+RFM95.cpp:249:6:void RFM95_LoRa::idle()	1
+RFM95.cpp:253:6:void RFM95_LoRa::rxMode()	1
+RFM95.cpp:258:6:void RFM95_LoRa::sleep()	1
+RFM95.cpp:264:6:void RFM95_LoRa::setTxPower(int, int)	6
+RFM95.cpp:286:6:void RFM95_LoRa::setFrequency(long int)	1
+RFM95.cpp:296:6:void RFM95_LoRa::setSpreadingFactor(int)	4
+RFM95.cpp:314:6:void RFM95_LoRa::setSignalBandwidth(long int)	10
+RFM95.cpp:343:6:void RFM95_LoRa::setCodingRate4(int)	3
+RFM95.cpp:353:6:void RFM95_LoRa::setPreambleLength(long int)	1
+RFM95.cpp:359:6:void RFM95_LoRa::setSyncWord(int)	1
+RFM95.cpp:364:6:void RFM95_LoRa::enableCrc()	1
+RFM95.cpp:369:6:void RFM95_LoRa::disableCrc()	1
+RFM95.cpp:374:9:uint8_t RFM95_LoRa::random()	1
+RFM95.cpp:379:6:void RFM95_LoRa::explicitHeaderMode()	1
+RFM95.cpp:385:6:void RFM95_LoRa::implicitHeaderMode()	1
+RFM95.cpp:392:6:void RFM95_LoRa::handleDio0Rise()	4
+RFM95.cpp:413:6:bool RFM95_LoRa::InitRFM()	2

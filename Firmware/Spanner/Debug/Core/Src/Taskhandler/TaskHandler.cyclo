@@ -1,0 +1,9 @@
+TaskHandler.cpp:13:6:void TaskHandler::UpdateTasks()	6
+TaskHandler.cpp:46:6:bool TaskHandler::isComTask()	1
+TaskHandler.cpp:52:6:bool TaskHandler::isDriveTask()	1
+TaskHandler.cpp:58:6:bool TaskHandler::isErrorTask()	1
+TaskHandler.cpp:65:6:bool TaskHandler::isLEDTask()	1
+TaskHandler.cpp:75:6:void TaskHandler::setComTaskEnable(bool)	1
+TaskHandler.cpp:80:6:void TaskHandler::setDriveTaskEnable(bool)	1
+TaskHandler.cpp:85:6:void TaskHandler::setErrorTaskEnable(bool)	1
+TaskHandler.cpp:91:6:void TaskHandler::setLEDTaskEnable(bool)	1
