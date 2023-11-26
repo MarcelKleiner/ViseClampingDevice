@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Schraubstock
 {
     internal class ViewModel : INotifyPropertyChanged
     {
-        public static Brush? _lightRed = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFF7D7D7");
-        public static Brush? _lightGreen = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFD7F7DC");
-        public static Brush? _lightYellow = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFF3F0CC");
+        public static Brush? _lightRed;
+        public static Brush? _lightGreen;
+        public static Brush? _lightYellow;
 
-        private List<string> _comPorts;
-        private string _selectedComPort;
+        private List<string> _comPorts = new();
+        private string _selectedComPort = "";
 
         private string _lblEnable = string.Empty;
         private string _lblClose = string.Empty;
@@ -25,12 +22,20 @@ namespace Schraubstock
         private string _lblReset = string.Empty;
         private string _lblTeach = string.Empty;
 
-        private Brush _lblEnableBrush = _lightRed;
-        private Brush _lblCloseBrush = _lightRed;
-        private Brush _lblOpenBrush = _lightRed;
-        private Brush _lblStopBrush = _lightRed;
-        private Brush _lblResetBrush = _lightRed;
-        private Brush _lblTeachBrush = _lightRed;
+        private Brush? _lblEnableBrush = _lightRed;
+        private Brush? _lblCloseBrush = _lightRed;
+        private Brush? _lblOpenBrush = _lightRed;
+        private Brush? _lblStopBrush = _lightRed;
+        private Brush? _lblResetBrush = _lightRed;
+        private Brush? _lblTeachBrush = _lightRed;
+
+        public ViewModel()
+        {
+            _lightRed = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFF7D7D7");
+            _lightGreen = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFD7F7DC") ?? throw new NullReferenceException();
+            _lightYellow = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFF3F0CC") ?? throw new NullReferenceException();
+        }
+
 
         public List<string> ComPorts
         {
@@ -83,37 +88,37 @@ namespace Schraubstock
 
 
 
-        public Brush LblEnableBrush
+        public Brush? LblEnableBrush
         {
             get { return _lblEnableBrush; }
             set { _lblEnableBrush = value; OnPropertyChanged(nameof(LblEnableBrush)); }
         }
 
-        public Brush LblCloseBrush
+        public Brush? LblCloseBrush
         {
             get { return _lblCloseBrush; }
             set { _lblCloseBrush = value; OnPropertyChanged(nameof(LblCloseBrush)); }
         }
 
-        public Brush LblOpenBrush
+        public Brush? LblOpenBrush
         {
             get { return _lblOpenBrush; }
             set { _lblOpenBrush = value; OnPropertyChanged(nameof(LblOpenBrush)); }
         }
 
-        public Brush LblStopBrush
+        public Brush? LblStopBrush
         {
             get { return _lblStopBrush; }
             set { _lblStopBrush = value; OnPropertyChanged(nameof(LblStopBrush)); }
         }
 
-        public Brush LblResetBrush
+        public Brush? LblResetBrush
         {
             get { return _lblResetBrush; }
             set { _lblResetBrush = value; OnPropertyChanged(nameof(LblResetBrush)); }
         }
 
-        public Brush LblTeachBrush
+        public Brush? LblTeachBrush
         {
             get { return _lblTeachBrush; }
             set { _lblTeachBrush = value; OnPropertyChanged(nameof(LblTeachBrush)); }
@@ -127,7 +132,7 @@ namespace Schraubstock
 
         // Create the OnPropertyChanged method to raise the event
         // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

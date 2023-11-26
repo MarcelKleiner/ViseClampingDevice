@@ -138,21 +138,19 @@ void AppMain::Main()
 				driveStatus.setError(DriveStatus::E_UNDERVOLTAGE_ERROR);
 			}
 
-
-
 			if (driveStatus.getError() != DriveStatus::E_NO_ERROR)
 			{
 				drive.Stop();
 				taskHandler.setDriveTaskEnable(false);
 				taskHandler.setLEDTaskEnable(false);
-				error.error2LED();
+				//error.error2LED(); ToDo
 			}
 		}
 
 
-		if (taskHandler.isLEDTask())
+		if (taskHandler.isLEDTask() && driveStatus.getError() == DriveStatus::E_NO_ERROR)
 		{
-			led.Toggle();
+			//led.Toggle(); ToDo
 		}
 
 	}
@@ -163,11 +161,11 @@ void AppMain::Main()
 
 void AppMain::ADCRead(ADC_HandleTypeDef *hadc)
 {
-    currentSum = currentSum - currentArray[staticCounter] + adc1Buffer[0];
-    currentArray[staticCounter] = adc1Buffer[0];
+    currentSum = currentSum - currentArray[staticCounter] + adc1Buffer[1];
+    currentArray[staticCounter] = adc1Buffer[1];
 
-    voltageSum = voltageSum - voltageArray[staticCounter] + adc1Buffer[1];
-    voltageArray[staticCounter] = adc1Buffer[1];
+    voltageSum = voltageSum - voltageArray[staticCounter] + adc1Buffer[0];
+    voltageArray[staticCounter] = adc1Buffer[0];
 
 
     if (staticCounter == MEAN_VALUE_SIZE-1)

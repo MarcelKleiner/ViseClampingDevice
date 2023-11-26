@@ -83,7 +83,14 @@
 #define ERROR_CHANGE					0x80
 
 
+#define ADC_UPDATE_TIME             	2
+#define IO_UPDATE_TIME  	        	15
+#define ERROR_UPDATE_TIME           	100
+#define LED_UPDATE_TIME             	500
+#define COM_UPDATE_TIME					600
+#define SAVE_UPDATE_TIME            	1000
 
+#define IO_TIMEOUT						100
 
 
 #define CONFIG_WRITE 	HAL_GPIO_ReadPin(DI_1_GPIO_Port, DI_1_Pin) == GPIO_PIN_SET

@@ -11,8 +11,8 @@
 DigitalOut::DigitalOut(GPIO_TypeDef* GPIOx_N, uint16_t GPIO_Pin_N, GPIO_TypeDef* GPIOx_P, uint16_t GPIO_Pin_P){
 	this->GPIO_Pin_N = GPIO_Pin_N;
 	this->GPIOx_N = GPIOx_N;
-	this->GPIO_Pin_N = GPIO_Pin_P;
-	this->GPIOx_N = GPIOx_P;
+	this->GPIO_Pin_P = GPIO_Pin_P;
+	this->GPIOx_P = GPIOx_P;
 }
 
 

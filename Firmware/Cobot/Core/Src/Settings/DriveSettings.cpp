@@ -250,4 +250,9 @@ uint16_t DriveSettings::getSettingsChangedReg() const
 
 void DriveSettings::ResetSettingsChanged(uint16_t bit){
 	settingsChangedReg &= ~bit;
+
+	if(bit != 0)
+	{
+		saveSettings = true;
+	}
 }

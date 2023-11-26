@@ -10,6 +10,7 @@
 
 
 #include "stdint.h"
+#include "../AppMain/Defines.h"
 
 
 class TaskHandler{

@@ -24,7 +24,7 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_COMMAND;
+	data2send[2] = GET_SETTINGS;
 	data2send[3] = addr;
 
 	switch (addr)
@@ -74,12 +74,16 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 			break;
 		case DEVICE_ADDRESS_ADDR:
 			data2send[4] = driveSettings->getDeviceAddress();
+			data2send[5] = 0;
 			break;
 		default:
-			data2send[1] = 0x1D;
+			data2send[0] = 0x1D;
+			data2send[4] = 0;
+			data2send[5] = 0;
 			break;
 	}
 	data2send[6] = CRC8(data2send, 6);
+	data2send[7] = 0;
 	return data2send;
 }
 
@@ -123,7 +127,7 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 			break;
 	}
 	data2send[6] = CRC8(data2send, 6);
-
+	data2send[7] = 0;
 	return data2send;
 }
 
@@ -163,7 +167,7 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 			break;
 	}
 	data2send[6] = CRC8(data2send, 6);
-
+	data2send[7] = 0;
 	return data2send;
 }
 

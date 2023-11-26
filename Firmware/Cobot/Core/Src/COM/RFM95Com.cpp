@@ -121,6 +121,8 @@ bool RFM95Com::Transmitt(uint8_t *data, uint8_t length)
 		txData = dataTemp;
 	}
 
+	HAL_GPIO_TogglePin(LED_R_GPIO_Port, LED_R_Pin);
+
 	rfm95->beginPacket();
 	rfm95->write(txData, 7);
 	rfm95->endPacket();

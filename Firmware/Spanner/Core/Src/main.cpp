@@ -188,6 +188,10 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
 	}
 }
 
+void USB_CDC_RX_Interrupt(uint8_t *data, uint32_t length)
+{
+
+}
 
 /* USER CODE END 4 */
 

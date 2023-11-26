@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Schraubstock.Communication
@@ -14,12 +12,16 @@ namespace Schraubstock.Communication
         private SerialPort? sPort;
         private List<byte> rxData = new List<byte>();
         private bool isDataReady;
-        private string comPort;
+        private string comPort = "";
 
         public enum ReadWrite
         {
-            Write,
-            Read
+            SEND_SETTINGS = 0x01,
+            SEND_COMMAND = 0x02,
+            SEND_STATUS = 0x03,
+            GET_SETTINGS = 0x11,
+            GET_COMMAND = 0x12,
+            GET_STATUS = 0x13,
         }
 
         public bool IsDataReady
@@ -38,7 +40,7 @@ namespace Schraubstock.Communication
 
         public bool IsConnected()
         {
-            return sPort == null ? false: sPort.IsOpen;
+            return sPort != null && sPort.IsOpen;
         }
 
         public string GetComPort()
@@ -48,15 +50,16 @@ namespace Schraubstock.Communication
 
         public bool Connect(string comport)
         {
-            sPort = new SerialPort();
-
-            sPort.BaudRate = 115200;
-            sPort.PortName = comport;
-            sPort.Parity = Parity.None;
-            sPort.StopBits = StopBits.One;
-            sPort.DataBits = 8;
-            sPort.ReadTimeout = 500;
-            sPort.WriteTimeout = 500;
+            sPort = new SerialPort
+            {
+                BaudRate = 115200,
+                PortName = comport,
+                Parity = Parity.None,
+                StopBits = StopBits.One,
+                DataBits = 8,
+                ReadTimeout = 500,
+                WriteTimeout = 500
+            };
             try
             {
                 sPort.Open();
@@ -73,7 +76,7 @@ namespace Schraubstock.Communication
 
         public bool Dissconnect()
         {
-            if(sPort != null && sPort.IsOpen)
+            if (sPort != null && sPort.IsOpen)
             {
                 sPort.Dispose();
                 return true;
@@ -84,7 +87,7 @@ namespace Schraubstock.Communication
         private void SPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort port = (SerialPort)sender;
-            if(port.BytesToRead == 0) { return; }
+            if (port.BytesToRead == 0) { return; }
 
             byte[] buffer = new byte[port.BytesToRead];
             var result = port.Read(buffer, 0, port.BytesToRead);
@@ -94,44 +97,52 @@ namespace Schraubstock.Communication
 
         public byte[]? Write(byte register, ReadWrite readWrite, byte[]? data = null)
         {
-            int length = data != null ? data.Length : 0;
-            byte[] data2Write = new byte[length + 3];
+            if (sPort == null || !sPort.IsOpen)
+                return null;
 
-            if (sPort.IsOpen)
+            if (data != null && data.Length != 2)
+                throw new Exception("data length must be 2");
+
+
+            byte[] data2Write = new byte[7];
+            data2Write[0] = 0x1F;
+            data2Write[1] = 0x1F;
+            data2Write[2] = (byte)readWrite;
+            data2Write[3] = register;
+
+            if (data != null)
             {
-                data2Write[0] = (byte)readWrite;
-                data2Write[1] = register;
-
-                for (int i = 0; i < length; i++)
+                for (int i = 0; i < 2; i++)
                 {
-                    data2Write[i + 2] = data[i];
+                    data2Write[i + 4] = data[i];
                 }
-
-                data2Write[length + 2] = CRC8(data2Write);
-                IsDataReady = false;
-                sPort.Write(data2Write, 0, data2Write.Length);
-
-                int timeout = 1000;
-                while (!IsDataReady && (--timeout) > 0)
-                {
-                    Thread.Sleep(1);
-                }
-
-                if(timeout == 0)
-                {
-                    return null;
-                }
-
-                return rxData.ToArray(); 
             }
-            return null;
+
+            data2Write[6] = CRC8(data2Write);
+
+            IsDataReady = false;
+
+            sPort.Write(data2Write, 0, data2Write.Length);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (IsDataReady)
+                    return rxData.ToArray();
+
+                if (i == 1)
+                    throw new TimeoutException();
+
+                Thread.Sleep(1);
+            }
+
+            throw new Exception("Unknown error");
         }
 
-        private byte CRC8(byte[] data)
+        private static byte CRC8(byte[] data)
         {
             byte crc = 0xff;
             int i, j;
-            for (i = 0; i < data.Length; i++)
+            for (i = 0; i < data.Length-1; i++)
             {
                 crc ^= data[i];
                 for (j = 0; j < 8; j++)

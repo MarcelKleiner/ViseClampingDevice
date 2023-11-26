@@ -32,24 +32,29 @@ bool USBCom::Transmitt(uint8_t *data, uint8_t length)
 
 bool USBCom::Receive(uint8_t *data, uint8_t length)
 {
-	uint8_t data2send[] = { 0x1D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+	uint8_t data2send[] = { 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	uint8_t crc = 0;
+
+
+
 
 	//data[0] = 0x1F
 	//data[1] = deviceAddress
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
-	//data[4..n] = Payload
+	//data[4+5] = Payload
 	//data[6] = crc
 
 	if (length >= 5)
 	{
 		//calculate CRC from received data
+
 		crc = this->CRC8(data, 6);
 		if (crc != data[6])
 		{
 			data[2] = 0;
 		}
+
 
 		switch (data[2])
 		{
@@ -76,8 +81,8 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 
 		data2send[0] = 0x1F;
 		data2send[1] = driveSettings->getDeviceAddress();
-		data2send[2] = 0x00;
-		data2send[3] = 0x00;
+		data2send[2] = 0x01;
+		data2send[3] = 0x01;
 		data2send[6] = CRC8(data2send, 6);
 		return Transmitt(data2send, 6);
 	}

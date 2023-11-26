@@ -167,16 +167,21 @@ namespace Schraubstock
             try
             {
                 ComboBox cmb = (ComboBox)sender;
+                if (cmb.SelectedItem == null)
+                    return;
+
                 string? comPort = cmb.SelectedItem.ToString();
-                if (comPort != null)
+
+                if (comPort == null)
+                    return;
+
+                viewModel.SelectedComPort = comPort;
+                if (!usbCom.Connect(comPort))
                 {
-                    viewModel.SelectedComPort = comPort;
-                    if (!usbCom.Connect(comPort))
-                    {
-                        viewModel.SelectedComPort = "";
-                        cmb.SelectedIndex = -1;
-                    }
+                    viewModel.SelectedComPort = "";
+                    cmb.SelectedIndex = -1;
                 }
+
             }
             catch
             {
@@ -224,16 +229,16 @@ namespace Schraubstock
         {
             try
             {
-                var data = usbCom.Write(register, USB_CDC.ReadWrite.Read);
+                var data = usbCom.Write(register, USB_CDC.ReadWrite.GET_STATUS);
                 if (data != null && data[1] == register)
                 {
                     diagnoseCounter++;
                     return data[2] == 0 ? ViewModel._lightRed : ViewModel._lightGreen;
-                    
+
                 }
                 return ViewModel._lightYellow;
             }
-            catch(Exception ex)
+            catch
             {
                 //  MessageBox.Show(diagnoseCounter.ToString());
                 usbCom.Dissconnect();

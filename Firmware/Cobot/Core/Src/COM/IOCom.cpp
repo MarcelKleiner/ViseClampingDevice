@@ -22,6 +22,8 @@ bool IOCom::Transmitt(uint8_t *data, uint8_t length)
 	// data[4..n] = Payload
 	// data[5] = crc
 
+
+
 	this->driveStatus->isEnable() == true ? Out1.Set() : Out1.Reset();
 	this->driveStatus->isOpen() == true ? Out2.Set() : Out2.Reset();
 	this->driveStatus->isClose() == true ? Out3.Set() : Out3.Reset();
@@ -29,9 +31,9 @@ bool IOCom::Transmitt(uint8_t *data, uint8_t length)
 	this->driveStatus->isTeach() == true ? Out5.Set() : Out5.Reset();
 
 	uint8_t errorTemp = (uint8_t)this->driveStatus->getError();
-	errorTemp & 0x01 == true ? Out6.Set() : Out6.Reset();
-	errorTemp & 0x02 == true ? Out7.Set() : Out7.Reset();
-	errorTemp & 0x04 == true ? Out8.Set() : Out8.Reset();
+	(bool)(errorTemp & 0x01) == true ? Out6.Set() : Out6.Reset();
+	(bool)(errorTemp & 0x02) == true ? Out7.Set() : Out7.Reset();
+	(bool)(errorTemp & 0x04) == true ? Out8.Set() : Out8.Reset();
 
 	return true;
 }

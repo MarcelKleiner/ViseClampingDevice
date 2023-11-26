@@ -39,19 +39,20 @@ void TaskHandler::UpdateTasks() {
 	}
 
 
-
 	//100ms
 	if(counter % ERROR_UPDATE_TIME == 0){
 		errorTask = true;
 	}
 
-
 	//500ms
 	if(counter % LED_UPDATE_TIME == 0){
 		ledUpdateTask = true;
-		comTask = true;
 	}
 
+	//600ms
+	if(counter % COM_UPDATE_TIME == 0){
+		comTask = true;
+	}
 
 	//1000ms
 	if(counter % SAVE_UPDATE_TIME == 0){

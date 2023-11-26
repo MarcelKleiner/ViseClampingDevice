@@ -122,6 +122,7 @@ void DriveStatus::setError(_ERROR error)
 {
 	if (this->error != error)
 	{
+		this->error = error;
 		statusChanged = true;
 	}
 }

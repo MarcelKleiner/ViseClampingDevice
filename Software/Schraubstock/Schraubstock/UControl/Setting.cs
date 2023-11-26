@@ -9,13 +9,13 @@ namespace Schraubstock.UControl
     internal class Setting
     {
 
-        private TextBox txtValue;
+        private readonly TextBox _txtValue;
         private string currentTxtValue = "";
 
         public int MaxValue { get; set; } = 32767;
         public int MinValue { get; set; } = -32768;
         public byte Register { get; set; } = 0x00;
-        public USB_CDC COM { get; set; }
+        public USB_CDC COM { get; set; } = new();
 
 
         public Setting(Button read, Button write, TextBox txtValue)
@@ -23,70 +23,77 @@ namespace Schraubstock.UControl
             read.Click += Read_Click;
             write.Click += Write_Click;
             txtValue.KeyUp += TxtValue_KeyUp; ;
-            this.txtValue = txtValue;
+            _txtValue = txtValue;
         }
 
         private void TxtValue_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             try
             {
-                if (txtValue.Text == "")
+                if (_txtValue.Text == "")
                 {
-                    currentTxtValue = txtValue.Text;
+                    currentTxtValue = _txtValue.Text;
                     return;
                 }
 
-                short value = Convert.ToInt16(txtValue.Text);
+                short value = Convert.ToInt16(_txtValue.Text);
                 if (value > MaxValue)
                 {
-                    txtValue.Text = MaxValue.ToString();
+                    _txtValue.Text = MaxValue.ToString();
                 }
                 if (value < MinValue)
                 {
-                    txtValue.Text = MinValue.ToString();
+                    _txtValue.Text = MinValue.ToString();
                 }
-                currentTxtValue = txtValue.Text;
+                currentTxtValue = _txtValue.Text;
             }
             catch
             {
-                txtValue.Text = currentTxtValue;
+                _txtValue.Text = currentTxtValue;
             }
         }
 
-        private void Write_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (COM == null || string.IsNullOrEmpty(currentTxtValue))
-            {
-                MessageBox.Show("Ungültige angaben", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            COM.Write(Register, USB_CDC.ReadWrite.Write, TypeConverter.Int16ToByte(Convert.ToInt16(currentTxtValue)));
-        }
-
-        private void Read_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Write_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var data = COM.Write(Register, USB_CDC.ReadWrite.Read, null);
-
-                if (data == null || data[0] != 0x1D)
+                if (COM == null || string.IsNullOrEmpty(currentTxtValue))
                 {
-                    //MessageBox.Show("Ungültige Daten");
+                    MessageBox.Show("Ungültige angaben", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                else
+
+                COM.Write(Register, USB_CDC.ReadWrite.SEND_SETTINGS, TypeConverter.Int16ToByte(Convert.ToInt16(currentTxtValue)));
+            }
+            catch
+            {
+
+            }
+
+
+
+        }
+
+        private void Read_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var data = COM.Write(Register, USB_CDC.ReadWrite.GET_SETTINGS, null);
+
+                if (data == null || data[0] != 0x1F)
                 {
-                    if (data[1] != Register)
-                    {
-                        MessageBox.Show("Falsche Daten");
-                    }
-                    else
-                    {
-                        txtValue.Text = TypeConverter.ByteToInt16(data, 2).ToString();
-                        currentTxtValue = txtValue.Text;
-                    }
+                    MessageBox.Show("Ungültige Daten empfangen");
+                    return;
                 }
+
+                if (data[3] != Register)
+                {
+                    MessageBox.Show("Falsche Daten");
+                    return;
+                }
+
+                _txtValue.Text = TypeConverter.ByteToInt16(data, 4).ToString();
+                currentTxtValue = _txtValue.Text;
             }
             catch
             {

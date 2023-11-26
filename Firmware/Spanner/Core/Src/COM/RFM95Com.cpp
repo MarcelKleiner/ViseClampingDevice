@@ -7,6 +7,7 @@
 
 #include "RFM95Com.h"
 #include "../AppMain/Defines.h"
+#include "usbd_cdc_if.h"
 
 bool RFM95Com::Transmitt(uint8_t *data, uint8_t length)
 {
@@ -15,7 +16,7 @@ bool RFM95Com::Transmitt(uint8_t *data, uint8_t length)
 	}
 
 	rfm95->beginPacket();
-	rfm95->write(data, 7);
+	rfm95->write(data, length);
 	rfm95->endPacket();
 	return true;
 }
@@ -26,8 +27,11 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 	//data[1] = deviceAddress
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
 	//data[3] = reg addr (close, open, setTeach...)
-	//data[4..n] = Payload
-	//data[5] = crc
+	//data[4..5] = Payload
+	//data[6] = crc
+
+
+
 
 	uint8_t* txDataTemp;
 
@@ -47,6 +51,18 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 			counter++;
 		}
 
+		rxData[7] = '\n';
+
+//		uint8_t delay = 5;
+//		HAL_StatusTypeDef result = HAL_ERROR;
+//
+//		while(delay > 1 && result != HAL_OK){
+//			result = (HAL_StatusTypeDef)CDC_Transmit_FS((uint8_t*) rxData, 8);
+//			delay--;
+//			HAL_Delay(1);
+//		}
+
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 		//check CRC
 		if (CRC8(rxData, 6) != rxData[6])
 		{
@@ -66,6 +82,11 @@ bool RFM95Com::Receive(uint8_t *data, uint8_t length)
 				0x00
 		};
 		txData[6] = CRC8(txData, 6);
+
+		if(rxData[2] != 19){
+			txData[0] = 1;
+		}
+
 
 		switch (rxData[2])
 		{
