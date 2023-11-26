@@ -4,13 +4,24 @@
 #ifndef SRC_APPMAIN_DEFINES_H_
 #define SRC_APPMAIN_DEFINES_H_
 
-constexpr auto SEND_SETTINGS = 0x01;
-constexpr auto SEND_COMMAND = 0x02;
-constexpr auto SEND_STATUS = 0x03;
+//constexpr auto SEND_SETTINGS = 0x01;
+//constexpr auto SEND_COMMAND = 0x02;
+//constexpr auto SEND_STATUS = 0x03;
+//
+//constexpr auto GET_SETTINGS = 0x11;
+//constexpr auto GET_COMMAND = 0x12;
+//constexpr auto GET_STATUS = 0x13;
 
-constexpr auto GET_SETTINGS = 0x11;
-constexpr auto GET_COMMAND = 0x12;
-constexpr auto GET_STATUS = 0x13;
+
+constexpr uint8_t GET_SETTINGS_TO_TRANSMIT = 0x21;
+constexpr uint8_t GET_COMMAND_TO_TRANSMIT = 0x22;
+constexpr uint8_t GET_STATUS_TO_TRANSMIT = 0x23;
+
+constexpr uint8_t SET_SETTINGS_FROM_RECEIVE = 0x31;
+constexpr uint8_t SET_COMMAND_FROM_RECEIVE = 0x32;
+constexpr uint8_t SET_STATUS_FROM_RECEIVE = 0x33;
+
+
 
 constexpr auto ADC_UPDATE_TIME = 2;
 constexpr auto IO_UPDATE_TIME = 15;

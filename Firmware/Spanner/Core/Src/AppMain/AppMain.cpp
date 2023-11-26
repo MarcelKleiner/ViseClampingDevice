@@ -99,17 +99,22 @@ void AppMain::Main()
 			if (!rfm95COM->Receive())
 			{
 				comLoseCounter++;
-				drive.Stop();
 			}
 			else
 			{
 				comLoseCounter = 0;
 			}
 
+			if (comLoseCounter > 20) 
+			{
+				drive.Stop();
+			}
+
 			if (comLoseCounter == (driveSettings.getSelfShutdownDelay() * 4))
 			{
 				//Self-shutdown when the delay time for self-shutdown has elapsed
 				HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_RESET);
+				comLoseCounter = 65000;
 			}
 		}
 

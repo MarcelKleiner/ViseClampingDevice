@@ -17,7 +17,7 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_COMMAND;
+	data2send[2] = GET_SETTINGS_TO_TRANSMIT;
 	data2send[3] = addr;
 
 	switch (addr)
@@ -82,7 +82,7 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_STATUS;
+	data2send[2] = GET_STATUS_TO_TRANSMIT;
 	data2send[3] = addr;
 
 	switch (addr)

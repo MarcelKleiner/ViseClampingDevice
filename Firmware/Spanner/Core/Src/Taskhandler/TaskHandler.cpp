@@ -23,8 +23,8 @@ void TaskHandler::UpdateTasks() {
 		errorTask = true;
 	}
 
-	//250ms
-	if(counter % 250 == 0){
+	//ms
+	if(counter % 90 == 0){
 		comTask = true;
 	}
 
@@ -44,26 +44,26 @@ void TaskHandler::UpdateTasks() {
 
 
 bool TaskHandler::isComTask()  {
-	bool comTaskTemp = (comTask & comTaskEnable);
+	bool comTaskTemp = (comTask && comTaskEnable);
 	comTask = false;
 	return comTaskTemp;
 }
 
 bool TaskHandler::isDriveTask()  {
-	bool driveTaskTemp = (driveTask & driveTaskEnable);
+	bool driveTaskTemp = (driveTask && driveTaskEnable);
 	driveTask = false;
 	return driveTaskTemp;
 }
 
 bool TaskHandler::isErrorTask()  {
-	bool errorTaskTemp = (errorTask & errorTaskEnable);
+	bool errorTaskTemp = (errorTask && errorTaskEnable);
 	errorTask = false;
 	return errorTaskTemp;
 }
 
 
 bool TaskHandler::isLEDTask(){
-	bool ledTaskTemp = (ledTask & ledTaskEnable);
+	bool ledTaskTemp = (ledTask && ledTaskEnable);
 	ledTask = false;
 	return ledTaskTemp;
 }

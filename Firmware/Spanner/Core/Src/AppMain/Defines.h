@@ -8,52 +8,49 @@
 #ifndef SRC_APPMAIN_DEFINES_H_
 #define SRC_APPMAIN_DEFINES_H_
 
-#define GEAR_RATIO			1
-#define CURRENT_2_TORQUE	1
+constexpr auto  GEAR_RATIO = 1;
+constexpr auto  CURRENT_2_TORQUE = 1;
 
 
+constexpr auto  SEND_SETTINGS = 0x01;
+constexpr auto  SEND_COMMAND = 0x02;
+constexpr auto  SEND_STATUS = 0x03;
 
-#define SEND_SETTINGS			0x01
-#define SEND_COMMAND			0x02
-#define SEND_STATUS				0x03
-
-#define GET_SETTINGS			0x11
-#define GET_COMMAND				0x12
-#define GET_STATUS				0x13
+constexpr auto  GET_SETTINGS = 0x11;
+constexpr auto  GET_COMMAND = 0x12;
+constexpr auto  GET_STATUS = 0x13;
 
 //Address
-#define CLOSE_ADDR					0x01
-#define OPEN_ADDR					0x02
-#define TEACH_ADDR					0x03
-#define RESET_ADDR					0x04
-#define ENABLE_ADDR					0x05
+constexpr auto  CLOSE_ADDR = 0x01;
+constexpr auto  OPEN_ADDR = 0x02;
+constexpr auto  TEACH_ADDR = 0x03;
+constexpr auto  RESET_ADDR = 0x04;
+constexpr auto  ENABLE_ADDR = 0x05;
 
-#define STOP_ADDR					0x07
-#define ERROR_ADDR					0x08
-#define STATUS_ADDR					0x09
+constexpr auto  STOP_ADDR = 0x07;
+constexpr auto  ERROR_ADDR = 0x08;
+constexpr auto  STATUS_ADDR = 0x09;
 
-#define TEACH_TORQUE_ADDR			0x10
-#define TEACH_SPEED_ADDR			0x11
+constexpr auto  TEACH_TORQUE_ADDR = 0x10;
+constexpr auto  TEACH_SPEED_ADDR = 0x11;
 
-#define CLAMPING_TORQUE_ADDR		0x12
-#define CLAMPING_SPEED_ADDR			0x13
+constexpr auto  CLAMPING_TORQUE_ADDR = 0x12;
+constexpr auto  CLAMPING_SPEED_ADDR = 0x13;
 
-#define SELF_SHUTDOWN_DELAY_ADDR	0x14
-#define IN_POS_DIFF_ADDR			0x15
-#define OPENING_DISTANCE_ADDR		0x16
+constexpr auto  SELF_SHUTDOWN_DELAY_ADDR = 0x14;
+constexpr auto  IN_POS_DIFF_ADDR = 0x15;
+constexpr auto  OPENING_DISTANCE_ADDR = 0x16;
 
-#define UNDERVOLTAGE_WARNING_ADDR	0x17
-#define UNDERVOLTAGE_ERROR_ADDR		0x18
+constexpr auto  UNDERVOLTAGE_WARNING_ADDR = 0x17;
+constexpr auto  UNDERVOLTAGE_ERROR_ADDR = 0x18;
 
-#define OVER_CURRENT_WARNING_ADDR	0x19
-#define OVER_CURRENT_ERROR_ADDR		0x1A
+constexpr auto  OVER_CURRENT_WARNING_ADDR = 0x19;
+constexpr auto  OVER_CURRENT_ERROR_ADDR = 0x1A;
 
-#define DEVICE_ADDRESS_ADDR			0x20
-
-
-#define RCV_STATUS			0xAA
+constexpr auto  DEVICE_ADDRESS_ADDR = 0x20;
 
 
+constexpr auto  RCV_STATUS = 0xAA;
 #define EXT_LED_SET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_SET)
 #define EXT_LED_RESET 		HAL_GPIO_WritePin(LED_EXT_GPIO_Port, LED_EXT_Pin, GPIO_PIN_RESET)
 
@@ -67,8 +64,8 @@
 
 //general settings
 
-#define DIRECTION_IN		3200
-#define DIRECTION_OUT		6400
+constexpr auto DIRECTION_IN = 3200;
+constexpr auto DIRECTION_OUT = 6400;
 
 
 

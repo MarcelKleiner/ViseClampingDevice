@@ -1,9 +1,3 @@
-/*
- * USB.cpp
- *
- *  Created on: 25.12.2022
- *      Author: marce
- */
 #include "BaseCOM.h"
 #include "USBCom.h"
 #include "../AppMain/Defines.h"
@@ -49,28 +43,29 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 		if (crc != data[6])
 		{
 			data[2] = 0;
+			driveStatus->setError(DriveStatus::E_CRC_ERROR);
 		}
 
 		switch (data[2])
 		{
-			case SEND_SETTINGS:
+			case SET_SETTINGS_FROM_RECEIVE:
 				this->SetSettings(data);
 				break;
-			case SEND_COMMAND:
+			case SET_COMMAND_FROM_RECEIVE:
 				this->SetCommand(data);
 				break;
-			case SEND_STATUS:
+			case SET_STATUS_FROM_RECEIVE:
 				this->SetStatus(data);
 				break;
-			case GET_SETTINGS:
+			case GET_SETTINGS_TO_TRANSMIT:
 				return Transmitt(this->GetSettings(data[3]), 7);
-			case GET_COMMAND:
+			case GET_COMMAND_TO_TRANSMIT:
 				return Transmitt(this->GetCommand(data[3]), 7);
-			case GET_STATUS:
+			case GET_STATUS_TO_TRANSMIT:
 				return Transmitt(this->GetStatus(data[3]), 7);
 			default:
-				//not suported command
 				data[2] = 0;
+				driveStatus->setError(DriveStatus::E_UNKOWN_COMMAND_OR_ADDR_ERROR);
 				break;
 		}
 
