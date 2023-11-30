@@ -6,7 +6,6 @@ namespace Schraubstock_v2.Command.SettingCommands
     public class SendDisable : CommandBase
     {
         private readonly MainViewModel _mainViewModel;
-        private readonly ICommunication _Communication;
 
         public SendDisable(MainViewModel mainViewModel, ICommunication communication) : base(communication)
         {
@@ -15,7 +14,17 @@ namespace Schraubstock_v2.Command.SettingCommands
 
         public override void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            if (IsRunInternal) { return; }
+            Task.Run(ExecuteInternal);
+        }
+
+        private async Task ExecuteInternal()
+        {
+            byte[]? data = _mainViewModel.MessageCreater.Create(
+            Adresses.CommandAdress.SEND_COMMAND,
+            Adresses.Commands.DISABLE_ADDR, "1");
+
+            await ExecuteCommandAsync(data);
         }
     }
 }

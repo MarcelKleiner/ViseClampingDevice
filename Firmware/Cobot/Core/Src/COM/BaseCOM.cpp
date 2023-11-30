@@ -3,12 +3,13 @@
 #include "../Tools/CRC8.h"
 #include "../Tools/TypeConverter.h"
 
-BaseCOM::BaseCOM(DriveStatus *driveStatus, DriveSettings *driveSettings,
-		DriveCommand *driveCommand)
+BaseCOM::BaseCOM(DriveStatus* driveStatus, DriveSettings* driveSettings,
+	DriveCommand* driveCommand, Flash* flash)
 {
 	this->driveSettings = driveSettings;
 	this->driveStatus = driveStatus;
 	this->driveCommand = driveCommand;
+	this->flash = flash;
 }
 
 
@@ -120,7 +121,6 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 			break;
 	}
 	data2send[6] = CRC8(data2send, 6);
-	data2send[7] = 0;
 	return data2send;
 }
 
@@ -157,7 +157,7 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 			break;
 		default:
 			data2send[0] = 0x1D;
-			break;
+			break;CRC8
 	}
 	data2send[6] = CRC8(data2send, 6);
 	data2send[7] = 0;
@@ -224,6 +224,9 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
 		case SAVE_SETTINGS_ADDR:
 			driveSettings->setSaveSettings(data[4] != 0);
+			break;
+		case RESET_DEFAULT_SETTINGS_ADDR:
+			flash->SaveDefault();
 			break;
 		default:
 			break;

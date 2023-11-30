@@ -8,9 +8,11 @@ namespace Schraubstock_v2.Communication;
 internal class UsbCdc : ICommunication
 {
     private const int _DataLength = 7;
-    private const int _timeoutMilliseconds = 4000;
+    private const int _timeoutMilliseconds = 2000;
     private readonly SerialPort _serialPort;
     private readonly IInformer _informer;
+
+    private Semaphore _semaphore;
 
     public bool IsConnected => _serialPort != null && _serialPort.IsOpen;
 
@@ -18,6 +20,7 @@ internal class UsbCdc : ICommunication
     {
         _serialPort = new SerialPort();
         _informer = informer;
+        _semaphore = new(0, 1);
     }
 
     public bool Close()
@@ -67,32 +70,41 @@ internal class UsbCdc : ICommunication
         return true;
     }
 
-    public async Task<byte[]?> WriteData(byte[]? data)
+    public async Task<byte[]?> WriteData(byte[]? data, bool inform = true)
     {
-        if (!IsDeviceConnected() || data == null)
+        _semaphore.WaitOne(3000);
+        try
         {
-            return default;
+            if (!IsDeviceConnected(inform) || data == null)
+            {
+                return default;
+            }
+
+            if (data.Length != _DataLength)
+            {
+                _informer.InformFailure("Falsche Datengrösse");
+                _informer.Inform("Daten müssen genau 7 byte gross sein");
+
+                Log.Error("wrong datasize");
+                return null;
+            }
+
+            _serialPort.Write(data, 0, data.Length);
+
+            var result = await ReadResponse(inform);
+            if (result != null && inform)
+            {
+                _informer.InformSuccess();
+            }
+            return result;
         }
-        if (data.Length != _DataLength)
+        finally
         {
-            _informer.InformFailure("Falsche Datengrösse");
-            _informer.Inform("Daten müssen genau 7 byte gross sein");
-            Log.Error("wrong datasize");
-            return null;
+            _semaphore.Release();
         }
-
-        _serialPort.Write(data, 0, data.Length);
-
-        var result = await ReadResponse();
-        if (result != null)
-        {
-            _informer.InformSuccess();
-        }
-
-        return result;
     }
 
-    private async Task<byte[]?> ReadResponse()
+    private async Task<byte[]?> ReadResponse(bool inform = true)
     {
         List<byte> result = [];
         DateTime startTime = DateTime.Now;
@@ -111,7 +123,7 @@ internal class UsbCdc : ICommunication
                         return null;
                     }
 
-                    return new byte[] { result[5], result[6] };
+                    return new byte[] { result[4], result[5] };
                 }
                 else if (result.Count == 7 && _serialPort.BytesToRead != 0)
                 {
@@ -123,20 +135,27 @@ internal class UsbCdc : ICommunication
             await Task.Delay(10); // Delay to avoid busy waiting
         }
         _ = _serialPort.ReadExisting();
-        _informer.InformFailure("Zeitüberschreitung der anforderung");
+        if (inform)
+        {
+            _informer.InformFailure("Zeitüberschreitung der anforderung");
+        }
         return null;
     }
 
 
 
-    private bool IsDeviceConnected()
+    private bool IsDeviceConnected(bool inform = true)
     {
-        if (!IsConnected)
+        if (IsConnected)
+        {
+            return true;
+        }
+
+        if (inform)
         {
             _informer.Inform("Kein Device verbunden");
-            Log.Error("No Device connected");
-            return false;
         }
-        return true;
+        Log.Error("No Device connected");
+        return false;
     }
 }

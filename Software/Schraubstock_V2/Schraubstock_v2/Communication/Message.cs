@@ -7,10 +7,15 @@ namespace Schraubstock_v2.Communication;
 
 public class Message
 {
-    private readonly IInformer _informer;
+    private readonly IInformer? _informer;
     public Message(IInformer informer)
     {
         _informer = informer;
+    }
+
+    public Message()
+    {
+        _informer = null;
     }
 
     public byte[]? Create(CommandAdress command, Commands commands, string data = "")
@@ -28,7 +33,7 @@ public class Message
             }
 
             byte[] result = Create((byte)command, (byte)commands, txData);
-            _informer.Inform(command, commands, data);
+            _informer?.Inform(command, commands, data);
             return result;
         }
         catch (ArgumentOutOfRangeException ex)
@@ -60,7 +65,7 @@ public class Message
             }
 
             byte[] result = Create((byte)command, (byte)registerAddr, txData);
-            _informer.Inform(command, registerAddr, data);
+            _informer?.Inform(command, registerAddr, data);
             return result;
         }
         catch (ArgumentOutOfRangeException ex)
@@ -99,7 +104,7 @@ public class Message
         result[3] = (byte)registerAddr;
         result[4] = ((byte)(data == null ? 0x00 : data[0]));
         result[5] = ((byte)(data == null ? 0x00 : data[1]));
-        result[6] = Crc8.Calculate(result, 5);
+        result[6] = Crc8.Calculate(result, 6);
 
         return result;
     }

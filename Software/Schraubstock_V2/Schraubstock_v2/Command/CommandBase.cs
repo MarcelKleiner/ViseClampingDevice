@@ -36,7 +36,7 @@ public abstract class CommandBase : ICommand
         try
         {
             IsRunInternal = true;
-            var result = await _communication.WriteData(data);
+            var result = await _communication.WriteData(data, false);
 
             if (result != null)
             {

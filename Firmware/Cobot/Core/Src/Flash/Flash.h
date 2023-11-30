@@ -33,6 +33,7 @@ public:
      HAL_StatusTypeDef Save();
      void ReadFlash();
      void WriteFlash();
+     void SaveDefault();
 
 private:
 

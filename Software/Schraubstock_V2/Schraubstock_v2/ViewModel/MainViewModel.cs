@@ -1,6 +1,7 @@
 ﻿using Schraubstock_v2.Command.CommandCommands;
 using Schraubstock_v2.Command.CommunicationCommands;
 using Schraubstock_v2.Command.SettingCommands;
+using Schraubstock_v2.Command.StatusUpdate;
 using Schraubstock_v2.Common;
 using Schraubstock_v2.Communication;
 using Schraubstock_v2.Logger;
@@ -15,6 +16,7 @@ namespace Schraubstock_v2.ViewModel
     {
         private readonly IInformer _informer;
         private readonly ICommunication _communication;
+        private UpdateStatus updateStatus;
 
         public Message MessageCreater { get; }
 
@@ -216,7 +218,7 @@ namespace Schraubstock_v2.ViewModel
         public ICommand ReadUnderVoltageError { get; }
         public ICommand WriteUnderVoltageError { get; }
         public ICommand ReadAll { get; }
-        public ICommand WriteAll { get; }
+        public ICommand Save { get; }
         public ICommand SendEnable { get; }
         public ICommand SendDisable { get; }
         public ICommand SendOpen { get; }
@@ -230,6 +232,7 @@ namespace Schraubstock_v2.ViewModel
             _informer = new Informer(this);
             MessageCreater = new(_informer);
             _communication = new UsbCdc(_informer);
+            updateStatus = new(_communication);
 
             Connect = new Connect(this, _communication);
             ReadDeviceAddress = new ReadDeviceAddress(this, _communication);
@@ -257,7 +260,7 @@ namespace Schraubstock_v2.ViewModel
             ReadUnderVoltageError = new ReadUnderVoltageError(this, _communication);
             WriteUnderVoltageError = new WriteUnderVoltageError(this, _communication);
             ReadAll = new ReadAll(this, _communication);
-            WriteAll = new WriteAll(this, _communication);
+            Save = new Save(this, _communication);
             SendEnable = new SendEnable(this, _communication);
             SendDisable = new SendDisable(this, _communication);
             SendOpen = new SendOpen(this, _communication);

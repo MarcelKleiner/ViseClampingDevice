@@ -11,7 +11,7 @@
 #include "../Status/DriveStatus.h"
 #include "../Status/DriveCommand.h"
 #include "../Settings/DriveSettings.h"
-
+#include "../Flash/Flash.h"
 
 
 class BaseCOM{
@@ -20,7 +20,7 @@ class BaseCOM{
 	protected:
 
 		BaseCOM(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				DriveCommand *driveCommand);
+				DriveCommand *driveCommand, Flash *flash);
 
 		uint8_t *GetSettings(uint8_t addr = 0);
 		uint8_t* GetStatus(uint8_t addr);
@@ -35,6 +35,7 @@ class BaseCOM{
 		DriveSettings *driveSettings;
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
+		Flash* flash;
 
 	private:
 

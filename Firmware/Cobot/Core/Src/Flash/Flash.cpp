@@ -32,6 +32,25 @@ void Flash::ReadFlash()
 	driveSettings->setDeviceAddress(tmpFlashArray[11]);
 }
 
+void Flash::SaveDefault() {
+	tmpFlashArray[0] = 10;
+	tmpFlashArray[1] = 30;
+	tmpFlashArray[2] = 10;
+	tmpFlashArray[3] = 2;
+
+	tmpFlashArray[4] = 100;
+	tmpFlashArray[5] = 50;
+	tmpFlashArray[6] = 12000;
+	tmpFlashArray[7] = 14000;
+
+	tmpFlashArray[8] = 600;
+	tmpFlashArray[9] = 20;
+	tmpFlashArray[10] = 100;
+
+	tmpFlashArray[11] = 0x1F;
+	Save();
+}
+
 void Flash::WriteFlash(){
 	if (this->driveSettings->isSaveSettings())
 	{

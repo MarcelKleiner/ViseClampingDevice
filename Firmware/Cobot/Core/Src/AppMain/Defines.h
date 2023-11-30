@@ -51,6 +51,7 @@ constexpr auto OVER_CURRENT_WARNING_ADDR = 0x32;
 constexpr auto OVER_CURRENT_ERROR_ADDR = 0x33;
 constexpr auto DEVICE_ADDRESS_ADDR = 0x34;
 constexpr auto SAVE_SETTINGS_ADDR = 0x55;
+constexpr auto RESET_DEFAULT_SETTINGS_ADDR = 0x56;
 
 //#define MAX_ADDR					0x7F
 

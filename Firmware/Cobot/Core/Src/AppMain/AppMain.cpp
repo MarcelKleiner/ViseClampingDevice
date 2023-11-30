@@ -64,7 +64,7 @@ void AppMain::Main()
 
 		if (taskStatus.isSaveTask())
 		{
-			Storage.Save();
+			Storage.WriteFlash();
 		}
 
 		if (taskStatus.IsResetUpdateTask()) {
