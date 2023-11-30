@@ -43,10 +43,7 @@
 	 TaskHandler taskHandler = TaskHandler();
 
  private:
-
-
 	 RFM95_LoRa rfm95 = RFM95_LoRa();
-
 
 	 DriveSettings driveSettings = DriveSettings();
 	 DriveStatus driveStatus = DriveStatus();
@@ -54,30 +51,15 @@
 
 	 Encoder encoder = Encoder(&driveStatus);
 	 ICom *rfm95COM 	= 	 new RFM95Com	(&driveStatus, &driveSettings, &driveCommand, &rfm95);
-<<<<<<< HEAD
-	 //ICom rfm95Com = new RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95);
 
 	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
 	 LED ledExt = LED(LED_EXT_GPIO_Port, LED_EXT_Pin, false);
-
-	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder, &led);
-
-
-
-	 Error error = Error(&led, &driveStatus);
-=======
-	 LED led = LED(LED_GPIO_Port, LED_Pin, false);
-	 LED ledExt = LED(LED_EXT_GPIO_Port, LED_EXT_Pin, false);
-
 
 	 Drive drive = Drive(&driveSettings, &driveStatus, &driveCommand, &encoder, &led);
 	 Error error = Error(&ledExt, &driveStatus);
->>>>>>> origin/main
 
 	bool init = true;
 	uint16_t comLoseCounter = 0;
-
-
 
 
 	//ADC Variables

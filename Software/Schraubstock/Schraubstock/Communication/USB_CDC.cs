@@ -16,12 +16,13 @@ namespace Schraubstock.Communication
 
         public enum ReadWrite
         {
-            SEND_SETTINGS = 0x01,
-            SEND_COMMAND = 0x02,
-            SEND_STATUS = 0x03,
-            GET_SETTINGS = 0x11,
-            GET_COMMAND = 0x12,
-            GET_STATUS = 0x13,
+            GET_SETTINGS = 0x01,
+            GET_COMMAND = 0x02,
+            GET_STATUS = 0x03,
+            SEND_SETTINGS = 0x11,
+            SEND_COMMAND = 0x12,
+            SEND_STATUS = 0x13,
+
         }
 
         public bool IsDataReady

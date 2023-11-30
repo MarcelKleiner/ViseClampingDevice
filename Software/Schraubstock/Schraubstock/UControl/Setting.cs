@@ -10,7 +10,6 @@ namespace Schraubstock.UControl
     {
 
         private readonly TextBox _txtValue;
-        private string currentTxtValue = "";
 
         public int MaxValue { get; set; } = 32767;
         public int MinValue { get; set; } = -32768;
@@ -22,62 +21,57 @@ namespace Schraubstock.UControl
         {
             read.Click += Read_Click;
             write.Click += Write_Click;
-            txtValue.KeyUp += TxtValue_KeyUp; ;
             _txtValue = txtValue;
-        }
-
-        private void TxtValue_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            try
-            {
-                if (_txtValue.Text == "")
-                {
-                    currentTxtValue = _txtValue.Text;
-                    return;
-                }
-
-                short value = Convert.ToInt16(_txtValue.Text);
-                if (value > MaxValue)
-                {
-                    _txtValue.Text = MaxValue.ToString();
-                }
-                if (value < MinValue)
-                {
-                    _txtValue.Text = MinValue.ToString();
-                }
-                currentTxtValue = _txtValue.Text;
-            }
-            catch
-            {
-                _txtValue.Text = currentTxtValue;
-            }
         }
 
         private void Write_Click(object sender, RoutedEventArgs e)
         {
+            string textboxContent = _txtValue.Text; 
+
             try
             {
-                if (COM == null || string.IsNullOrEmpty(currentTxtValue))
+                if(!int.TryParse(textboxContent, out int value))
                 {
-                    MessageBox.Show("Ungültige angaben", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Eingabe muss eine Zahl sein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                COM.Write(Register, USB_CDC.ReadWrite.SEND_SETTINGS, TypeConverter.Int16ToByte(Convert.ToInt16(currentTxtValue)));
+                if(value < MinValue)
+                {
+                    MessageBox.Show($"Eingabe zu klein. Min Value: {MinValue}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (value > MaxValue)
+                {
+                    MessageBox.Show($"Eingabe zu gross. Max Value: {MaxValue}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (COM == null)
+                {
+                    MessageBox.Show("Keinver Verbindung zu einem Device hergestellt", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                COM.Write(Register, USB_CDC.ReadWrite.SEND_SETTINGS, TypeConverter.Int16ToByte(Convert.ToInt16(textboxContent)));
             }
             catch
             {
-
+                MessageBox.Show("Fehler beim Schreiben", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-
-
         }
 
         private void Read_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (!COM.IsConnected())
+                {
+                    MessageBox.Show("Kein Device verbunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 var data = COM.Write(Register, USB_CDC.ReadWrite.GET_SETTINGS, null);
 
                 if (data == null || data[0] != 0x1F)
@@ -93,7 +87,6 @@ namespace Schraubstock.UControl
                 }
 
                 _txtValue.Text = TypeConverter.ByteToInt16(data, 4).ToString();
-                currentTxtValue = _txtValue.Text;
             }
             catch
             {

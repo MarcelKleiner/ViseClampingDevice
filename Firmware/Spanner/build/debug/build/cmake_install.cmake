@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner
+# Install script for directory: C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Spanner
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/install")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Spanner/build/debug/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/ST/STM32CubeIDE_1.12.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003/tools/bin/arm-none-eabi-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/ST/STM32CubeIDE_1.10.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/arm-none-eabi-objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Spanner/build/debug/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

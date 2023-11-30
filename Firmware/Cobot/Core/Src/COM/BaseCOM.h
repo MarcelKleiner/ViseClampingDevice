@@ -33,14 +33,6 @@ class BaseCOM{
 		uint8_t CRC8(uint8_t *data, uint8_t length);
 
 		DriveSettings *driveSettings;
-
-<<<<<<< HEAD
-	private:
-
-
-=======
-		DriveSettings *driveSettings;
->>>>>>> origin/main
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
 

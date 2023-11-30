@@ -124,12 +124,8 @@ int RFM95_LoRa::endPacket(){
   // put in TX mode
   writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_TX);
   // wait for TX done
-<<<<<<< HEAD
-  while ((readRegister(REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) == 0) {
-=======
   while ((readRegister(REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) == 0 && transmitCounter < 150) {
 	  transmitCounter++;
->>>>>>> origin/main
 	  HAL_Delay(1);
   }
 

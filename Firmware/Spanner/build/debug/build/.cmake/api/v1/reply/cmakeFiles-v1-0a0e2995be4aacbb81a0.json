@@ -135,8 +135,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner/build/debug/build",
-		"source" : "C:/Users/marce/Documents/Repos/ViceClampingDevice/Firmware/Spanner"
+		"build" : "C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Spanner/build/debug/build",
+		"source" : "C:/Users/marce/Documents/Repos/ViseClampingDevice/Firmware/Spanner"
 	},
 	"version" : 
 	{

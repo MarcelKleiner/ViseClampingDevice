@@ -8,7 +8,6 @@ struct dataChangeStruct {
 };
 
 
-
 bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
 {
      uint8_t* txData;
@@ -40,16 +39,6 @@ bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
           {OVER_CURRENT_ERROR_ADDR ,OVER_CURRENT_ERROR_CHANGE},
      };
 
-
-<<<<<<< HEAD
-	HAL_GPIO_TogglePin(LED_R_GPIO_Port, LED_R_Pin);
-
-	rfm95->beginPacket();
-	rfm95->write(txData, 7);
-	rfm95->endPacket();
-	return true;
-=======
-
      if (this->driveCommand->isCommandChanged() != 0)
      {
           uint8_t command = driveCommand->getCommandChangedReg();
@@ -67,6 +56,8 @@ bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
                driveStatus->setError(DriveStatus::E_UNKOWN_COMMAND_OR_ADDR_ERROR);
                return false;
           }
+
+          txData[2] = SEND_COMMAND;
      }
      else if (driveSettings->isSettingsChanged() != 0)
      {
@@ -85,11 +76,13 @@ bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
                driveStatus->setError(DriveStatus::E_UNKOWN_COMMAND_OR_ADDR_ERROR);
                return false;
           }
+
+          txData[2] = SEND_SETTINGS;
      }
      else
      {
           uint8_t dataTemp[] =
-          { 0x1F, driveSettings->getDeviceAddress(), GET_STATUS, 0x00, 0x00, 0x00,
+          { 0x1F, driveSettings->getDeviceAddress(), REQUEST_STATUS, 0x00, 0x00, 0x00,
                     0x00 };
           dataTemp[6] = CRC8(dataTemp, 6);
           txData = dataTemp;
@@ -99,7 +92,6 @@ bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
      rfm95->write(txData, 7);
      rfm95->endPacket();
      return true;
->>>>>>> origin/main
 }
 
 
@@ -146,13 +138,13 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
 
      switch (data[2])
      {
-     case SEND_SETTINGS:
+     case RECEIVE_SETTINGS:
           this->SetSettings(data);
           break;
-     case SEND_COMMAND:
+     case RECEIVE_COMMAND:
           this->SetCommand(data);
           break;
-     case SEND_STATUS:
+     case RECEIVE_STATUS:
           this->SetStatus(data);
           break;
      default:

@@ -14,7 +14,7 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_COMMAND;
+	data2send[2] = 0x00;	//replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -73,13 +73,12 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 	return data2send;
 }
 
-
 uint8_t* BaseCOM::GetStatus(uint8_t addr)
 {
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_STATUS;
+	data2send[2] = 0x00;	////replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -116,12 +115,11 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 	return data2send;
 }
 
-
 uint8_t* BaseCOM::GetCommand(uint8_t addr)
 {
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_COMMAND;
+	data2send[2] = 0x00;	////replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -152,7 +150,6 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 
 	return data2send;
 }
-
 
 
 void BaseCOM::SetSettings(uint8_t *data)
@@ -210,40 +207,6 @@ void BaseCOM::SetSettings(uint8_t *data)
 		case UNDERVOLTAGE_ERROR_ADDR:
 			value = ((uint16_t) data[5]) << 7 | data[4];
 			driveSettings->setUnderVoltageError(value);
-			break;
-		default:
-			break;
-	}
-}
-
-void BaseCOM::SetStatus(uint8_t *data)
-{
-	//data[0] = 0x1F
-	//data[1] = deviceAddress
-	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
-	//data[3] = reg addr (close, open, setTeach...)
-	//data[4..n] = Payload
-	//data[6] = crc
-
-	switch (data[3])
-	{
-		case CLOSE_ADDR:
-			driveStatus->setClose(data[4] == 0x01);
-			break;
-		case OPEN_ADDR:
-			driveStatus->setOpen(data[4] == 0x01);
-			break;
-		case TEACH_ADDR:
-			driveStatus->setTeach(data[4] == 0x01);
-			break;
-		case RESET_ADDR:
-			driveStatus->setReset(data[4] == 0x01);
-			break;
-		case ENABLE_ADDR:
-			driveStatus->setEnable(data[4] == 0x01);
-			break;
-		case STOP_ADDR:
-			driveStatus->setStop(data[4] == 0x01);
 			break;
 		default:
 			break;

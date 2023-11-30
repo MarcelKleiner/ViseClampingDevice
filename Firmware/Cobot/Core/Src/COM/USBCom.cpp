@@ -1,7 +1,7 @@
-#include "BaseCOM.h"
-#include "USBCom.h"
 #include "../AppMain/Defines.h"
+#include "BaseCOM.h"
 #include "usb_device.h"
+#include "USBCom.h"
 #include "usbd_cdc_if.h"
 
 bool USBCom::Transmitt(uint8_t *data, uint8_t length)
@@ -29,9 +29,6 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 	uint8_t data2send[] = { 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	uint8_t crc = 0;
 
-
-
-
 	//data[0] = 0x1F
 	//data[1] = deviceAddress
 	//data[2] = command (readCommand, readSettings, readStatus, writeCommand...)
@@ -53,20 +50,18 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 
 		switch (data[2])
 		{
-			case SET_SETTINGS_FROM_RECEIVE:
+			case RECEIVE_SETTINGS:
 				this->SetSettings(data);
 				break;
-			case SET_COMMAND_FROM_RECEIVE:
+			case RECEIVE_COMMAND:
 				this->SetCommand(data);
 				break;
-			case SET_STATUS_FROM_RECEIVE:
+			case RECEIVE_STATUS:
 				this->SetStatus(data);
 				break;
-			case GET_SETTINGS_TO_TRANSMIT:
+			case REQUEST_SETTINGS:
 				return Transmitt(this->GetSettings(data[3]), 7);
-			case GET_COMMAND_TO_TRANSMIT:
-				return Transmitt(this->GetCommand(data[3]), 7);
-			case GET_STATUS_TO_TRANSMIT:
+			case REQUEST_STATUS:
 				return Transmitt(this->GetStatus(data[3]), 7);
 			default:
 				data[2] = 0;
@@ -78,8 +73,10 @@ bool USBCom::Receive(uint8_t *data, uint8_t length)
 		data2send[1] = driveSettings->getDeviceAddress();
 		data2send[2] = 0x01;
 		data2send[3] = 0x01;
+		data2send[4] = 0x00;
+		data2send[5] = 0x00;
 		data2send[6] = CRC8(data2send, 6);
-		return Transmitt(data2send, 6);
+		return Transmitt(data2send, 7);
 	}
 
 	return false;

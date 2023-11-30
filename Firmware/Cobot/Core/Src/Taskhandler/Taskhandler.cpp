@@ -32,46 +32,29 @@ void TaskHandler::UpdateTasks() {
 		ioUpdateTask = true;
 	}
 
-<<<<<<< HEAD
 
-	//50ms
-	if(counter % 50 == 0){
-
-	}
-
-
-=======
->>>>>>> origin/main
 	//100ms
 	if(counter % ERROR_UPDATE_TIME == 0){
 		errorTask = true;
 	}
 
-<<<<<<< HEAD
-=======
-	if(counter % COM_UPDATE_TIME == 0){
-		comTask = true;
-	}
 
 	//300ms
 	if (counter % RESET_UPDATE_TIME == 0) {
 		resetTask = true;
 	}
 
->>>>>>> origin/main
 	//500ms
 	if(counter % LED_UPDATE_TIME == 0){
 		ledUpdateTask = true;
 	}
 
-<<<<<<< HEAD
-	//600ms
+	//200ms
 	if(counter % COM_UPDATE_TIME == 0){
 		comTask = true;
 	}
 
-=======
->>>>>>> origin/main
+
 	//1000ms
 	if(counter % SAVE_UPDATE_TIME == 0){
 		saveTask = true;

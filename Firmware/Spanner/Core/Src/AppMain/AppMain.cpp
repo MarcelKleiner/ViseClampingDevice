@@ -136,8 +136,6 @@ void AppMain::Main()
 				driveStatus.setError(DriveStatus::E_UNDERVOLTAGE_ERROR);
 			}
 
-<<<<<<< HEAD
-=======
 			if(driveStatus.getCurrent() > driveSettings.getOverCurrentWarning())
 			{
 				driveStatus.setError(DriveStatus::E_OVERCURRENT_WARNING);
@@ -148,7 +146,6 @@ void AppMain::Main()
 				driveStatus.setError(DriveStatus::E_OVERCURRENT_ERROR);
 			}
 
->>>>>>> origin/main
 			if (driveStatus.getError() != DriveStatus::E_NO_ERROR)
 			{
 				drive.Stop();
@@ -158,17 +155,10 @@ void AppMain::Main()
 			}
 		}
 
-
 		if (taskHandler.isLEDTask() && driveStatus.getError() == DriveStatus::E_NO_ERROR)
 		{
-<<<<<<< HEAD
-			//led.Toggle(); ToDo
-=======
-			led.Toggle();
 			ledExt.Toggle();
->>>>>>> origin/main
 		}
-
 	}
 }
 
@@ -183,7 +173,6 @@ void AppMain::ADCRead(ADC_HandleTypeDef *hadc)
     voltageSum = voltageSum - voltageArray[staticCounter] + adc1Buffer[0];
     voltageArray[staticCounter] = adc1Buffer[0];
 
-
     if (staticCounter == MEAN_VALUE_SIZE-1)
     {
         staticCounter = 0;
@@ -192,7 +181,6 @@ void AppMain::ADCRead(ADC_HandleTypeDef *hadc)
     {
         staticCounter++;
     }
-
 
 	driveStatus.setCurrent(currentSum/MEAN_VALUE_SIZE);
 	driveStatus.setVoltage(voltageSum/MEAN_VALUE_SIZE);

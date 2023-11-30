@@ -1,9 +1,4 @@
-/*
- * Defines.h
- *
- *  Created on: Oct 23, 2022
- *      Author: marce
- */
+#include "gpio.h"
 
 #ifndef SRC_APPMAIN_DEFINES_H_
 #define SRC_APPMAIN_DEFINES_H_
@@ -11,14 +6,15 @@
 constexpr auto  GEAR_RATIO = 1;
 constexpr auto  CURRENT_2_TORQUE = 1;
 
+constexpr uint8_t SEND_SETTINGS = 0x11;
+constexpr uint8_t SEND_STATUS = 0x13;
 
-constexpr auto  SEND_SETTINGS = 0x01;
-constexpr auto  SEND_COMMAND = 0x02;
-constexpr auto  SEND_STATUS = 0x03;
+constexpr uint8_t RECEIVE_STATUS_REQUEST = 0x03;
+constexpr uint8_t RECEIVE_SETTINGS_REQUEST = 0x04;
 
-constexpr auto  GET_SETTINGS = 0x11;
-constexpr auto  GET_COMMAND = 0x12;
-constexpr auto  GET_STATUS = 0x13;
+constexpr uint8_t RECEIVE_SETTINGS = 0x01;
+constexpr uint8_t RECEIVE_COMMAND = 0x02;
+
 
 //Address
 constexpr auto  CLOSE_ADDR = 0x01;

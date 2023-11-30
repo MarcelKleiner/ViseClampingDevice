@@ -17,11 +17,7 @@ uint8_t* BaseCOM::GetSettings(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-<<<<<<< HEAD
-	data2send[2] = GET_SETTINGS;
-=======
-	data2send[2] = GET_SETTINGS_TO_TRANSMIT;
->>>>>>> origin/main
+	data2send[2] = 0x00;	//replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -90,7 +86,7 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_STATUS_TO_TRANSMIT;
+	data2send[2] = 0x00; //replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -133,7 +129,7 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 {
 	data2send[0] = 0x1F;
 	data2send[1] = driveSettings->getDeviceAddress();
-	data2send[2] = GET_COMMAND;
+	data2send[2] = 0x00; //replace with address
 	data2send[3] = addr;
 
 	switch (addr)
@@ -303,14 +299,13 @@ void BaseCOM::SetCommand(uint8_t *data)
 		case STOP_ADDR:
 			driveCommand->setStop(data[4] == 0x01);
 			break;
-		case SELF_RESET_ADDR:
+		case COBOT_RESET_ADDR:
 			driveStatus->SetSelfReset();
 			break;
 		default:
 			break;
 	}
 }
-
 
 
 

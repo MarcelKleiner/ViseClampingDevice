@@ -37,7 +37,7 @@ namespace Schraubstock
             {
                 MaxValue = 254,
                 MinValue = 1,
-                Register = 0x20,
+                Register = 0x34,
                 COM = usbCom
             };
 
@@ -45,70 +45,70 @@ namespace Schraubstock
             {
                 MaxValue = 1000,
                 MinValue = 1,
-                Register = 0x11,
+                Register = 0x2A,
                 COM = usbCom
             };
             Setting sTeachTroque = new Setting(btnTeachTorqueRead, btnTeachTorqueWrite, txtTeachTorque)
             {
                 MaxValue = 100,
                 MinValue = 1,
-                Register = 0x10,
+                Register = 0x29,
                 COM = usbCom
             };
             Setting sDriveSpeed = new Setting(btnDriveSpeedRead, btnDriveSpeedWrite, txtDriveSpeed)
             {
                 MaxValue = 1000,
                 MinValue = 1,
-                Register = 0x13,
+                Register = 0x2C,
                 COM = usbCom
             };
             Setting sDriveTroque = new Setting(btnDriveTroqueRead, btnDriveTroqueWrite, txtDriveTroque)
             {
                 MaxValue = 100,
                 MinValue = 1,
-                Register = 0x12,
+                Register = 0x2B,
                 COM = usbCom
             };
             Setting sSelfShutdownDelay = new Setting(btnSelfShutdownDelayRead, btnSelfShutdownDelayWrite, txtSelfShutdownDelay)
             {
                 MaxValue = 1000,
                 MinValue = 1,
-                Register = 0x14,
+                Register = 0x2D,
                 COM = usbCom
             };
             Setting sHysteresis = new Setting(btnHysteresisRead, btnHysteresisWrite, txtHysteresis)
             {
                 MaxValue = 250,
                 MinValue = 1,
-                Register = 0x15,
+                Register = 0x2E,
                 COM = usbCom
             };
             Setting sOverCurrentWarning = new Setting(btnOverCurrentWarningRead, btnOverCurrentWarningWrite, txtOverCurrentWarning)
             {
                 MaxValue = 120,
                 MinValue = 1,
-                Register = 0x19,
+                Register = 0x32,
                 COM = usbCom
             };
             Setting sOverCurrentError = new Setting(btnOverCurrentErrorRead, btnOverCurrentErrorWrite, txtOverCurrentError)
             {
                 MaxValue = 120,
                 MinValue = 1,
-                Register = 0x1A,
+                Register = 0x33,
                 COM = usbCom
             };
             Setting sUndervoltageWarning = new Setting(btnUnderVoltageWarningRead, btnUnderVoltageWarningWrite, txtUnderVoltageWarning)
             {
                 MaxValue = 20000,
                 MinValue = 10000,
-                Register = 0x17,
+                Register = 0x30,
                 COM = usbCom
             };
             Setting sUnderVoltageError = new Setting(btnUnderVoltageErrorRead, btnUnderVoltageErrorWrite, txtUnderVoltageError)
             {
                 MaxValue = 20000,
                 MinValue = 10000,
-                Register = 0x18,
+                Register = 0x31,
                 COM = usbCom
             };
 
@@ -116,7 +116,7 @@ namespace Schraubstock
             {
                 MaxValue = 200,
                 MinValue = 10,
-                Register = 0x16,
+                Register = 0x2F,
                 COM = usbCom
             };
 
