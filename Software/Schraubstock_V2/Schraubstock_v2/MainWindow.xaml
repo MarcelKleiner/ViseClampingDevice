@@ -1,0 +1,203 @@
+﻿<Window x:Class="Schraubstock_v2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Schraubstock_v2" xmlns:viewmodel="clr-namespace:Schraubstock_v2.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="672" Width="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="170"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="groupBox" Header="Kommunikationseinstellungen">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label x:Name="label" Content="COM Port"/>
+                <ComboBox ItemsSource="{Binding ComPorts}" SelectedItem="{Binding SelectedComPort}" IsDropDownOpen="{Binding IsDropdownOpenn}" IsReadOnly="True" IsEditable="True" Grid.Column="1" Height="22" Margin="0,4,0,4"/>
+                <Button Content="{Binding ConnectButtonString}" Command="{Binding Connect}"       Grid.Row="0" Grid.Column="3" Margin="5,5,5,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox1" Header="Antriebseinstellungen" Grid.Row="1">
+            <Grid Margin="5,5,5,5" Height="217">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="74"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Geräteadresse" Grid.Row="0"/>
+                <Label Content="Teachgeschwindigkeit" Grid.Row="1"/>
+                <Label Content="Teachdrehmoment" Grid.Row="2"/>
+                <Label Content="Anzugsgeschwindigkeit" Grid.Row="3"/>
+                <Label Content="Anzugsdrehmoment" Grid.Row="4"/>
+                <Label Content="Selbstabschaltverzögerung" Grid.Row="5"/>
+
+                <TextBox Text="{Binding DeviceAddress}"                             Grid.Row="0" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadDeviceAddress}"       Grid.Row="0" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteDeviceAddress}"  Grid.Row="0" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding TeachSpeed}"                             Grid.Row="1" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadTeachSpeed}"       Grid.Row="1" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteTeachSpeed}"  Grid.Row="1" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding TeachTorque}"                             Grid.Row="2" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadTeachTorque}"       Grid.Row="2" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteTeachTorque}"  Grid.Row="2" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding ClampingSpeed}"                             Grid.Row="3" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadClampingSpeed}"       Grid.Row="3" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteClampingSpeed}"  Grid.Row="3" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding ClampingTroque}"                             Grid.Row="4" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadClampingTroque}"       Grid.Row="4" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteClampingTroque}"  Grid.Row="4" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding SelfShutdownDelay}"                             Grid.Row="5" Grid.Column="1" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadSelfShutdownDelay}"       Grid.Row="5" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteSelfShutdownDelay}"  Grid.Row="5" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+
+
+                <Label Content="Hysterese" Grid.Row="0" Grid.Column="5"/>
+                <Label Content="Öffnungsdistanz" Grid.Row="1" Grid.Column="5"/>
+                <Label Content="Überstromwarnung" Grid.Row="2" Grid.Column="5"/>
+                <Label Content="Überstromerror" Grid.Row="3" Grid.Column="5"/>
+                <Label Content="Unterspannungswarnung" Grid.Row="4" Grid.Column="5"/>
+                <Label Content="Unterspannungserror" Grid.Row="5" Grid.Column="5"/>
+
+                <TextBox Text="{Binding Hysteresis}"                             Grid.Row="0" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadHysteresis}"       Grid.Row="0" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteHysteresis}"  Grid.Row="0" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding OpeningDistance}"                             Grid.Row="1" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadOpeningDistance}"       Grid.Row="1" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteOpeningDistance}"  Grid.Row="1" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding OverCurrentWarning}"                             Grid.Row="2" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadOverCurrentWarning}"       Grid.Row="2" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteOverCurrentWarning}"  Grid.Row="2" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding OverCurrentError}"                             Grid.Row="3" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadOverCurrentError}"       Grid.Row="3" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteOverCurrentError}"  Grid.Row="3" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding UnderVoltageWarning}"                             Grid.Row="4" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadUnderVoltageWarning}"       Grid.Row="4" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteUnderVoltageWarning}"  Grid.Row="4" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+
+                <TextBox Text="{Binding UnderVoltageError}"                             Grid.Row="5" Grid.Column="6" Margin="5"/>
+                <Button Content="lesen" Command="{Binding ReadUnderVoltageError}"       Grid.Row="5" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Button Content="schreiben" Command="{Binding WriteUnderVoltageError}"  Grid.Row="5" Grid.Column="8" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                <Grid Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Alles lesen" Command="{Binding ReadAll}" Margin="5,5,5,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
+                    <Button Content="Alles schreiben" Command="{Binding WriteAll}" Margin="5,5,5,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Grid.Column="1"/>
+                </Grid>
+
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox x:Name="groupBox3" Header="Kommandos" Margin="2,5,2,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Enable" Command="{Binding SendEnable}" Margin="15,0,15,0" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20"/>
+                    <Button Content="Disable" Command="{Binding SendDisable}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Row="1"/>
+                    <Button Content="Öffnen" Command="{Binding SendOpen}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Row="2"/>
+                    <Button Content="Schliessen" Command="{Binding SendClose}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Row="3"/>
+                    <Button Content="Stopp" Command="{Binding SendStop}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1"/>
+                    <Button Content="Teach" Command="{Binding SendTeach}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1" Grid.Row="1"/>
+                    <Button Content="Reset" Command="{Binding SendReset}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1" Grid.Row="2"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="groupBox2_Kopieren" Header="Antriebsstatus" Margin="2,5,2,5" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding DriveStatusEnable}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
+                    <Label Content="{Binding DriveStatusOpen}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="1"/>
+                    <Label Content="{Binding DriveStatusRun}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="2"/>
+                    <Label Content="{Binding DriveStatusError}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="3"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="groupBox2" Header="Senderstatus" Grid.Column="2" Margin="2,5,2,5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding SenderStatusError}" Margin="2,2,2,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <GroupBox x:Name="groupBox4" Header="" Grid.Row="3">
+            <TextBox Text="{Binding LogTextBox}" TextChanged="TextBox_TextChanged" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap"/>
+        </GroupBox>
+
+    </Grid>
+</Window>
