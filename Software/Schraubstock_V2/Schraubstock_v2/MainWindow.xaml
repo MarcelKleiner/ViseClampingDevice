@@ -78,7 +78,7 @@
                 <Button Content="lesen" Command="{Binding ReadClampingSpeed}"       Grid.Row="3" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
                 <Button Content="schreiben" Command="{Binding WriteClampingSpeed}"  Grid.Row="3" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
 
-                <TextBox Text="{Binding ClampingTroque}"                             Grid.Row="4" Grid.Column="1" Margin="5"/>
+                <TextBox Text="{Binding ClampingTorque}"                             Grid.Row="4" Grid.Column="1" Margin="5"/>
                 <Button Content="lesen" Command="{Binding ReadClampingTroque}"       Grid.Row="4" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
                 <Button Content="schreiben" Command="{Binding WriteClampingTroque}"  Grid.Row="4" Grid.Column="3" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
 
@@ -157,6 +157,7 @@
                     <Button Content="Stopp" Command="{Binding SendStop}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1"/>
                     <Button Content="Teach" Command="{Binding SendTeach}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1" Grid.Row="1"/>
                     <Button Content="Reset" Command="{Binding SendReset}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1" Grid.Row="2"/>
+                    <Button Content="Upload Settings" Command="{Binding UploadSettings}" Margin="15,5,15,5" Background="#FF131375" Foreground="White" BorderBrush="#FF131375" Height="20" Grid.Column="1" Grid.Row="3"/>
                 </Grid>
             </GroupBox>
             <GroupBox x:Name="groupBox2_Kopieren" Header="Antriebsstatus" Margin="2,5,2,5" Grid.Column="1">
@@ -175,23 +176,7 @@
                     <Label Content="{Binding DriveStatusEnable}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
                     <Label Content="{Binding DriveStatusOpen}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="1"/>
                     <Label Content="{Binding DriveStatusRun}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="2"/>
-                    <Label Content="{Binding DriveStatusError}" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="3"/>
-                </Grid>
-            </GroupBox>
-            <GroupBox x:Name="groupBox2" Header="Senderstatus" Grid.Column="2" Margin="2,5,2,5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{Binding SenderStatusError}" Margin="2,2,2,2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
+                    <Label Content="{Binding DriveStatusError}" Margin="2" Background="{Binding ErrorBackgroundColor}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" Grid.Row="3"/>
                 </Grid>
             </GroupBox>
         </Grid>

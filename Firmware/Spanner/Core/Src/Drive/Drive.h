@@ -8,12 +8,12 @@
 #ifndef SRC_DRIVE_DRIVE_H_
 #define SRC_DRIVE_DRIVE_H_
 
-#include "stdint.h"
-#include "../Settings/DriveSettings.h"
-#include "../Status/DriveStatus.h"
-#include "../Status/DriveCommand.h"
 #include "../Encoder/Encoder.h"
 #include "../IO/LED.h"
+#include "../Settings/DriveSettings.h"
+#include "../Status/DriveCommand.h"
+#include "../Status/DriveStatus.h"
+#include "stdint.h"
 
 class Drive
 {
@@ -25,7 +25,7 @@ class Drive
 
 		enum EDRIVE_MODE
 		{
-			TEACH_MODE, OP_MODE
+			TEACH_MODE, OP_MODE, STOP_MODE
 		};
 
 		enum TEACH_STATE
@@ -63,6 +63,7 @@ class Drive
 		bool isDriveStoped = false;
 
 		bool torqueOutReached = false;
+		bool positionReached = false;
 
 		void OpMode();
 		void TeachMode();

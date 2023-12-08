@@ -5,11 +5,12 @@
  *      Author: marce
  */
 
-#include "BaseCOM.h"
-#include "ICom.h"
+#include "../Flash/Flash.h"
+#include "../Settings/DriveSettings.h"
 #include "../Status/DriveCommand.h"
 #include "../Status/DriveStatus.h"
-#include "../Settings/DriveSettings.h"
+#include "BaseCOM.h"
+#include "ICom.h"
 
 #ifndef SRC_COM_USB1_H_
 #define SRC_COM_USB1_H_
@@ -20,8 +21,8 @@ class USBCom :  public ICom, public BaseCOM
 	public:
 
 		USBCom(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				DriveCommand *driveCommand) :
-				BaseCOM(driveStatus, driveSettings, driveCommand)
+				DriveCommand *driveCommand, Flash *flash) :
+				BaseCOM(driveStatus, driveSettings, driveCommand, flash)
 		{
 		}
 		virtual bool Transmitt(uint8_t *data = NULL, uint8_t length = 0) override;

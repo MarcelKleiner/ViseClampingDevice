@@ -617,7 +617,7 @@
   (global_label "HALL_TTL_A" (shape output) (at 103.505 95.885 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 2511617b-5836-43b3-aca0-bd0af82a5143)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 90.6295 95.8056 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 90.1368 95.885 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )

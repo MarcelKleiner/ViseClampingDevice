@@ -6,12 +6,10 @@ namespace Schraubstock_v2.Command.CommunicationCommands
     public class WriteDeviceAddress : CommandBase
     {
         private readonly MainViewModel _mainViewModel;
-        private readonly ICommunication _Communication;
 
         public WriteDeviceAddress(MainViewModel mainViewModel, ICommunication communication) : base(communication)
         {
             _mainViewModel = mainViewModel;
-            _Communication = communication;
         }
 
         public override void Execute(object? parameter)
@@ -24,7 +22,7 @@ namespace Schraubstock_v2.Command.CommunicationCommands
         {
             byte[]? data = _mainViewModel.MessageCreater.Create(
             Adresses.CommandAdress.SEND_SETTINGS,
-            Adresses.RegisterAdress.DEVICE_ADDRESS_ADDR);
+            Adresses.RegisterAdress.DEVICE_ADDRESS_ADDR, _mainViewModel.DeviceAddress);
 
             await ExecuteCommandAsync(data);
         }

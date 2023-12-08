@@ -1,5 +1,5 @@
-#include "RFM95Com.h"
 #include "../AppMain/Defines.h"
+#include "RFM95Com.h"
 #include "usbd_cdc_if.h"
 
 bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
@@ -62,7 +62,6 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
                0x01,
                0x00
      };
-     txData[6] = CRC8(txData, 6);
 
 
      switch (rxData[2])
@@ -75,17 +74,13 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
           this->SetCommand(rxData);
           txDataTemp = txData;
           break;
-     case SEND_SETTINGS:
-          txDataTemp = this->GetSettings(rxData[3]);
-          txDataTemp[2] = SEND_SETTINGS;
-          break;
      case RECEIVE_STATUS_REQUEST:
           txDataTemp = this->GetStatus(rxData[3]);
           txDataTemp[2] = SEND_STATUS;
           break;
      case RECEIVE_SETTINGS_REQUEST:
           txDataTemp = this->GetSettings(rxData[3]);
-          txDataTemp[2] = SEND_STATUS;
+          txDataTemp[2] = SEND_SETTINGS;
           break;
      default:
           //not sported command
@@ -94,7 +89,7 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
           txDataTemp[5] = 0;
           break;
      }
-
+     txDataTemp[6] = CRC8(txDataTemp, 6);
      Transmitt(txDataTemp, 7);
      return true;
 }

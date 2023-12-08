@@ -1,6 +1,9 @@
-#include "RFM95Com.h"
 #include "../AppMain/Defines.h"
+#include "RFM95Com.h"
 #include <map>
+
+
+#include "usbd_cdc_if.h"
 
 struct dataChangeStruct {
      uint8_t addres;
@@ -82,11 +85,10 @@ bool RFM95Com::Transmitt(uint8_t* data, uint8_t length)
      else
      {
           uint8_t dataTemp[] =
-          { 0x1F, driveSettings->getDeviceAddress(), REQUEST_STATUS, 0x00, 0x00, 0x00,
-                    0x00 };
-          dataTemp[6] = CRC8(dataTemp, 6);
+          { 0x1F, driveSettings->getDeviceAddress(), REQUEST_STATUS, READ_ALL_STATUS, 0x00, 0x00, 0x00 };
           txData = dataTemp;
      }
+     txData[6] = CRC8(txData, 6);
 
      rfm95->beginPacket();
      rfm95->write(txData, 7);
@@ -104,24 +106,27 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
      //data[4..n] = Payload
      //data[5] = crc
 
+     uint8_t* txDataTemp;
+     uint8_t rxData[7]{};
+
      uint8_t packetSize = rfm95->parsePacket();
      if (packetSize == 0)
      {
           receiveErrorCounter++;
-          if (receiveErrorCounter >= CONNECTION_LOST_TIMEOUT) {
+          if (receiveErrorCounter >= 200) {
                driveStatus->setError(DriveStatus::E_CONNECTION_LOST_ERROR);
                receiveErrorCounter = 0;
           }
           return false;
      }
-
+     
      receiveErrorCounter = 0;
      driveStatus->ResetError(DriveStatus::E_CONNECTION_LOST_ERROR);
 
      uint8_t counter = 0;
      while (rfm95->available())
      {
-          data[counter] = rfm95->read();
+          rxData[counter] = rfm95->read();
           if (counter > MAX_PACKET_2_RECEIVE)
           {
                return false;
@@ -129,27 +134,27 @@ bool RFM95Com::Receive(uint8_t* data, uint8_t length)
           counter++;
      }
 
+
      //check CRC
-     if (CRC8(data, 6) != data[6])
+     if (CRC8(rxData, 6) != rxData[6])
      {
-          //error crc error //ToDO
+          driveStatus->setError(DriveStatus::E_CRC_ERROR);
           return false;
      }
 
-     switch (data[2])
+     switch (rxData[2])
      {
      case RECEIVE_SETTINGS:
-          this->SetSettings(data);
+          this->SetSettings(rxData);
           break;
      case RECEIVE_COMMAND:
-          this->SetCommand(data);
+          this->SetCommand(rxData);
           break;
      case RECEIVE_STATUS:
-          this->SetStatus(data);
+          this->SetStatus(rxData);
           break;
      default:
-          //not sported command
-          data[2] = 0;
+          rxData[2] = 0;
           break;
      }
 

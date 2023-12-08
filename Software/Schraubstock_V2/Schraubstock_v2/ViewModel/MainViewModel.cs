@@ -9,6 +9,7 @@ using Serilog;
 using System.Collections.ObjectModel;
 using System.IO.Ports;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Schraubstock_v2.ViewModel
 {
@@ -95,7 +96,7 @@ namespace Schraubstock_v2.ViewModel
         }
 
         private string _ClampingTroque = "";
-        public string ClampingTroque
+        public string ClampingTorque
         {
             get { return _ClampingTroque; }
             set { _ClampingTroque = value; OnPropertyChanged(); }
@@ -181,8 +182,15 @@ namespace Schraubstock_v2.ViewModel
             set { _DriveStatusError = value; OnPropertyChanged(); }
         }
 
-        private string _connectButtonString = "Verbinden";
+        private Brush _errorBackgroundColor = Brushes.LightGreen;
+        public Brush ErrorBackgroundColor
+        {
+            get { return _errorBackgroundColor; }
+            set { _errorBackgroundColor = value; OnPropertyChanged(); }
 
+        }
+
+        private string _connectButtonString = "Verbinden";
         public string ConnectButtonString
         {
             get { return _connectButtonString; }
@@ -226,13 +234,14 @@ namespace Schraubstock_v2.ViewModel
         public ICommand SendStop { get; }
         public ICommand SendTeach { get; }
         public ICommand SendReset { get; }
+        public ICommand UploadSettings { get; }
 
         public MainViewModel()
         {
             _informer = new Informer(this);
             MessageCreater = new(_informer);
             _communication = new UsbCdc(_informer);
-            updateStatus = new(_communication);
+            updateStatus = new(this, _communication);
 
             Connect = new Connect(this, _communication);
             ReadDeviceAddress = new ReadDeviceAddress(this, _communication);
@@ -268,6 +277,7 @@ namespace Schraubstock_v2.ViewModel
             SendStop = new SendStop(this, _communication);
             SendTeach = new SendTeach(this, _communication);
             SendReset = new SendReset(this, _communication);
+            UploadSettings = new UploadSettings(this, _communication);
         }
 
 

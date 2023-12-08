@@ -279,11 +279,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\Schraubstock_v2.csproj",
+      "projectUniqueName": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\Schraubstock_v2.csproj",
       "projectName": "Schraubstock_v2",
-      "projectPath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\Schraubstock_v2.csproj",
+      "projectPath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\Schraubstock_v2.csproj",
       "packagesPath": "C:\\Users\\marce\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marce\\Documents\\Repos\\ViceClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\obj\\",
+      "outputPath": "C:\\Users\\marce\\Documents\\Repos\\ViseClampingDevice\\Software\\Schraubstock_V2\\Schraubstock_v2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marce\\AppData\\Roaming\\NuGet\\NuGet.Config",

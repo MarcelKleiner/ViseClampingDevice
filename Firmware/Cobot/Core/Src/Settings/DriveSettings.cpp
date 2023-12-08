@@ -5,8 +5,8 @@
  *      Author: marce
  */
 
-#include "DriveSettings.h"
 #include "../AppMain/Defines.h"
+#include "DriveSettings.h"
 
 
 DriveSettings::DriveSettings()
@@ -245,6 +245,7 @@ void DriveSettings::setSaveSettings(bool saveSettings)
 }
 
 
+
 bool DriveSettings::isSettingsChanged() const
 {
 	return (settingsChangedReg != 0);
@@ -255,11 +256,23 @@ uint16_t DriveSettings::getSettingsChangedReg() const
 	return this->settingsChangedReg;
 }
 
+void DriveSettings::SetSettingsChanged()
+{
+	this->settingsChangedReg |= TEACH_TORQUE_CHANGE;
+	this->settingsChangedReg|= TEACH_SPEED_CHANGE;
+	this->settingsChangedReg|= CLAMPING_TORQUE_CHANGE;
+	this->settingsChangedReg|= CLAMPING_SPEED_CHANGE;
+	this->settingsChangedReg|= SELF_SHUTDOWN_DELAY_CHANGE;
+	this->settingsChangedReg|= IN_POS_DIFF_CHANGE;
+	this->settingsChangedReg|= OPENING_DISTANCE_CHANGE;
+	this->settingsChangedReg|= UNDERVOLTAGE_WARNING_CHANGE;
+	this->settingsChangedReg|= UNDERVOLTAGE_ERROR_CHANGE;
+	this->settingsChangedReg|= OVER_CURRENT_WARNING_CHANGE;
+	this->settingsChangedReg|= OVER_CURRENT_ERROR_CHANGE;
+}
+
 void DriveSettings::ResetSettingsChanged(uint16_t bit){
 	settingsChangedReg &= ~bit;
-
-	if(bit != 0)
-	{
-		saveSettings = true;
-	}
 }
+
+

@@ -8,10 +8,10 @@
 #ifndef SRC_COM_BASECOM_H_
 #define SRC_COM_BASECOM_H_
 
-#include "../Status/DriveStatus.h"
-#include "../Status/DriveCommand.h"
-#include "../Settings/DriveSettings.h"
 #include "../Flash/Flash.h"
+#include "../Settings/DriveSettings.h"
+#include "../Status/DriveCommand.h"
+#include "../Status/DriveStatus.h"
 
 
 class BaseCOM{

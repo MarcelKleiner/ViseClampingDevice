@@ -5,8 +5,8 @@
  *      Author: marce
  */
 
-#include "RFM95.h"
 #include "../AppMain/AppMain.h"
+#include "RFM95.h"
 
 RFM95_LoRa::RFM95_LoRa() :
   _frequency(0),
@@ -62,7 +62,9 @@ uint8_t RFM95_LoRa::readRegister(uint8_t addr){
 	uint8_t txData[1] = {addr};
 
 	selectRFM();
-	HAL_SPI_TransmitReceive(&hspi3,(uint8_t*)txData,(uint8_t*)rxData,2,100);
+	if (HAL_SPI_TransmitReceive(&hspi3, (uint8_t*)txData, (uint8_t*)rxData, 2, 100) != HAL_OK) {
+		deselectRFM();
+	}
 	deselectRFM();
 	return rxData[1];
 }
@@ -121,12 +123,12 @@ int RFM95_LoRa::beginPacket(int implicitHeader){
 
 
 int RFM95_LoRa::endPacket(){
+	transmitCounter = 0;
   // put in TX mode
   writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_TX);
   // wait for TX done
-  while ((readRegister(REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) == 0 && transmitCounter < 150) {
-	  transmitCounter++;
-	  HAL_Delay(1);
+  while ((readRegister(REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) == 0) {
+
   }
 
   // clear IRQ's

@@ -27,15 +27,17 @@ constexpr auto SAVE_UPDATE_TIME = 1000;
 
 constexpr auto IO_TIMEOUT = 100;
 
-constexpr auto CLOSE_ADDR = 0x01;
-constexpr auto OPEN_ADDR = 0x02;
-constexpr auto TEACH_ADDR = 0x03;
-constexpr auto RESET_ADDR = 0x04;
-constexpr auto ENABLE_ADDR = 0x05;
-constexpr auto DISABLE_ADDR = 0x06;
-constexpr auto STOP_ADDR = 0x07;
+constexpr uint8_t CLOSE_ADDR = 0x01;
+constexpr uint8_t OPEN_ADDR = 0x02;
+constexpr uint8_t TEACH_ADDR = 0x03;
+constexpr uint8_t RESET_ADDR = 0x04;
+constexpr uint8_t ENABLE_ADDR = 0x05;
+constexpr uint8_t DISABLE_ADDR = 0x06;
+constexpr uint8_t STOP_ADDR = 0x07;
+constexpr uint8_t READ_ALL_STATUS = 0x08;
 
-constexpr auto COBOT_RESET_ADDR = 0x11;  //
+constexpr uint8_t UPLOAD_SETTINGS_ADDR = 0x10;
+constexpr uint8_t COBOT_RESET_ADDR = 0x11;  //
 
 constexpr auto ERROR_ADDR = 0x28;
 constexpr auto TEACH_TORQUE_ADDR = 0x29;
@@ -78,7 +80,7 @@ constexpr auto STOP_CHANGE = 0x40;
 constexpr auto ERROR_CHANGE = 0x80;
 
 
-constexpr auto CONNECTION_LOST_TIMEOUT = 10; //NUMBER OF LOST PACKAGES
+constexpr auto CONNECTION_LOST_TIMEOUT = 100; //NUMBER OF LOST PACKAGES
 
 #define IS_CONFIG_WRITE_SET 	HAL_GPIO_ReadPin(DI_1_GPIO_Port, DI_1_Pin) == GPIO_PIN_SET
 #define IS_IO1_SET 	HAL_GPIO_ReadPin(DI_2_GPIO_Port, DI_2_Pin) == GPIO_PIN_SET

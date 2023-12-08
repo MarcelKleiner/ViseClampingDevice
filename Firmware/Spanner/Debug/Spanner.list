@@ -3170,7 +3170,7 @@ void BaseCOM::SetSettings(uint8_t *data)
  8000f6c:	08001089 	.word	0x08001089
 	{
 		case TEACH_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000f70:	683b      	ldr	r3, [r7, #0]
  8000f72:	3305      	adds	r3, #5
  8000f74:	781b      	ldrb	r3, [r3, #0]
@@ -3193,7 +3193,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  8000f96:	e0c8      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case TEACH_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000f98:	683b      	ldr	r3, [r7, #0]
  8000f9a:	3305      	adds	r3, #5
  8000f9c:	781b      	ldrb	r3, [r3, #0]
@@ -3216,7 +3216,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  8000fbe:	e0b4      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case CLAMPING_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000fc0:	683b      	ldr	r3, [r7, #0]
  8000fc2:	3305      	adds	r3, #5
  8000fc4:	781b      	ldrb	r3, [r3, #0]
@@ -3239,7 +3239,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  8000fe6:	e0a0      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case CLAMPING_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000fe8:	683b      	ldr	r3, [r7, #0]
  8000fea:	3305      	adds	r3, #5
  8000fec:	781b      	ldrb	r3, [r3, #0]
@@ -3262,7 +3262,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  800100e:	e08c      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case IN_POS_DIFF_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001010:	683b      	ldr	r3, [r7, #0]
  8001012:	3305      	adds	r3, #5
  8001014:	781b      	ldrb	r3, [r3, #0]
@@ -3285,7 +3285,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  8001036:	e078      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OPENING_DISTANCE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001038:	683b      	ldr	r3, [r7, #0]
  800103a:	3305      	adds	r3, #5
  800103c:	781b      	ldrb	r3, [r3, #0]
@@ -3308,7 +3308,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  800105e:	e064      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OVER_CURRENT_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001060:	683b      	ldr	r3, [r7, #0]
  8001062:	3305      	adds	r3, #5
  8001064:	781b      	ldrb	r3, [r3, #0]
@@ -3331,7 +3331,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  8001086:	e050      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OVER_CURRENT_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001088:	683b      	ldr	r3, [r7, #0]
  800108a:	3305      	adds	r3, #5
  800108c:	781b      	ldrb	r3, [r3, #0]
@@ -3354,7 +3354,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  80010ae:	e03c      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case SELF_SHUTDOWN_DELAY_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  80010b0:	683b      	ldr	r3, [r7, #0]
  80010b2:	3305      	adds	r3, #5
  80010b4:	781b      	ldrb	r3, [r3, #0]
@@ -3377,7 +3377,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  80010d6:	e028      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case UNDERVOLTAGE_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  80010d8:	683b      	ldr	r3, [r7, #0]
  80010da:	3305      	adds	r3, #5
  80010dc:	781b      	ldrb	r3, [r3, #0]
@@ -3400,7 +3400,7 @@ void BaseCOM::SetSettings(uint8_t *data)
 			break;
  80010fe:	e014      	b.n	800112a <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case UNDERVOLTAGE_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001100:	683b      	ldr	r3, [r7, #0]
  8001102:	3305      	adds	r3, #5
  8001104:	781b      	ldrb	r3, [r3, #0]
@@ -3468,7 +3468,7 @@ void BaseCOM::SetStatus(uint8_t *data)
  8000f98:	080010b5 	.word	0x080010b5
 	{
 		case TEACH_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000f9c:	683b      	ldr	r3, [r7, #0]
  8000f9e:	3305      	adds	r3, #5
  8000fa0:	781b      	ldrb	r3, [r3, #0]
@@ -3491,7 +3491,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  8000fc2:	e0c8      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case TEACH_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000fc4:	683b      	ldr	r3, [r7, #0]
  8000fc6:	3305      	adds	r3, #5
  8000fc8:	781b      	ldrb	r3, [r3, #0]
@@ -3514,7 +3514,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  8000fea:	e0b4      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case CLAMPING_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8000fec:	683b      	ldr	r3, [r7, #0]
  8000fee:	3305      	adds	r3, #5
  8000ff0:	781b      	ldrb	r3, [r3, #0]
@@ -3537,7 +3537,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  8001012:	e0a0      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case CLAMPING_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001014:	683b      	ldr	r3, [r7, #0]
  8001016:	3305      	adds	r3, #5
  8001018:	781b      	ldrb	r3, [r3, #0]
@@ -3560,7 +3560,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  800103a:	e08c      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case IN_POS_DIFF_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  800103c:	683b      	ldr	r3, [r7, #0]
  800103e:	3305      	adds	r3, #5
  8001040:	781b      	ldrb	r3, [r3, #0]
@@ -3583,7 +3583,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  8001062:	e078      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OPENING_DISTANCE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001064:	683b      	ldr	r3, [r7, #0]
  8001066:	3305      	adds	r3, #5
  8001068:	781b      	ldrb	r3, [r3, #0]
@@ -3606,7 +3606,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  800108a:	e064      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OVER_CURRENT_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  800108c:	683b      	ldr	r3, [r7, #0]
  800108e:	3305      	adds	r3, #5
  8001090:	781b      	ldrb	r3, [r3, #0]
@@ -3629,7 +3629,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  80010b2:	e050      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case OVER_CURRENT_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  80010b4:	683b      	ldr	r3, [r7, #0]
  80010b6:	3305      	adds	r3, #5
  80010b8:	781b      	ldrb	r3, [r3, #0]
@@ -3652,7 +3652,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  80010da:	e03c      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case SELF_SHUTDOWN_DELAY_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  80010dc:	683b      	ldr	r3, [r7, #0]
  80010de:	3305      	adds	r3, #5
  80010e0:	781b      	ldrb	r3, [r3, #0]
@@ -3675,7 +3675,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  8001102:	e028      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case UNDERVOLTAGE_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  8001104:	683b      	ldr	r3, [r7, #0]
  8001106:	3305      	adds	r3, #5
  8001108:	781b      	ldrb	r3, [r3, #0]
@@ -3698,7 +3698,7 @@ void BaseCOM::SetStatus(uint8_t *data)
 			break;
  800112a:	e014      	b.n	8001156 <_ZN7BaseCOM11SetSettingsEPh+0x20a>
 		case UNDERVOLTAGE_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
  800112c:	683b      	ldr	r3, [r7, #0]
  800112e:	3305      	adds	r3, #5
  8001130:	781b      	ldrb	r3, [r3, #0]
@@ -12104,7 +12104,7 @@ uint8_t DriveStatus::getStatus() const
  8002a40:	b085      	sub	sp, #20
  8002a42:	af00      	add	r7, sp, #0
  8002a44:	6078      	str	r0, [r7, #4]
-	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
+	uint8_t result = (uint8_t) enable << 8 | (uint8_t) open << 6
  8002a46:	687b      	ldr	r3, [r7, #4]
  8002a48:	795b      	ldrb	r3, [r3, #5]
  8002a4a:	01db      	lsls	r3, r3, #7
@@ -12134,7 +12134,7 @@ uint8_t DriveStatus::getStatus() const
  8002a78:	b25b      	sxtb	r3, r3
  8002a7a:	4313      	orrs	r3, r2
  8002a7c:	b25b      	sxtb	r3, r3
-	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
+	uint8_t result = (uint8_t) enable << 8 | (uint8_t) open << 6
  8002a7e:	73fb      	strb	r3, [r7, #15]
 
 	return result;
@@ -12167,7 +12167,7 @@ uint8_t DriveStatus::getStatus() const
  8002b7e:	b085      	sub	sp, #20
  8002b80:	af00      	add	r7, sp, #0
  8002b82:	6078      	str	r0, [r7, #4]
-	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
+	uint8_t result = (uint8_t) enable << 8 | (uint8_t) open << 6
  8002b84:	687b      	ldr	r3, [r7, #4]
  8002b86:	795b      	ldrb	r3, [r3, #5]
  8002b88:	01db      	lsls	r3, r3, #7
@@ -12197,7 +12197,7 @@ uint8_t DriveStatus::getStatus() const
  8002bb6:	b25b      	sxtb	r3, r3
  8002bb8:	4313      	orrs	r3, r2
  8002bba:	b25b      	sxtb	r3, r3
-	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
+	uint8_t result = (uint8_t) enable << 8 | (uint8_t) open << 6
  8002bbc:	73fb      	strb	r3, [r7, #15]
 
 	return result;

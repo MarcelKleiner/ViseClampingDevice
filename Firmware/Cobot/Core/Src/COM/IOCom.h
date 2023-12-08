@@ -8,19 +8,19 @@
 #ifndef SRC_COM_IOCOM_H_
 #define SRC_COM_IOCOM_H_
 
-#include "BaseCOM.h"
-#include "ICom.h"
+#include "../IO/DO.h"
+#include "../Settings/DriveSettings.h"
 #include "../Status/DriveCommand.h"
 #include "../Status/DriveStatus.h"
-#include "../Settings/DriveSettings.h"
-#include "../IO/DO.h"
+#include "BaseCOM.h"
+#include "ICom.h"
 
 class IOCom: public ICom, public BaseCOM
 {
 	public:
 		IOCom(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				DriveCommand *driveCommand) :
-				BaseCOM(driveStatus, driveSettings, driveCommand)
+				DriveCommand *driveCommand, Flash *flash) :
+				BaseCOM(driveStatus, driveSettings, driveCommand, flash)
 		{
 			this->driveStatus = driveStatus;
 		}

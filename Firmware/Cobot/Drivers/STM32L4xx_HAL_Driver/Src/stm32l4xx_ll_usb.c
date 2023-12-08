@@ -1220,7 +1220,7 @@ uint32_t USB_ReadDevInEPInterrupt(USB_OTG_GlobalTypeDef *USBx, uint8_t epnum)
 
   msk = USBx_DEVICE->DIEPMSK;
   emp = USBx_DEVICE->DIEPEMPMSK;
-  msk |= ((emp >> (epnum & EP_ADDR_MSK)) & 0x1U) << 7;
+  msk |= ((emp >> (epnum & EP_ADDR_MSK)) & 0x1U) << 8;
   tmpreg = USBx_INEP((uint32_t)epnum)->DIEPINT & msk;
 
   return tmpreg;

@@ -5,6 +5,7 @@
  *      Author: marce
  */
 
+#include "../AppMain/Defines.h"
 #include "DriveCommand.h"
 
 DriveCommand::DriveCommand()
@@ -24,6 +25,7 @@ bool DriveCommand::isClose()
 void DriveCommand::setClose(bool close)
 {
 	this->close = close;
+	 commandChangeReg |= CLOSE_CHANGE;
 }
 
 /****************************************************************************************
@@ -39,6 +41,7 @@ bool DriveCommand::isOpen()
 void DriveCommand::setOpen(bool open)
 {
 	this->open = open;
+	 commandChangeReg |= OPEN_CHANGE;
 }
 
 /****************************************************************************************
@@ -54,6 +57,7 @@ bool DriveCommand::isDisable()
 void DriveCommand::setDisable(bool disable)
 {
 	this->disable = disable;
+	 commandChangeReg |= DISABLE_CHANGE;
 }
 
 /****************************************************************************************
@@ -69,6 +73,7 @@ bool DriveCommand::isEnable()
 void DriveCommand::setEnable(bool enable)
 {
 	this->enable = enable;
+	 commandChangeReg |= ENABLE_CHANGE;
 }
 
 /****************************************************************************************
@@ -84,6 +89,7 @@ bool DriveCommand::isReset()
 void DriveCommand::setReset(bool reset)
 {
 	this->reset = reset;
+	 commandChangeReg |= RESET_CHANGE;
 }
 
 /****************************************************************************************
@@ -99,6 +105,7 @@ bool DriveCommand::isStop()
 void DriveCommand::setStop(bool stop)
 {
 	this->stop = stop;
+	 commandChangeReg |= STOP_CHANGE;
 }
 
 /****************************************************************************************
@@ -116,6 +123,7 @@ void DriveCommand::setTeach(bool teach)
 	if (this->teach != teach)
 	{
 		this->teach = teach;
+		 commandChangeReg |= TEACH_CHANGE;
 	}
 
 }

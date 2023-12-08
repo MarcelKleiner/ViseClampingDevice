@@ -7,6 +7,11 @@
 
 #include "DriveStatus.h"
 
+DriveStatus::DriveStatus() {
+	zeroCurrentValue = 1538;
+}
+
+
 /****************************************************************************************
  / * 	close get/set
  ****************************************************************************************/
@@ -127,13 +132,14 @@ void DriveStatus::setError(_ERROR error)
 	}
 }
 
-uint8_t DriveStatus::getStatus() const
-{
-	uint8_t result = (uint8_t) enable << 7 | (uint8_t) open << 6
-			| (uint8_t) close << 5 | (uint8_t) teach << 4 | (uint8_t) stop << 3;
+void DriveStatus::ResetError(_ERROR error) {
 
-	return result;
+	if (this->error == error) {
+		this->error = E_NO_ERROR;
+	}
+
 }
+
 
 /*******************************************************************
  * Current settings
@@ -181,19 +187,19 @@ uint16_t DriveStatus::getVoltage() const
 
 void DriveStatus::setVoltage(uint16_t voltageADC)
 {
-	this->voltage = voltage;
+	this->voltage = voltageADC;
 }
 
 /*******************************************************************
  * Position settings
  ******************************************************************/
 
-uint16_t DriveStatus::getPosition() const
+int32_t DriveStatus::getPosition() const
 {
 	return position;
 }
 
-void DriveStatus::setPosition(uint16_t position)
+void DriveStatus::setPosition(int32_t position)
 {
 	this->position = position;
 }

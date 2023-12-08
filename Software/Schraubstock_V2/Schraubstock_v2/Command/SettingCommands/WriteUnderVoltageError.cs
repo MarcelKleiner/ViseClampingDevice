@@ -6,12 +6,10 @@ namespace Schraubstock_v2.Command.CommunicationCommands
     public class WriteUnderVoltageError : CommandBase
     {
         private readonly MainViewModel _mainViewModel;
-        private readonly ICommunication _Communication;
 
         public WriteUnderVoltageError(MainViewModel mainViewModel, ICommunication communication) : base(communication)
         {
             _mainViewModel = mainViewModel;
-            _Communication = communication;
         }
 
 
@@ -25,7 +23,7 @@ namespace Schraubstock_v2.Command.CommunicationCommands
         {
             byte[]? data = _mainViewModel.MessageCreater.Create(
             Adresses.CommandAdress.SEND_SETTINGS,
-            Adresses.RegisterAdress.UNDERVOLTAGE_ERROR_ADDR);
+            Adresses.RegisterAdress.UNDERVOLTAGE_ERROR_ADDR, _mainViewModel.UnderVoltageError);
 
             await ExecuteCommandAsync(data);
         }

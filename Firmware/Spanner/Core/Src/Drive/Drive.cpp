@@ -6,6 +6,7 @@
  */
 
 #include "Drive.h"
+#include <bits/std_abs.h>
 
 Drive::Drive(DriveSettings *driveSettings, DriveStatus *driveStatus,DriveCommand *driveCommand, Encoder *encoder, LED *led)
 {
@@ -32,6 +33,7 @@ void Drive::updateDrive()
 			break;
 		case Drive::TEACH_MODE:
 			TeachMode();
+			break;
 		default:
 			Stop();
 			break;
@@ -55,7 +57,10 @@ void Drive::Close(){
 	if(MoveDrive(DIRECTION::IN, driveSettings->getClampingTorque(), driveSettings->getClampingSpeed()))
 	{
 		driveStatus->setInPos(true);
-		driveCommand->setClose(false);
+		driveCommand->setClose(true);
+		driveCommand->setOpen(false);
+		Stop();
+		driveMode = EDRIVE_MODE::STOP_MODE;
 	}
 }
 
@@ -63,21 +68,24 @@ void Drive::Open(){
 
 	auto posOut = driveSettings->getOpeningDistance() + driveSettings->getInPosDiff();
 	auto posIn = driveSettings->getOpeningDistance() - driveSettings->getInPosDiff();
+	int32_t currentPosition = driveStatus->getPosition();
 
-
-	if(driveStatus->getPosition() < posIn)
+	if(currentPosition < posIn)
 	{
 		MoveDrive(DIRECTION::OUT, driveSettings->getClampingTorque(), driveSettings->getClampingSpeed());
 	}
 
-	if(driveStatus->getPosition() > posOut){
+	if(currentPosition > posOut){
 		MoveDrive(DIRECTION::IN, driveSettings->getClampingTorque(), driveSettings->getClampingSpeed());
 	}
 
 	if(driveStatus->getPosition() < posOut && driveStatus->getPosition() > posIn)
 	{
 		driveStatus->setInPos(true);
-		driveCommand->setOpen(false);
+		driveCommand->setOpen(true);
+		driveCommand->setClose(false);
+		Stop();
+		driveMode = EDRIVE_MODE::STOP_MODE;
 	}
 }
 
@@ -85,8 +93,12 @@ void Drive::Open(){
 
 void Drive::Stop()
 {
-	TIM2->CCR1 = 3200; //3200-6400
+	TIM2->CCR1 = 64000; //3200-6400
 }
+
+int32_t initialPosition = 0;
+int32_t currentPosition = 0;
+int32_t lastPosition = 0;
 
 void Drive::TeachMode()
 {
@@ -103,38 +115,86 @@ void Drive::TeachMode()
 		case TEACH_RDY:
 			if (IS_EXT_SWITCH == true)
 			{
+				initialPosition = driveStatus->getPosition();
+				currentPosition = initialPosition;
+				lastPosition = initialPosition;
 				nextState = DRIVE_OUT;
 			}
 			break;
 		case DRIVE_IN:
+
+			currentPosition = driveStatus->getPosition();
+
+			if (!IS_EXT_SWITCH)
+			{
+				Stop();
+				if (abs(currentPosition - lastPosition) > 5);
+				{
+					lastPosition = currentPosition;
+					return;
+				}
+
+				nextState = DRIVE_OUT;
+				currentPosition = driveStatus->getPosition();
+				lastPosition = currentPosition;
+			}
+
 			//move drive in
 			if(MoveDrive(IN, driveSettings->getTeachTroque(),driveSettings->getTeachSpeed()))
 			{
+				Stop();
 				nextState = TEACH_END;
 			}
 
-			if(IS_EXT_SWITCH)
-			{
-				nextState = DRIVE_OUT;
-			}
+			lastPosition = currentPosition;
 			break;
 		case DRIVE_OUT:
 			//move drive out
-			if(MoveDrive(OUT, driveSettings->getTeachTroque(), driveSettings->getTeachSpeed()) || torqueOutReached)
+			
+			currentPosition = driveStatus->getPosition();
+
+			//the encoder value should increase when driving out!
+			if (lastPosition > currentPosition) 
+			{
+				driveStatus->setError(DriveStatus::E_ENCODER_ERROR);
+				Stop();
+				driveMode = EDRIVE_MODE::STOP_MODE;
+				return;
+			}
+			else if (currentPosition >= initialPosition)
+			{
+				positionReached = true;
+				Stop();
+			} 
+			else if (torqueOutReached || positionReached || MoveDrive(OUT, driveSettings->getTeachTroque(), driveSettings->getTeachSpeed()))
 			{
 				torqueOutReached = true;
 			}
 
-			if(!IS_EXT_SWITCH)
+
+			if(IS_EXT_SWITCH)
 			{
+				Stop();
+				//wait until stop
+				if (abs(currentPosition - lastPosition) > 5);
+				{
+					lastPosition = currentPosition;
+					return;
+				}
+
 				nextState = DRIVE_IN;
 				torqueOutReached = false;
+				positionReached = false;
 			}
+
+			lastPosition = currentPosition;
+
 			break;
 		case TEACH_END:
 			//reset TTL counter
 			encoder->ResetEncoder();
 			driveCommand->setTeach(false);
+			driveMode = OP_MODE;
 			break;
 		default:
 			break;
@@ -159,17 +219,22 @@ bool Drive::MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed)
 		return true;
 	}
 
+	if (speed > 6400)
+		speed = 6400;
+
+	if (speed < 3200)
+		speed = 3200;
+
+
 	switch (direction)
 	{
 		case DIRECTION::IN:
 			TIM2->CCR2 = DIRECTION_IN;	//direction
-			TIM2->CCR1 = speed; //4000;	//speed
-			led->ON();
+			TIM2->CCR1 = 65000;	//speed
 			break;
 		case DIRECTION::OUT:
 			TIM2->CCR2 = DIRECTION_OUT;	//direction
-			TIM2->CCR1 = speed; //4000; //speed
-			led->ON();
+			TIM2->CCR1 = 65000; //speed
 			break;
 		default:
 			Stop();

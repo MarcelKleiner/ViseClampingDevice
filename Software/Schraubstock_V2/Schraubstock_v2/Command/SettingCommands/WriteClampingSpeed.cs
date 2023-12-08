@@ -22,7 +22,7 @@ namespace Schraubstock_v2.Command.CommunicationCommands
         {
             byte[]? data = _mainViewModel.MessageCreater.Create(
             Adresses.CommandAdress.SEND_SETTINGS,
-            Adresses.RegisterAdress.CLAMPING_SPEED_ADDR);
+            Adresses.RegisterAdress.CLAMPING_SPEED_ADDR, _mainViewModel.OpeningDistance);
 
             await ExecuteCommandAsync(data);
         }

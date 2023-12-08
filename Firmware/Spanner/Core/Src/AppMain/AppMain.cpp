@@ -6,9 +6,9 @@
  */
 
 #include "AppMain.h"
+#include "usbd_cdc_if.h"
 #include "usbd_conf.h"
 #include "usbd_def.h"
-#include "usbd_cdc_if.h"
 
 extern TIM_HandleTypeDef htim16;
 extern TIM_HandleTypeDef htim6;
@@ -46,6 +46,8 @@ void AppMain::Startup()
 	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adc1Buffer, BUFFER_SIZE_ADC1);
 	HAL_TIM_Base_Start_IT(&htim6);
 
+	TIM2->CCR1 = 66000;		//speed
+	TIM2->CCR2 = 80000;
 
 	if (!rfm95.InitRFM())
 	{
@@ -55,7 +57,7 @@ void AppMain::Startup()
 	rfm95.receive(0);
 	encoder.init();
 
-	Main();
+	//Main();
 }
 
 
@@ -66,7 +68,7 @@ void AppMain::Reset()
 	taskHandler.setDriveTaskEnable(true);
 	taskHandler.setErrorTaskEnable(true);
 
-	TIM2->CCR1 = 3600;
+	TIM2->CCR1 = 64000;
 
 	driveCommand.setTeach(false);
 	driveCommand.setClose(false);
@@ -78,7 +80,7 @@ void AppMain::Reset()
 	driveStatus.setError(DriveStatus::E_NO_ERROR);
 	comLoseCounter = 0;
 }
-
+bool dataReceived = false;
 
 void AppMain::Main()
 {
@@ -93,8 +95,7 @@ void AppMain::Main()
 			Reset();
 		}
 
-		//RFM Communication task
-		if (taskHandler.isComTask())
+		if (taskHandler.isComTask()) 
 		{
 			if (!rfm95COM->Receive())
 			{
@@ -105,18 +106,23 @@ void AppMain::Main()
 				comLoseCounter = 0;
 			}
 
-			if (comLoseCounter > 20) 
+			if (comLoseCounter > 500)
 			{
 				drive.Stop();
 			}
-
 			if (comLoseCounter == (driveSettings.getSelfShutdownDelay() * 4))
 			{
 				//Self-shutdown when the delay time for self-shutdown has elapsed
 				HAL_GPIO_WritePin(POWER_SWITCH_GPIO_Port, POWER_SWITCH_Pin, GPIO_PIN_RESET);
 				comLoseCounter = 65000;
 			}
+			dataReceived = false;
 		}
+
+		//RFM Communication task
+
+
+		
 
 		//Drive Task
 		if (taskHandler.isDriveTask())
@@ -128,22 +134,40 @@ void AppMain::Main()
 		//Error Task
 		if (taskHandler.isErrorTask())
 		{
-			if(driveStatus.getVoltage() < driveSettings.getUnderVoltageWarning()){
+			if(driveStatus.getVoltage() < driveSettings.getUnderVoltageWarning())
+			{
 				driveStatus.setError(DriveStatus::E_UNDERVOLTAGE_WARNING);
 			}
+			else 
+			{
+				driveStatus.ResetError(DriveStatus::E_UNDERVOLTAGE_WARNING);
+			}
 
-			if(driveStatus.getVoltage() < driveSettings.getUnderVoltageError()){
+			if(driveStatus.getVoltage() < driveSettings.getUnderVoltageError())
+			{
 				driveStatus.setError(DriveStatus::E_UNDERVOLTAGE_ERROR);
+			}
+			else
+			{
+				driveStatus.ResetError(DriveStatus::E_UNDERVOLTAGE_ERROR);
 			}
 
 			if(driveStatus.getCurrent() > driveSettings.getOverCurrentWarning())
 			{
 				driveStatus.setError(DriveStatus::E_OVERCURRENT_WARNING);
 			}
+			else
+			{
+				driveStatus.ResetError(DriveStatus::E_OVERCURRENT_WARNING);
+			}
 
 			if(driveStatus.getCurrent() > driveSettings.getOverCurrentError())
 			{
 				driveStatus.setError(DriveStatus::E_OVERCURRENT_ERROR);
+			}
+			else
+			{
+				driveStatus.ResetError(DriveStatus::E_OVERCURRENT_ERROR);
 			}
 
 			if (driveStatus.getError() != DriveStatus::E_NO_ERROR)
@@ -152,6 +176,11 @@ void AppMain::Main()
 				taskHandler.setDriveTaskEnable(false);
 				taskHandler.setLEDTaskEnable(false);
 				//error.error2LED(); ToDo
+			}
+			else 
+			{
+				taskHandler.setDriveTaskEnable(true);
+				taskHandler.setLEDTaskEnable(true);
 			}
 		}
 

@@ -24,7 +24,7 @@ namespace Schraubstock_v2.Command.CommunicationCommands
             Adresses.CommandAdress.REQUEST_SETTINGS,
             Adresses.RegisterAdress.CLAMPING_TORQUE_ADDR);
 
-            _mainViewModel.ClampingTroque = await ExecuteRequesAsync(data);
+            _mainViewModel.ClampingTorque = await ExecuteRequesAsync(data);
         }
 
     }

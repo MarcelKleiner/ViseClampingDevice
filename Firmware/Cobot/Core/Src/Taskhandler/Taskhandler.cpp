@@ -13,9 +13,9 @@
  *      Author: marce
  */
 
-#include "TaskHandler.h"
-#include "gpio.h"
 #include "../AppMain/Defines.h"
+#include "gpio.h"
+#include "TaskHandler.h"
 
 //update tasks, should be called every 1ms
 void TaskHandler::UpdateTasks() {
@@ -25,6 +25,10 @@ void TaskHandler::UpdateTasks() {
 	//2ms
 	if(counter % ADC_UPDATE_TIME == 0){
 		adcUpdateTask = true;
+	}
+
+	if (counter % 5 == 0) {
+		comTaskRx = true;
 	}
 
 	//15ms
@@ -73,6 +77,12 @@ void TaskHandler::UpdateTasks() {
 bool TaskHandler::isComTask()  {
 	bool comTaskTemp = (comTask && comTaskEnable);
 	comTask = false;
+	return comTaskTemp;
+}
+
+bool TaskHandler::isComTaskRx() {
+	bool comTaskTemp = (comTaskRx);
+	comTaskRx = false;
 	return comTaskTemp;
 }
 

@@ -5,8 +5,8 @@
  *      Author: marce
  */
 
-#include "AppMain.h"
 #include "../Tools/Delay.h"
+#include "AppMain.h"
 
 extern TIM_HandleTypeDef htim7;
 
@@ -17,64 +17,67 @@ AppMain::AppMain()
 
 void AppMain::Startup()
 {
-	Storage.ReadFlash();
+     Storage.ReadFlash();
 
-	HAL_TIM_Base_Start_IT(&htim7);
+     HAL_TIM_Base_Start_IT(&htim7);
 
-	LED_Green.OFF();
-	LED_Red.OFF();
+     LED_Green.OFF();
+     LED_Red.OFF();
 
-	if (!rfm95.InitRFM())
-	{
-		//ToDo set error
-	}
+     if (!rfm95.InitRFM())
+     {
+          //ToDo set error
+     }
 
-	Delay::DWT_Init();
+     Delay::DWT_Init();
 
-	Main();
+     Main();
 }
-
+bool toggleRFM = false;
 void AppMain::Main()
 {
 
-	while (1)
-	{
+     while (1)
+     {
 
-		if (taskStatus.isErrorTask())
-		{
-			error.PrintError();
-		}
+          if (taskStatus.isErrorTask())
+          {
+               error.PrintError();
+          }
 
-		if (taskStatus.IsLEDUpdateTask())
-		{
-			LED_Green.Toggle();
-		}
+          if (taskStatus.IsLEDUpdateTask())
+          {
+               LED_Green.Toggle();
+          }
 
-		if (taskStatus.isComTask())
-		{
-			rfm95COM->Transmitt();
-			rfm95COM->Receive();
-		}
+          if (taskStatus.isComTask())
+          {
+               rfm95COM.Transmitt();
+          }
 
-		if (taskStatus.isIoUpdateTask())
-		{
-			ioCOM->Receive();
-			ioCOM->Transmitt();
-		}
+          if (taskStatus.isComTaskRx()) {
+               rfm95COM.Receive();
+          }
 
-		if (taskStatus.isSaveTask())
-		{
-			Storage.WriteFlash();
-		}
+          if (taskStatus.isIoUpdateTask())
+          {
+               ioCOM->Receive();
+               ioCOM->Transmitt();
+          }
 
-		if (taskStatus.IsResetUpdateTask()) {
-			if (driveStatus.IsSelfReset()) 
-			{
-				error.ResetError();
-				driveStatus.ResetSelfReset();
-			}
-		}
+          if (taskStatus.isSaveTask())
+          {
+               Storage.WriteFlash();
+          }
 
-	}
+          if (taskStatus.IsResetUpdateTask()) {
+               if (driveStatus.IsSelfReset())
+               {
+                    error.ResetError();
+                    driveStatus.ResetSelfReset();
+               }
+          }
+
+     }
 }
 

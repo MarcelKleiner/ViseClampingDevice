@@ -1,7 +1,7 @@
-#include "BaseCOM.h"
 #include "../AppMain/Defines.h"
 #include "../Tools/CRC8.h"
 #include "../Tools/TypeConverter.h"
+#include "BaseCOM.h"
 
 BaseCOM::BaseCOM(DriveStatus* driveStatus, DriveSettings* driveSettings,
 	DriveCommand* driveCommand, Flash* flash)
@@ -89,6 +89,8 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 	data2send[1] = driveSettings->getDeviceAddress();
 	data2send[2] = 0x00; //replace with address
 	data2send[3] = addr;
+	data2send[4] = 0x00;
+	data2send[5] = 0x00;
 
 	switch (addr)
 	{
@@ -115,6 +117,17 @@ uint8_t* BaseCOM::GetStatus(uint8_t addr)
 			break;
 		case ERROR_ADDR:
 			data2send[4] = driveStatus->GetError();
+			break;
+		case READ_ALL_STATUS:
+			data2send[4] |= ((0x01 & driveStatus->IsClose()) << 6);		//0100 0000
+			data2send[4] |= ((0x01 & driveStatus->IsOpen()) << 5);		//0010 0000
+			data2send[4] |= ((0x01 & driveStatus->IsTeach()) << 4);		//0001 0000
+			data2send[4] |= ((0x01 & driveStatus->IsReset()) << 3);		//0000 1000
+			data2send[4] |= ((0x01 & driveStatus->IsEnable()) << 2);	//0000 0100
+			data2send[4] |= ((0x01 & driveStatus->IsDisable()) << 1);	//0000 0010
+			data2send[4] |= ((0x01 & driveStatus->IsStop()) << 0);		//0000 0001
+
+			data2send[5] = driveStatus->GetError();
 			break;
 		default:
 			data2send[0] = 0x1D;
@@ -157,7 +170,7 @@ uint8_t* BaseCOM::GetCommand(uint8_t addr)
 			break;
 		default:
 			data2send[0] = 0x1D;
-			break;CRC8
+			break;
 	}
 	data2send[6] = CRC8(data2send, 6);
 	data2send[7] = 0;
@@ -179,47 +192,47 @@ void BaseCOM::SetSettings(uint8_t *data)
 	switch (data[3])
 	{
 		case TEACH_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setTeachTroque(value);
 			break;
 		case TEACH_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setTeachSpeed(value);
 			break;
 		case CLAMPING_TORQUE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setClampingTorque(value);
 			break;
 		case CLAMPING_SPEED_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setClampingSpeed(value);
 			break;
 		case IN_POS_DIFF_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setInPosDiff(value);
 			break;
 		case OPENING_DISTANCE_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setOpeningDistance(value);
 			break;
 		case OVER_CURRENT_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setOverCurrentWarning(value);
 			break;
 		case OVER_CURRENT_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setOverCurrentError(value);
 			break;
 		case SELF_SHUTDOWN_DELAY_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setSelfShutdownDelay(value);
 			break;
 		case UNDERVOLTAGE_WARNING_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setUnderVoltageWarning(value);
 			break;
 		case UNDERVOLTAGE_ERROR_ADDR:
-			value = ((uint16_t) data[5]) << 7 | data[4];
+			value = ((uint16_t) data[5]) << 8 | data[4];
 			driveSettings->setUnderVoltageError(value);
 			break;
 		case SAVE_SETTINGS_ADDR:
@@ -265,6 +278,18 @@ void BaseCOM::SetStatus(uint8_t *data)
 		case STOP_ADDR:
 			driveStatus->setStop(data[4] == 0x01);
 			break;
+		case READ_ALL_STATUS:
+			driveStatus->SetClose((data[4] >> 6) == 0x01);
+			driveStatus->SetOpen((data[4] >> 5) == 0x01);
+			driveStatus->SetTeach((data[4] >> 4) == 0x01);
+			driveStatus->setReset((data[4] >> 3) == 0x01);
+			driveStatus->SetEnable((data[4] >> 2) == 0x01);
+			driveStatus->SetDisable((data[4] >> 1) == 0x01);
+			driveStatus->setStop((data[4] >> 0) == 0x01);
+
+			driveStatus->setError((DriveStatus::_ERROR)data[5]);
+
+			break;
 		default:
 			break;
 	}
@@ -301,6 +326,9 @@ void BaseCOM::SetCommand(uint8_t *data)
 			break;
 		case STOP_ADDR:
 			driveCommand->setStop(data[4] == 0x01);
+			break;
+		case UPLOAD_SETTINGS_ADDR:
+			driveSettings->SetSettingsChanged();
 			break;
 		case COBOT_RESET_ADDR:
 			driveStatus->SetSelfReset();

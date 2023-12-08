@@ -8,12 +8,13 @@
 #ifndef SRC_COM_RFM95COM_H_
 #define SRC_COM_RFM95COM_H_
 
-#include "BaseCOM.h"
-#include "ICom.h"
+#include "../RFM95W/RFM95.h"
+#include "../Settings/DriveSettings.h"
 #include "../Status/DriveCommand.h"
 #include "../Status/DriveStatus.h"
-#include "../Settings/DriveSettings.h"
-#include "../RFM95W/RFM95.h"
+#include "BaseCOM.h"
+#include "ICom.h"
+#include "USBCom.h"
 
 
 
@@ -31,22 +32,23 @@
 
 
 
-class RFM95Com :  public ICom, public BaseCOM
+class RFM95Com :   public BaseCOM
 {
 	public:
 		RFM95Com(DriveStatus *driveStatus, DriveSettings *driveSettings,
-				DriveCommand *driveCommand, RFM95_LoRa *rfm95) :
-				BaseCOM(driveStatus, driveSettings, driveCommand)
+				DriveCommand *driveCommand, RFM95_LoRa *rfm95, Flash *flash) :
+				BaseCOM(driveStatus, driveSettings, driveCommand, flash)
 		{
 			this->rfm95 = rfm95;
 			this->driveCommand = driveCommand;
 			this->driveStatus = driveStatus;
 			this->driveSettings = driveSettings;
+			this->usbCom = usbCom;
 		}
 
 
-		virtual bool Transmitt(uint8_t *data = NULL, uint8_t length = 0) override;
-		virtual bool Receive(uint8_t *data = NULL, uint8_t length = 0) override;
+		 bool Transmitt(uint8_t *data = NULL, uint8_t length = 0) ;
+		 bool Receive(uint8_t *data = NULL, uint8_t length = 0) ;
 
 
 	private:
@@ -55,6 +57,7 @@ class RFM95Com :  public ICom, public BaseCOM
 		DriveSettings *driveSettings;
 		DriveStatus *driveStatus;
 		DriveCommand *driveCommand;
+		USBCom* usbCom;
 
 		uint8_t data[7] ={ 0 };
 

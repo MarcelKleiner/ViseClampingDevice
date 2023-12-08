@@ -30,6 +30,7 @@ void Flash::ReadFlash()
 	driveSettings->setOpeningDistance(tmpFlashArray[10]);
 
 	driveSettings->setDeviceAddress(tmpFlashArray[11]);
+	driveSettings->setSaveSettings(false);
 }
 
 void Flash::SaveDefault() {
@@ -76,7 +77,7 @@ void Flash::WriteFlash(){
 
 HAL_StatusTypeDef Flash::Save()
 {
-
+	driveSettings->setSaveSettings(false);
 	FLASH_EraseInitTypeDef EraseinitStruct{};
 	uint32_t sectorError = 0;
 
@@ -101,8 +102,7 @@ HAL_StatusTypeDef Flash::Save()
 
 	for (int i = 0; i < UFLASH_SIZE; i++)
 	{
-		HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD,
-				(FLASH_STAR_PAGE_ADDR + 64 * i), tmpFlashArray[i]);
+		HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, (FLASH_STAR_PAGE_ADDR + 64 * i), tmpFlashArray[i]);
 	}
 
 	if (HAL_FLASH_Lock() != HAL_OK)

@@ -8,8 +8,8 @@
 #ifndef SRC_SETTINGS_DRIVESETTINGS_H_
 #define SRC_SETTINGS_DRIVESETTINGS_H_
 
-#include "stdint.h"
 #include "main.h"
+#include "stdint.h"
 
 class DriveSettings{
 
@@ -58,6 +58,7 @@ public:
 		bool isSettingsChanged() const;
 		uint16_t getSettingsChangedReg() const;
 		void ResetSettingsChanged(uint16_t bit);
+		void SetSettingsChanged();
 
 private:
 

@@ -5,8 +5,8 @@
  *      Author: marce
  */
 
-#include "TaskHandler.h"
 #include "main.h"
+#include "TaskHandler.h"
 
 
 //update tasks, should be called every 1ms
@@ -24,7 +24,7 @@ void TaskHandler::UpdateTasks() {
 	}
 
 	//ms
-	if(counter % 90 == 0){
+	if(counter % 5 == 0){
 		comTask = true;
 	}
 

@@ -10,5 +10,8 @@ public enum Commands : byte
     ENABLE_ADDR = 0x05,
     DISABLE_ADDR = 0x06,
     STOP_ADDR = 0x07,
-    COBOT_RESET_ADDR = 0x11
+    READ_ALL_STATUS = 0x08,
+
+    UPLOAD_SETTINGS_ADDR = 0x10,
+    COBOT_RESET_ADDR = 0x11,
 }

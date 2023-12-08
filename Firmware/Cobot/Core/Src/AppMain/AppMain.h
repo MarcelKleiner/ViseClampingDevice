@@ -8,19 +8,19 @@
 #ifndef SRC_APPMAIN_APPMAIN_H_
 #define SRC_APPMAIN_APPMAIN_H_
 
-#include "../Taskhandler/Taskhandler.h"
-#include "../RFM95W/RFM95.h"
-#include "../Tools/Delay.h"
+#include "../Flash/Flash.h"
 #include "../IO/DO.h"
 #include "../IO/LED.h"
-#include "../Flash/Flash.h"
-#include "tim.h"
+#include "../RFM95W/RFM95.h"
+#include "../Taskhandler/Taskhandler.h"
+#include "../Tools/Delay.h"
 #include "main.h"
+#include "tim.h"
 
-#include "../COM/USBCom.h"
 #include "../COM/ICom.h"
-#include "../COM/RFM95Com.h"
 #include "../COM/IOCom.h"
+#include "../COM/RFM95Com.h"
+#include "../COM/USBCom.h"
 #include "../Error/Error.h"
 
 class AppMain
@@ -42,12 +42,13 @@ class AppMain
 		DriveStatus driveStatus = DriveStatus();
 		DriveCommand driveCommand = DriveCommand();
 
-
-		ICom *rfm95COM = new RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95);
-		ICom *usbCOM	= new USBCom(&driveStatus, &driveSettings, &driveCommand);
-		ICom *ioCOM	= new IOCom(&driveStatus, &driveSettings, &driveCommand);
-
 		Flash Storage = Flash(&driveSettings, &driveStatus);
+
+		RFM95Com rfm95COM =  RFM95Com(&driveStatus, &driveSettings, &driveCommand, &rfm95, &Storage);
+		ICom *usbCOM	= new USBCom(&driveStatus, &driveSettings, &driveCommand, &Storage);
+		ICom *ioCOM	= new IOCom(&driveStatus, &driveSettings, &driveCommand, &Storage);
+
+
 		Error error = Error(&driveStatus);
 	private:
 

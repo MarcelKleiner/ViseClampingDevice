@@ -9,8 +9,8 @@
 #define SRC_TASKHANDLER_TASKHANDLER_H_
 
 
-#include "stdint.h"
 #include "../AppMain/Defines.h"
+#include "stdint.h"
 
 
 class TaskHandler{
@@ -22,6 +22,7 @@ public:
 	void UpdateTasks();
 
 	bool isComTask();
+	bool isComTaskRx();
 	bool isSaveTask();
 	bool isErrorTask();
 	bool isIoUpdateTask() ;
@@ -43,6 +44,7 @@ private:
 
 	volatile bool errorTask = false;
 	volatile bool comTask = false;
+	volatile bool comTaskRx = false;
 	volatile bool ioUpdateTask = false;
 	volatile bool adcUpdateTask = false;
 	volatile bool ledUpdateTask = false;

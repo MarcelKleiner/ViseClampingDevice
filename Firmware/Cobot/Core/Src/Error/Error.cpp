@@ -16,6 +16,9 @@ void Error::PrintError()
           errorCode = (uint8_t)driveStatus->GetError() * 2;
           HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin, GPIO_PIN_SET);
           erroCounter = 0;
+
+          if (errorCode == 0)
+               return;
      }
      else {
           erroCounter++;

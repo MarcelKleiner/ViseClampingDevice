@@ -10,7 +10,7 @@
 
 #include "stdint.h"
 
-#define ADC_2_VOLTAGE		2
+#define ADC_2_VOLTAGE		8
 #define ADC_2_CURRENT		2
 
 
@@ -21,15 +21,21 @@ class DriveStatus
 
 		enum _ERROR
 		{
-			E_NO_ERROR = 0x0000,
-			E_FLASH_ERROR = 0x0001,
-			E_COM_ERROR = 0x0002,
-			E_UNDERVOLTAGE_ERROR= 0x004,
-			E_UNDERVOLTAGE_WARNING = 0x0008,
-			E_OVERCURRENT_WARNING= 0x0010,
-			E_OVERCURRENT_ERROR= 0x020,
-			E_CRC_ERROR = 0x040,
+			E_NO_ERROR = 0x00,
+			E_FLASH_ERROR = 0x01,
+			E_COM_ERROR = 0x02,
+			E_USB_ERROR = 0x03,
+			E_UNKOWN_COMMAND_OR_ADDR_ERROR = 0x04,
+			E_CONNECTION_LOST_ERROR = 0x05,
+			E_CRC_ERROR = 0x06,
+			E_UNDERVOLTAGE_ERROR= 0x07,
+			E_UNDERVOLTAGE_WARNING = 0x08,
+			E_OVERCURRENT_WARNING= 0x09,
+			E_OVERCURRENT_ERROR= 0x0A,
+			E_ENCODER_ERROR = 0x0B
 		};
+
+		DriveStatus();
 
 		bool isClose();
 		void setClose(bool close);
@@ -57,12 +63,13 @@ class DriveStatus
 
 		_ERROR getError();
 		void setError(_ERROR error);
+		void ResetError(_ERROR error);
 
 		uint16_t getCurrent() const;
 		void setCurrent(uint16_t current);
 
-		uint16_t getPosition() const;
-		void setPosition(uint16_t position);
+		int32_t getPosition() const;
+		void setPosition(int32_t position);
 
 		bool isInPos() const;
 		void setInPos(bool flag);
@@ -90,7 +97,7 @@ class DriveStatus
 		uint16_t current;
 		uint16_t zeroCurrentValue;
 		uint16_t voltage;
-		uint16_t position;
+		int32_t position;
 
 		bool inPos = false;
 

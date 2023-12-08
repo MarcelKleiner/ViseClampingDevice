@@ -5,8 +5,8 @@
  *      Author: marce
  */
 
-#include "IOCom.h"
 #include "../AppMain/Defines.h"
+#include "IOCom.h"
 
 /// @brief
 /// Set IO output pins, this function is called by the main function through the task handler
@@ -64,7 +64,7 @@ bool IOCom::Receive(uint8_t *data, uint8_t length)
 	if (configeWriteStatus && !previousConfigeWriteStatus)
 	{
 		// read digial config
-		uint8_t data = ((uint8_t)IS_IO7_SET << 7) + 
+		uint8_t data = ((uint8_t)IS_IO7_SET << 8) + 
 			(((uint8_t)IS_IO6_SET) << 6) + 
 			(((uint8_t)IS_IO5_SET) << 5) + 
 			(((uint8_t)IS_IO4_SET) << 4) + 
@@ -83,7 +83,7 @@ bool IOCom::Receive(uint8_t *data, uint8_t length)
 			counter++;
 		case 2:
 			break;
-			payload |= ((uint16_t)data) << 7;
+			payload |= ((uint16_t)data) << 8;
 			counter++;
 			break;
 		case 3:

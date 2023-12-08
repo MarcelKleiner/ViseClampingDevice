@@ -6,12 +6,10 @@ namespace Schraubstock_v2.Command.CommunicationCommands
     public class WriteOverCurrentWarning : CommandBase
     {
         private readonly MainViewModel _mainViewModel;
-        private readonly ICommunication _Communication;
 
         public WriteOverCurrentWarning(MainViewModel mainViewModel, ICommunication communication) : base(communication)
         {
             _mainViewModel = mainViewModel;
-            _Communication = communication;
         }
 
         public override void Execute(object? parameter)
@@ -24,7 +22,7 @@ namespace Schraubstock_v2.Command.CommunicationCommands
         {
             byte[]? data = _mainViewModel.MessageCreater.Create(
             Adresses.CommandAdress.SEND_SETTINGS,
-            Adresses.RegisterAdress.OVER_CURRENT_WARNING_ADDR);
+            Adresses.RegisterAdress.OVER_CURRENT_WARNING_ADDR, _mainViewModel.OverCurrentWarning);
 
             await ExecuteCommandAsync(data);
         }
