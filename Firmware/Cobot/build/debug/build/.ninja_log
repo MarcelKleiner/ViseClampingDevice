@@ -15,7 +15,7 @@
 73	1037	7231552080730428	CMakeFiles/Cobot.dir/Core/Src/IO/DO.cpp.obj	7ce23a4a917a3e7a
 2497	3428	7231552985105798	CMakeFiles/Cobot.dir/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.c.obj	c4b21aab10be8b8a
 62	1047	7231552080840313	CMakeFiles/Cobot.dir/Core/Src/gpio.c.obj	4bf07bcf08cf925a
-23	555	7232556934351731	CMakeFiles/Cobot.dir/Core/Src/COM/RFM95Com.cpp.obj	d3964c8fc226698b
+37	3545	7232560140763495	CMakeFiles/Cobot.dir/Core/Src/COM/RFM95Com.cpp.obj	d3964c8fc226698b
 20	368	7232502200562530	CMakeFiles/Cobot.dir/Core/Src/Status/DriveCommand.cpp.obj	60932190ee6787a0
 53	728	7231552596516780	CMakeFiles/Cobot.dir/Core/Src/spi.c.obj	bd955f891ea39670
 2770	3976	7231552993232536	CMakeFiles/Cobot.dir/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c.obj	a1c337adf93cdc2f
@@ -67,6 +67,4 @@
 3787	4490	7231552998477310	CMakeFiles/Cobot.dir/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.obj	b4c33bf869fd835
 3900	4516	7231552998806972	CMakeFiles/Cobot.dir/USB_DEVICE/Target/usbd_conf.c.obj	81c706eb3cfc57dd
 3794	4521	7231552998846939	CMakeFiles/Cobot.dir/USB_DEVICE/App/usb_device.c.obj	13a66835bb1bdfc2
-556	1184	7232556939774173	Cobot.elf	829c78d24e96ec7
-37	3545	7232560140763495	CMakeFiles/Cobot.dir/Core/Src/COM/RFM95Com.cpp.obj	d3964c8fc226698b
 3547	5141	7232560154999887	Cobot.elf	829c78d24e96ec7

@@ -61,8 +61,8 @@ constexpr auto  RCV_STATUS = 0xAA;
 
 //general settings
 
-constexpr auto DIRECTION_IN = 64000; //3200
-constexpr auto DIRECTION_OUT = 128000; //6400
+constexpr auto DIRECTION_IN = 85000; //3200
+constexpr auto DIRECTION_OUT = 118000; //6400
 
 
 

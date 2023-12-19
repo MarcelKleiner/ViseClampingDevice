@@ -1,5 +1,6 @@
 ﻿using Schraubstock_v2.Common;
 using Schraubstock_v2.Communication;
+using Schraubstock_v2.Logger;
 using Schraubstock_v2.ViewModel;
 using System.Windows.Media;
 
@@ -10,10 +11,12 @@ public class UpdateStatus : CommandBase
     private readonly MainViewModel _mainViewModel;
     CancellationToken cancellation;
     private bool _IsRunning = true;
+    private IInformer _informer;
 
-    public UpdateStatus(MainViewModel viewModel, ICommunication communication, CancellationToken cancellationToken = default) : base(communication)
+    public UpdateStatus(MainViewModel viewModel, IInformer informer, ICommunication communication, CancellationToken cancellationToken = default) : base(communication)
     {
         _mainViewModel = viewModel;
+        _informer = informer;
         Run(cancellationToken);
     }
 
@@ -61,8 +64,8 @@ public class UpdateStatus : CommandBase
                 else
                 {
                     _mainViewModel.ErrorBackgroundColor = Brushes.Red;
+                    _informer.Inform(errorCode.GetEnumDescription());
                 }
-
                 _mainViewModel.DriveStatusError = errorCode.GetEnumDescription();
                 _mainViewModel.DriveStatusOpen = ((status[0] & 0x20) == 0x01) ? "Geöffnet" : "Geschlossen";
                 _mainViewModel.DriveStatusRun = ((status[0] & 0x01) == 0x01) ? "Run" : "Stop";

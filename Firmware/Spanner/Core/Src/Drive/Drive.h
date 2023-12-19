@@ -44,8 +44,8 @@ class Drive
 
 		void updateDrive();
 		void Stop();
-		EDRIVE_MODE getDriveMode();
-		void setDriveMode(EDRIVE_MODE driveMode);
+		bool InternalDelay(uint16_t delay);
+		bool DriveOutToInitializePosition();
 
 	private:
 
@@ -60,10 +60,18 @@ class Drive
 		TEACH_STATE currentState = TEACH_MODE_ENTER;
 		TEACH_STATE nextState;
 
+
+		int32_t initialPosition = 0;
+		int32_t currentPosition = 0;
+		int32_t lastPosition = 0;
+		uint8_t stateChangeDelay = 0;
+
 		bool isDriveStoped = false;
 
 		bool torqueOutReached = false;
 		bool positionReached = false;
+
+		bool isLocalDelayInitialized = false;
 
 		void OpMode();
 		void TeachMode();
@@ -71,8 +79,9 @@ class Drive
 		void Open();
 		void Close();
 
-		bool MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed);
+		bool MoveDrive(DIRECTION direction, uint16_t torque, uint16_t speed, bool ignoreTorque);
 
+		void ResetTeachState();
 };
 
 #endif /* SRC_DRIVE_DRIVE_H_ */

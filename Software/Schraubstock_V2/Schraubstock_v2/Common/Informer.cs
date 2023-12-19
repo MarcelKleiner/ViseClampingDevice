@@ -16,7 +16,6 @@ namespace Schraubstock_v2.Common
         public void Inform(string message)
         {
             _mainViewModel.LogTextBox += $"\n[{DateTime.Now.ToString("HH:mm:ss")}] {message}";
-
         }
 
         public void Inform(CommandAdress command, RegisterAdress registerAddr, string data)

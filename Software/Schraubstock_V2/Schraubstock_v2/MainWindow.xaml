@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Schraubstock_v2" xmlns:viewmodel="clr-namespace:Schraubstock_v2.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="672" Width="850">
+        Title="MainWindow" Height="672" Width="930">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
@@ -34,12 +34,12 @@
         <GroupBox x:Name="groupBox1" Header="Antriebseinstellungen" Grid.Row="1">
             <Grid Margin="5,5,5,5" Height="217">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="170"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="170"/>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="74"/>
                     <ColumnDefinition Width="75"/>
@@ -56,11 +56,11 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Geräteadresse" Grid.Row="0"/>
-                <Label Content="Teachgeschwindigkeit" Grid.Row="1"/>
-                <Label Content="Teachdrehmoment" Grid.Row="2"/>
-                <Label Content="Anzugsgeschwindigkeit" Grid.Row="3"/>
-                <Label Content="Anzugsdrehmoment" Grid.Row="4"/>
-                <Label Content="Selbstabschaltverzögerung" Grid.Row="5"/>
+                <Label Content="Teachgeschwindigkeit [%]" Grid.Row="1"/>
+                <Label Content="Teachdrehmoment [Nm]" Grid.Row="2"/>
+                <Label Content="Anzugsgeschwindigkeit [%]" Grid.Row="3"/>
+                <Label Content="Anzugsdrehmoment [Nm]" Grid.Row="4"/>
+                <Label Content="Selbstabschaltverzögerung [s]" Grid.Row="5"/>
 
                 <TextBox Text="{Binding DeviceAddress}"                             Grid.Row="0" Grid.Column="1" Margin="5"/>
                 <Button Content="lesen" Command="{Binding ReadDeviceAddress}"       Grid.Row="0" Grid.Column="2" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>
@@ -88,12 +88,12 @@
 
 
 
-                <Label Content="Hysterese" Grid.Row="0" Grid.Column="5"/>
-                <Label Content="Öffnungsdistanz" Grid.Row="1" Grid.Column="5"/>
-                <Label Content="Überstromwarnung" Grid.Row="2" Grid.Column="5"/>
-                <Label Content="Überstromerror" Grid.Row="3" Grid.Column="5"/>
-                <Label Content="Unterspannungswarnung" Grid.Row="4" Grid.Column="5"/>
-                <Label Content="Unterspannungserror" Grid.Row="5" Grid.Column="5"/>
+                <Label Content="Hysterese [mm]" Grid.Row="0" Grid.Column="5"/>
+                <Label Content="Öffnungsdistanz [mm]" Grid.Row="1" Grid.Column="5"/>
+                <Label Content="Überstromwarnung [A]" Grid.Row="2" Grid.Column="5"/>
+                <Label Content="Überstromerror [A]" Grid.Row="3" Grid.Column="5"/>
+                <Label Content="Unterspannungswarnung [V]" Grid.Row="4" Grid.Column="5"/>
+                <Label Content="Unterspannungserror [V]" Grid.Row="5" Grid.Column="5"/>
 
                 <TextBox Text="{Binding Hysteresis}"                             Grid.Row="0" Grid.Column="6" Margin="5"/>
                 <Button Content="lesen" Command="{Binding ReadHysteresis}"       Grid.Row="0" Grid.Column="7" Margin="4" Background="#FF131375" Foreground="White" BorderBrush="#FF131375"/>

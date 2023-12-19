@@ -241,7 +241,7 @@ namespace Schraubstock_v2.ViewModel
             _informer = new Informer(this);
             MessageCreater = new(_informer);
             _communication = new UsbCdc(_informer);
-            updateStatus = new(this, _communication);
+            updateStatus = new(this, _informer, _communication);
 
             Connect = new Connect(this, _communication);
             ReadDeviceAddress = new ReadDeviceAddress(this, _communication);

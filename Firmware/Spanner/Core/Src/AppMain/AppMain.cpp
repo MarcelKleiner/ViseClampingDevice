@@ -57,7 +57,7 @@ void AppMain::Startup()
 	rfm95.receive(0);
 	encoder.init();
 
-	//Main();
+	Main();
 }
 
 

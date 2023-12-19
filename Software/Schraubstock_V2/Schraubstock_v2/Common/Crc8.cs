@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Schraubstock_v2.Common
+﻿namespace Schraubstock_v2.Common
 {
     public static class Crc8
     {
